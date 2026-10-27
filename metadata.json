@@ -222,5 +222,76 @@
     "contact_fields_note": "No separate contact or email fields were present in the live form. Private contact information is omitted; Ali Rajaee’s GitHub handle was not provided.",
     "platform_max_entries": 3,
     "expected_entries_per_team": 1
+  },
+  "board_review": {
+    "status_observed_at_utc": "2026-10-27 22:26 UTC",
+    "observation_precision": "minute",
+    "verified_after_reload": true,
+    "task_kind": "editable_starter_tasks",
+    "mandatory_submission_requirements": false,
+    "done_count": 6,
+    "todo_count": 2,
+    "total_tasks": 8,
+    "all_original_descriptions_empty": true,
+    "descriptions_now_include_evidence_or_optional_guidance": true,
+    "document": "docs/board-review.md",
+    "tasks": [
+      {
+        "title": "Ideate challenge statements",
+        "status": "Done",
+        "evidence": "docs/product-guide.md"
+      },
+      {
+        "title": "Pick your challenge track",
+        "status": "Done",
+        "evidence": "submission/hackos-entry.json"
+      },
+      {
+        "title": "Build the core MVP flow",
+        "status": "Done",
+        "evidence": [
+          "docs/clean-clone-redesign-validation.json",
+          "docs/live-revision-validation.json"
+        ]
+      },
+      {
+        "title": "Record the demo video",
+        "status": "Done",
+        "evidence": "submission/demo-validation.json"
+      },
+      {
+        "title": "Test your demo link",
+        "status": "Done",
+        "evidence": [
+          "docs/ui-validation.json",
+          "docs/submission-checklist.md"
+        ]
+      },
+      {
+        "title": "Draft the pitch deck",
+        "status": "Done",
+        "evidence": "submission/validation.json"
+      },
+      {
+        "title": "Optional: Book a mentor check-in",
+        "status": "To Do",
+        "optional": true,
+        "booking_or_meeting_confirmed": false
+      },
+      {
+        "title": "Optional: Practice presentation",
+        "status": "To Do",
+        "optional": true,
+        "preparation_ready": true,
+        "human_rehearsal_confirmed": false,
+        "preparation": [
+          "docs/demo-script.md",
+          "docs/slide-deck.md",
+          "submission/traceharbor.pptx"
+        ]
+      }
+    ],
+    "bookings_or_external_messages_sent_during_review": false,
+    "historical_warning_note": "submission.board_warning retains the eight unfinished tasks observed at submission; this later review does not replace that history."
   }
 }

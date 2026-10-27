@@ -31,4 +31,6 @@ The actual submission form had no separate contact or email fields. Team descrip
 
 The portal displayed **eight unfinished board tasks and zero requirements**. Submission proceeded through its **Submit anyway** action. Those board tasks were **not marked complete**; the submitted status does not imply their completion.
 
+**Later board update — observed 22:26 UTC:** six evidenced tasks were marked Done, and the mentor check-in and presentation-practice tasks remain To Do with an Optional prefix. See the [starter-board review](board-review.md). The paragraph above preserves the state at submission.
+
 This confirmation records the portal's submitted state. It does not establish judging results, prize eligibility or a competition outcome. The earlier technical, deployment and readiness receipts retain their original dates and scope.
