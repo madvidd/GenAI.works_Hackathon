@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-27",
+  "target": "https://traceharbor.web.app",
+  "mode": "sample",
+  "method": "Actual browser controls, DOM observations, screenshots and a downloaded JSON dossier",
+  "checks": [
+    {
+      "name": "Calibration citation opens the original record",
+      "observed": "CALROW-42, CAL-42-CURRENT, confirmed offset 4.5 C, validity interval and original JSON displayed",
+      "passed": true
+    },
+    {
+      "name": "Escape closes evidence dialog",
+      "observed": "Dialog closed and investigation controls remained usable",
+      "passed": true
+    },
+    {
+      "name": "Withholding calibration changes the conclusion",
+      "shipment": "TH-1042",
+      "before": "Sensor bias explains the alarm",
+      "after": "Abstain: evidence is incomplete",
+      "passed": true
+    },
+    {
+      "name": "Missing observations remain uncertain",
+      "shipment": "TH-1043",
+      "observed": "2 of 7 observations, 28.6 percent coverage, 50-minute gap and abstention",
+      "passed": true
+    },
+    {
+      "name": "Modified measurement changes the computed result",
+      "shipment": "TH-1044",
+      "reading": "RD-1044-30",
+      "beforeTemperatureC": 5.2,
+      "afterTemperatureC": 9.2,
+      "before": "No excursion observed in this window",
+      "after": "Observed excursion",
+      "passed": true
+    },
+    {
+      "name": "Modified result exports through the UI",
+      "artifact": "TH-1044-mutated.json",
+      "observed": "Downloaded JSON contains shipment TH-1044, outcome excursion and corrected peak 9.2 C",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "These checks do not establish live sponsor execution.",
+    "The changed reading is synthetic and exists only in the test browser's in-memory dataset."
+  ]
+}

@@ -31,15 +31,15 @@ Authority: current Official Rules and Announcements on [HackOS](https://hackatho
 | Zetaris is the data layer | REST registration and shipment evidence USL | SQL/adapter present; actual execution pending |
 | A Meterless Engine powers a feature | Official World Model ingest, graph-context consumption, source-priority facts; `tests/runtime.test.mjs` warm-load/identity/unchanged-ingest test | Local feature test passed; separate upstream conformance runner passed 8/8 |
 | Nightshift is the primary live AI provider | Nightshift client using Runtime URL/token | Authenticated runtime reachable; actual request returned `no_provider_configured` |
-| NVIDIA where it contributes; award based on Nemotron through Nightshift | Record actual response model IDs and their contribution | Pending; no NVIDIA success claim |
+| NVIDIA where it contributes; award based on Nemotron through Nightshift | Record actual response model IDs and their contribution | Not currently used; selected local model does not establish NVIDIA or Nemotron use |
 | Cursor optional; actual coding tool disclosed | OpenAI Codex; Cursor not claimed | Documented |
 | Sample mode works without credentials or local sponsor services | Deterministic fixture processing, explicit mode | Core present; whole-run clean-environment check pending |
-| At least three sample inputs and matching generated outputs | Excursion, sensor-bias, and insufficient-evidence examples | Four actual current sample runs published in `examples/TH-1041` through `TH-1044` |
+| At least three sample inputs and matching generated outputs | Four JSON inputs in `examples/inputs/`, mapped in `examples/README.md` | Matching actual current sample runs published in `examples/TH-1041` through `TH-1044` |
 | Run-generated logs to stdout and `logs/` | Request ID, agent, action, handoff, status, retries, model, queries/results, engine activity | Full runner verification pending |
 | No hidden manual data/database setup | Scripted registration and reproducible fixture publication | Scripts present; clean-clone validation pending |
 | Timeouts, bounded retries/rounds, structured failures | Explicit service and run budgets | Final tests pending |
 | No runtime dependency installs or large downloads | npm install/build stage; small fixtures | Final package/Docker inspection pending |
-| No GPU required to judge | Hosted model route via Nightshift; CPU sample mode | Configuration and clean-run check pending |
+| No GPU required to judge | Credential-free sample mode; local-model live setup is separate | Sample mode has no GPU dependency; whole-run clean-clone check pending |
 | No secrets in code, history, screenshots, logs, or artifacts | Ignored `.env.local`, blank example tokens, provider key only in Nightshift | Final secret/history/media scan pending |
 | Honest synthetic, fallback, limitation, and third-party disclosure | README, data contract, metadata, sponsor explanation | Present; final claim/code audit pending |
 

@@ -979,7 +979,12 @@ function App() {
                             <strong>{result.title}</strong>
                             <small>
                               {result.metrics.correctedPeakC ?? "—"}°C corrected
-                              peak · {excluded.length} records withheld
+                              peak ·{" "}
+                              {ignoreCalibration
+                                ? "calibration withheld"
+                                : "calibration applied"}
+                              {excluded.length > 0 &&
+                                ` · ${excluded.length} additional records withheld`}
                             </small>
                           </div>
                         </div>

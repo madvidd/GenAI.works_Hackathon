@@ -26,13 +26,13 @@ All three live model calls go through Nightshift: the planner chooses two or thr
 
 The runner caps model calls at three, USL reads at four, and total runtime at five minutes. The critic's selected test executes another analysis. It can show that the explanation depends on calibration, sampling coverage, or an operator claim. This is a sensitivity test of the record, not a simulated physical intervention. Failed live execution does not silently become sample execution.
 
-The application's secret is the Nightshift Runtime token. The NVIDIA provider key stays in Nightshift. Required evidence: authenticated Runtime discovery, actual request receipts, returned model IDs, and run-generated traces. Installation and a health endpoint are not evidence of successful inference.
+The application's secret is the Nightshift Runtime token. The selected path is local inference through Nightshift, initially Llama 3.2 1B Instruct to limit memory use. It does not require a cloud-model key. Required evidence: authenticated Runtime discovery, actual request receipts, returned model IDs, and run-generated traces. Installation and a health endpoint are not evidence of successful inference.
 
-## NVIDIA Nemotron: only claim the model that actually ran
+## NVIDIA: no current use claimed
 
-The intended contribution is Nemotron reasoning through Nightshift. The configured alias `meterless/auto` is insufficient proof because it can route to another provider. Record the actual model returned on every request and the role that request performed. Do not set a verified-NVIDIA flag from an alias, screenshot of a provider setting, or an unexecuted code path.
+The current build selects a local model through Nightshift. It does not claim a Nemotron request, NVIDIA cloud inference, or verified NVIDIA acceleration. The configured alias `meterless/auto` is insufficient proof of a vendor or model. Record the actual model returned on every request and the role that request performed.
 
-No verified Nemotron contribution is claimed yet. Once tested, include the real model identifiers and the corresponding redacted run receipts here and in `metadata.json`.
+Do not set a verified-NVIDIA flag from an alias, a provider-setting screenshot, a downloaded model, or an unexecuted code path. Any future contribution would require its own observed evidence and an updated disclosure.
 
 ## Coding tool and other attribution
 

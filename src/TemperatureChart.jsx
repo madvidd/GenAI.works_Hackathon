@@ -25,8 +25,14 @@ export default function TemperatureChart({ result, onEvidence }) {
     y = (v) => bottom - ((v - min) / (max - min)) * (bottom - top);
   function path(key) {
     let pen = false;
+    let previousTime = null;
+    const cadenceMs = result.shipment.expected_interval_minutes * 60_000;
     return points
       .map((p) => {
+        const pointTime = Date.parse(p.timestamp);
+        if (previousTime !== null && pointTime - previousTime > cadenceMs * 1.5)
+          pen = false;
+        previousTime = pointTime;
         if (!Number.isFinite(p[key])) {
           pen = false;
           return "";
@@ -122,10 +128,12 @@ export default function TemperatureChart({ result, onEvidence }) {
               cy={y(p.correctedC ?? p.rawC)}
               r="4.5"
               fill={
-                p.correctedC > result.shipment.max_temp_c ||
-                p.correctedC < result.shipment.min_temp_c
-                  ? "#cf7546"
-                  : "#315b57"
+                !Number.isFinite(p.correctedC)
+                  ? "#9faebd"
+                  : p.correctedC > result.shipment.max_temp_c ||
+                      p.correctedC < result.shipment.min_temp_c
+                    ? "#cf7546"
+                    : "#315b57"
               }
               stroke="white"
               strokeWidth="2"

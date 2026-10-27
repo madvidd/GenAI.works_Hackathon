@@ -18,8 +18,8 @@ Status reviewed on **27 October 2026**. This is a development status, not a subm
 | Evidence provenance | Stable row IDs, original source rows, timestamps, calibration matches, and citation checks | UI and export verification |
 | Zetaris | REST adapter, source-registration plan, USL DDL, exploration queries, and data-quality SQL | Execute against a real instance and retain actual receipts |
 | Meterless World Model | 46 source rows ingested; warm reload skipped all 46 unchanged rows; upstream conformance runner passed 8/8 | Clean-clone repeat pending |
-| Meterless Nightshift | Installed runtime reachable; authenticated model discovery succeeds | Actual completion returned `no_provider_configured`; configure a provider and retain successful calls |
-| NVIDIA Nemotron | Planned through Nightshift | Actual returned model IDs and run evidence |
+| Meterless Nightshift | Installed runtime reachable; authenticated model discovery succeeds; local inference selected | Start the selected Llama 3.2 1B Instruct model and retain successful calls; the earlier completion returned `no_provider_configured` |
+| NVIDIA | No current NVIDIA or Nemotron contribution claimed | The selected local-model path is not evidence of NVIDIA use |
 | Website and examples | Deployed sample verified; four feeds and calibration-withholding interaction checked; four actual sample runs in `examples/` | Final clean-clone repeat |
 | Deck | [Editable PowerPoint](submission/traceharbor.pptx) and [PDF](submission/traceharbor.pdf), eight slides, actual screenshots, all pages visually inspected | Refresh sponsor status after a successful live run |
 | Video | Three-minute narration and shot plan | Actual audio recording and public-access verification |
@@ -37,7 +37,7 @@ The analysis validates observation identity and sensor integrity, applies only a
 | `TH-1043` | Sparse readings, a pending calibration, and a confident operator note are insufficient to clear the exception. The result abstains and requests missing evidence. |
 | `TH-1044` | A normal control with a complete observation window and confirmed zero offset. |
 
-These are scenarios, not hardcoded answer keys. The analysis uses the supplied observations and calibration records. Altering or withholding evidence must change the result. Runtime code must not load final answers from `output_examples/`.
+These are scenarios, not hardcoded answer keys. The analysis uses the supplied observations and calibration records. Altering or withholding evidence must change the result. Runtime code does not load the generated dossiers in `examples/` as answers.
 
 Confidence is a transparent heuristic for evidence strength, **not a calibrated probability**. Discrete observations do not establish continuous temperature or exact exposure duration. Read the [data contract](data/README.md) for the assumptions.
 
@@ -68,6 +68,15 @@ npm run agent:live
 
 Select a case with `npm run agent:sample -- --shipment TH-1042`. The runner writes `dossier.json`, `manifest.json`, `trace.jsonl`, `world-events.jsonl`, and `world-audit.jsonl` under a unique `logs/runs/` directory. Live runs also write `zetaris-queries.jsonl`.
 
+Four explicit [structured sample inputs](examples/README.md) map to the exported results:
+
+| Input | Generated dossier | Equivalent CLI |
+| --- | --- | --- |
+| [TH-1041 input](examples/inputs/TH-1041.json) | [Observed excursion](examples/TH-1041/dossier.json) | `npm run agent:sample -- --shipment TH-1041` |
+| [TH-1042 input](examples/inputs/TH-1042.json) | [Sensor bias](examples/TH-1042/dossier.json) | `npm run agent:sample -- --shipment TH-1042` |
+| [TH-1043 input](examples/inputs/TH-1043.json) | [Insufficient evidence](examples/TH-1043/dossier.json) | `npm run agent:sample -- --shipment TH-1043` |
+| [TH-1044 input](examples/inputs/TH-1044.json) | [Normal control](examples/TH-1044/dossier.json) | `npm run agent:sample -- --shipment TH-1044` |
+
 Sample mode runs without Zetaris, Nightshift, or credentials and discloses its mode. Live mode requires actual configured services. A live failure does not silently become a sample success. The local orchestration tests use mocked network transports; they are not proof of actual sponsor execution.
 
 After building, run the local live companion:
@@ -89,7 +98,7 @@ This last command does not call any sponsor service.
 
 ## Sponsor configuration
 
-Copy `.env.example` to the ignored `.env.local`, then enter real local values. Never commit either token. Keep the NVIDIA provider key in **Nightshift's Providers tab**, outside this repository.
+Copy `.env.example` to the ignored `.env.local`, then enter real local values. Never commit either token. This build is being configured for a **local model through Nightshift**, initially Llama 3.2 1B Instruct to limit memory use. No cloud-model key is required for that path. A model download or selected setting is not a successful inference receipt.
 
 | Variable | Purpose |
 | --- | --- |
@@ -98,8 +107,8 @@ Copy `.env.example` to the ignored `.env.local`, then enter real local values. N
 | `ZETARIS_ORG_ID` | Numeric organization ID; local installs normally use `1` |
 | `TRACEHARBOR_PUBLIC_ORIGIN` | Verified HTTPS origin serving the four public synthetic feeds |
 | `NIGHTSHIFT_BASE_URL` | Runtime URL, normally `http://127.0.0.1:8088/v1` |
-| `NIGHTSHIFT_API_KEY` | Nightshift Runtime token, not an NVIDIA provider key |
-| `NIGHTSHIFT_MODEL` | Discovered Runtime model ID; `meterless/auto` may select a non-NVIDIA model |
+| `NIGHTSHIFT_API_KEY` | Private Nightshift Runtime token |
+| `NIGHTSHIFT_MODEL` | Actual local Runtime model ID from authenticated discovery; a routing alias alone does not identify the model that ran |
 
 `ZETARIS_REST_URL` is also accepted by the Zetaris adapter. The supplied example uses `ZETARIS_BASE_URL` consistently. A container's `localhost` addresses that container, so containers need a documented address that reaches services on the host.
 

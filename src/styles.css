@@ -6,7 +6,7 @@
   font-synthesis: none;
   font-weight: 400;
   --ink: #193442;
-  --muted: #81909a;
+  --muted: #596f7a;
   --line: #e6ebed;
   --lime: #c3ed94;
   --navy: #132c3b;
@@ -941,16 +941,16 @@ main {
   position: relative;
   min-height: 160px;
 }
-.chart-wrap svg {
+.chart-wrap > svg {
   width: 100%;
   display: block;
   overflow: visible;
 }
-.chart-wrap svg text {
+.chart-wrap > svg text {
   font:
     10px "DM Sans",
     sans-serif;
-  fill: #a9b5bb;
+  fill: #596f7a;
 }
 .chart-legend {
   display: flex;
@@ -1013,7 +1013,7 @@ main {
 }
 .chart-gap {
   font-size: 10px;
-  color: #b28d60;
+  color: #84613b;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -2957,21 +2957,21 @@ tr:hover td {
 .next-action p,
 .reasoning-step p,
 .whatif-card p {
-  color: #6e828c;
+  color: #526975;
 }
 .source-card p,
 .boundary-note,
 .principles p,
 .settings-modal > p,
 .mode-option p {
-  color: #738992;
+  color: #526975;
 }
 .reference-note {
   display: flex;
   align-items: center;
   gap: 6px;
   font-size: 10px;
-  color: #6987aa;
+  color: #486b91;
   margin-top: 6px;
 }
 .reference-note i {
@@ -2981,16 +2981,19 @@ tr:hover td {
   background: #6e8eb4;
 }
 .citations > button {
-  color: #657f8c;
+  color: #526975;
 }
 .dossier-tabs > button {
-  color: #758c97;
+  color: #526975;
 }
 .metric > span,
 .chart-legend {
-  color: #708a96;
+  color: #526975;
 }
 .shipment-card small,
 .shipment-card-bottom {
-  color: #7c929c;
+  color: #526975;
+}
+.chart-gap > svg {
+  flex-shrink: 0;
 }
