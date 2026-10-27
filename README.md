@@ -12,6 +12,8 @@ The useful output is a **cited handoff dossier**: what was observed, which claim
 
 Built by **Vengers** for the Open Agent Hackathon 2026, **The Agent That Can Explain Why**. **HackOS submission confirmed:** one submitted entry, verified after reload at **22:13 UTC on 27 October 2026**. This is the observation time, not a server submission timestamp. [Submission confirmation](docs/submission-confirmation.md)
 
+The [final judges-readiness check](docs/judges-final-review.md) verifies the submitted entry, public workspace, fresh-clone tests, video and deck, with dated receipts and explicit limits.
+
 ## Why this is useful
 
 | The analyst’s question | What TraceHarbor does | Practical next step |

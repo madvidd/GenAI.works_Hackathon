@@ -79,4 +79,4 @@ Checked technical and artifact items record the verified source/artifact commit 
 
 Uninterrupted human audiovisual playback and native Microsoft PowerPoint rendering remain unverified. Technical video checks and the reviewed PDF are complete. The resource ledger separately identifies six recordings whose spoken content was unavailable for review.
 
-The [verified platform confirmation](submission-confirmation.md) establishes the submitted state. The portal’s **eight unfinished board tasks and zero requirements** warning was acknowledged through **Submit anyway**; those tasks were not marked complete. Saved form text, a working website or a pushed repository alone would not establish submission.
+The [verified platform confirmation](submission-confirmation.md) establishes the submitted state. At the **22:13 UTC submission check**, the portal’s **eight unfinished board tasks and zero requirements** warning was acknowledged through **Submit anyway**. The [later board review](board-review.md) verified **six Done and two optional follow-ups**. Saved form text, a working website or a pushed repository alone would not establish submission.

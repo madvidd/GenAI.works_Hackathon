@@ -1,0 +1,125 @@
+{
+  "schema_version": "traceharbor.judges-final-media.v1",
+  "checked_at_utc": "2026-10-27T22:42:42.199796+00:00",
+  "source_commit": "43b39d3c4834f8bb48cabc1cf10456f8d7b956f9",
+  "scope": "Fresh local canonical-artifact checks. Uploaded HackOS player and public delivery verification are separate. No media or application files were changed.",
+  "result": "pass_with_documented_limitations",
+  "artifacts": {
+    "traceharbor-demo.mp4": {
+      "bytes": 11701778,
+      "sha256": "017e380fa68c4b23d9abd462c890df90eab03938640e210f48d8a7eac09ea48c"
+    },
+    "traceharbor-demo.srt": {
+      "bytes": 4579,
+      "sha256": "0a0c695ebb4ec63296b0ba2d85389ae5cd1c4b59c1e0b5cc43e57d2ab3e17814"
+    },
+    "traceharbor.pdf": {
+      "bytes": 595118,
+      "sha256": "34c8d5cdbe557f3c3efb5aea1fd8f5f283f8f91b21e4c6b2b852d118ae19ecf9"
+    },
+    "traceharbor.pptx": {
+      "bytes": 345006,
+      "sha256": "c34a2718afd8142e9283bdefef714dea91af38ce527b46fa89d64827fb86e7fa"
+    }
+  },
+  "video": {
+    "full_decode_passed": true,
+    "decode_errors": 0,
+    "duration_seconds": 188.48,
+    "width": 1920,
+    "height": 1080,
+    "codec": "h264",
+    "frame_rate": "24/1",
+    "audio_codec": "aac",
+    "audio_sample_rate_hz": 48000,
+    "audio_channels": 2,
+    "all_nine_decoded_scene_audio_segments_non_silent": true,
+    "caption_count": 42,
+    "caption_first_start_seconds": 0.0,
+    "caption_last_end_seconds": 187.821,
+    "captions_sequential_non_overlapping_within_duration": true,
+    "embedded_and_standalone_caption_text_and_timing_match": true,
+    "caption_text_matches_all_nine_scene_narrations": true,
+    "all_four_artifact_hashes_match_prior_reviewed_receipts": true,
+    "caption_groups_align_with_all_nine_narration_scene_windows": true,
+    "encoded_scene_end_frames_reviewed": 9,
+    "visual_findings": 0,
+    "full_uninterrupted_human_audiovisual_playback_claimed": false,
+    "word_level_audio_caption_alignment_checked": false
+  },
+  "pdf": {
+    "strict_parse_passed": true,
+    "page_count": 8,
+    "encrypted": false,
+    "page_size_points": [
+      960,
+      540
+    ],
+    "all_eight_pages_rendered_with_poppler_and_visually_reviewed": true,
+    "each_embedded_page_image_pixel_identical_to_original_slide_render": true,
+    "visual_findings": 0,
+    "extractable_text_characters": 0,
+    "clickable_link_annotations": 0,
+    "representation": "Raster images of the original rendered slides."
+  },
+  "pptx": {
+    "zip_crc_passed": true,
+    "all_xml_and_relationship_parts_parse": true,
+    "xml_part_count": 59,
+    "slide_count": 8,
+    "nonempty_speaker_note_sections": 8,
+    "native_tables": 2,
+    "identical_to_original_candidate_used_for_slide_renders": true,
+    "content_text_and_notes_extracted_for_review": true,
+    "package_integrity_findings": 0,
+    "layout_findings": 0,
+    "all_eight_slides_text_and_speaker_notes_reviewed": true,
+    "visible_content_matches_all_eight_pdf_pages": true,
+    "native_powerpoint_rendering_verified": false
+  },
+  "content": {
+    "live_evidence_reference": "examples/live-agent/attempt-06-final-decimal/manifest.json",
+    "analysis_version": "1.0.2",
+    "live_receipt_claims_match": {
+      "nightshift_model_calls": 3,
+      "zetaris_reads": 4,
+      "world_model_records": 46,
+      "initial_result": "insufficient_evidence",
+      "result_after_critic_retrieval": "sensor_bias",
+      "result_after_calibration_withholding": "insufficient_evidence"
+    },
+    "synthetic_data_and_narration_disclosed": true,
+    "edited_screenshot_demo_disclosed": true,
+    "public_sample_and_local_live_boundary_preserved": true,
+    "no_measured_roi_or_causality_or_cargo_release_claim": true,
+    "nvidia_use_not_claimed": true
+  },
+  "source_references": {
+    "local_note_references_checked": 19,
+    "missing_local_references": [],
+    "tracked_source_files": 18,
+    "local_generated_directory_reference": {
+      "slide": 7,
+      "reference": "logs/runs",
+      "public_archive_alternatives": [
+        "examples/TH-1041",
+        "examples/TH-1042",
+        "examples/TH-1043",
+        "examples/TH-1044",
+        "examples/live-agent"
+      ]
+    },
+    "displayed_public_urls": [
+      "https://traceharbor.web.app",
+      "https://github.com/madvidd/GenAI.works_Hackathon"
+    ],
+    "public_network_link_verification": "Handled separately by the parent judges check; this receipt does not claim a fresh network check."
+  },
+  "limitations": [
+    "The PDF contains image-based pages: it is not searchable, has no clickable link annotations and does not include speaker notes. The PPTX retains editable text, two native tables and eight note sections.",
+    "Fresh visual review sampled one encoded end frame per scene and all eight full PDF pages. Full uninterrupted human audiovisual playback and native Microsoft PowerPoint rendering were not performed.",
+    "Caption text, stream timing, ordering and scene windows were checked; word-level synchronization with spoken audio was not evaluated.",
+    "Slide 7 speaker notes include the local generated logs/runs directory; public execution archives are available under examples/."
+  ],
+  "blocking_findings": []
+}

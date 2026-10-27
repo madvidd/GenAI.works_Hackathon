@@ -15,7 +15,7 @@ Authority: current Official Rules and Announcements on [HackOS](https://hackatho
 | Requirement | TraceHarbor response / evidence | Current status |
 | --- | --- | --- |
 | Submit by 27 Oct 2026, 23:45 UTC | [Persisted portal confirmation](submission-confirmation.md) and submitted links | Submitted status observed at 22:13 UTC before the deadline; server submission timestamp not displayed |
-| One account, one team, one submission; 1–5 members | Verify actual HackOS roster; no invented contributors | Two Vengers members observed; contributions and primary contact confirmed; portal showed Submitted 1 / 1 |
+| One account, one team; 1–5 members; one expected entry | Verify the roster and actual submission count. The live portal expects one entry and permits up to three on distinct tracks. | Two Vengers members observed; confirmed contributions and primary contact; one entry with Submitted 1 / 1 |
 | Exactly one primary track | The Agent That Can Explain Why | Selected and submitted on the portal; entry #1 shows this track |
 | Team locks on first submission creation | Roster, contributions and primary contact confirmed | Submission created; persisted team description, roles and both use-case tags verified |
 | Public GitHub repository with runnable code and README | `madvidd/GenAI.works_Hackathon` | Pushed publicly; anonymous GitHub API verified the source commit |

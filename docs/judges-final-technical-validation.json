@@ -1,0 +1,401 @@
+{
+  "schemaVersion": "1.0",
+  "purpose": "Final judges-readiness technical verification; no live model or SQL requests and no deployment performed.",
+  "complete": true,
+  "startedAt": "2026-10-27T22:41:32.478Z",
+  "completedAt": "2026-10-27T22:43:03.096Z",
+  "repository": "https://github.com/madvidd/GenAI.works_Hackathon.git",
+  "commit": "43b39d3c4834f8bb48cabc1cf10456f8d7b956f9",
+  "analysisVersion": "1.0.2",
+  "remoteMainBefore": "43b39d3c4834f8bb48cabc1cf10456f8d7b956f9",
+  "remoteMainAfter": "43b39d3c4834f8bb48cabc1cf10456f8d7b956f9",
+  "isolation": {
+    "freshRemoteClone": true,
+    "exactDetachedCommitVerified": true,
+    "cleanBeforeAndAfter": true,
+    "privateEnvironmentFilePresent": false,
+    "sponsorEnvironmentVariablesPresent": [],
+    "previousReceiptsPreserved": true
+  },
+  "dependencies": {
+    "nodeVersion": "v24.22.1",
+    "sameNodeRuntimePrependedToChildPath": true,
+    "command": "npm ci --offline --no-audit --no-fund",
+    "freshNodeModules": true,
+    "packageJsonSha256": "263163777dede978b23aa7412a8845836452c36b4c788bd999f10d043cfd9d24",
+    "packageLockSha256": "ba3335e0738e17f449f75bb469407d215028c6b2ca195bfca985bc17a76e4619",
+    "limitation": "Installation used the existing local npm package cache. This verifies the locked dependency tree in a fresh checkout, not first-time registry download availability or cache-independent installation."
+  },
+  "tests": {
+    "command": "npm test",
+    "total": 33,
+    "passed": 33,
+    "failed": 0,
+    "scope": "Unit and integration tests include mocked provider transports and local loopback HTTP checks; they are separate from archived actual sponsor runs."
+  },
+  "productionBuild": {
+    "command": "npm run build",
+    "passed": true
+  },
+  "sampleRuns": [
+    {
+      "shipmentId": "TH-1041",
+      "runId": "traceharbor-1f849475-d449-465e-bfee-be81b05e0431",
+      "analysisVersion": "1.0.2",
+      "outcome": "excursion",
+      "mode": "sample",
+      "liveExecuted": false,
+      "modelCalls": 0,
+      "sqlQueries": 0,
+      "worldModelExecuted": true,
+      "contextRecordsConsumed": 46,
+      "citationsResolved": true,
+      "citationReferences": 42,
+      "evidenceRows": 13,
+      "dossierSha256": "fa569446f6e1f3265a5414152c36cc50949b98f6881eddc1b8d5e5a51b1cf280"
+    },
+    {
+      "shipmentId": "TH-1042",
+      "runId": "traceharbor-aeab519f-13df-4cc1-9110-4681ba72c0b4",
+      "analysisVersion": "1.0.2",
+      "outcome": "sensor_bias",
+      "mode": "sample",
+      "liveExecuted": false,
+      "modelCalls": 0,
+      "sqlQueries": 0,
+      "worldModelExecuted": true,
+      "contextRecordsConsumed": 46,
+      "citationsResolved": true,
+      "citationReferences": 52,
+      "evidenceRows": 16,
+      "dossierSha256": "86bc0ce5181a08900297fdc049ff7dc6d602270607f36a0171223e3b8a7358e7"
+    },
+    {
+      "shipmentId": "TH-1043",
+      "runId": "traceharbor-1f15834e-4704-45d1-b350-57ebe45f63b8",
+      "analysisVersion": "1.0.2",
+      "outcome": "insufficient_evidence",
+      "mode": "sample",
+      "liveExecuted": false,
+      "modelCalls": 0,
+      "sqlQueries": 0,
+      "worldModelExecuted": true,
+      "contextRecordsConsumed": 46,
+      "citationsResolved": true,
+      "citationReferences": 21,
+      "evidenceRows": 6,
+      "dossierSha256": "679c817611e6fdadb43c3d8c87c4cb254284a5b53b70ced98e5aff1bc569bab3"
+    },
+    {
+      "shipmentId": "TH-1044",
+      "runId": "traceharbor-483a5062-5e34-47b6-8b38-e41404987f60",
+      "analysisVersion": "1.0.2",
+      "outcome": "within_range",
+      "mode": "sample",
+      "liveExecuted": false,
+      "modelCalls": 0,
+      "sqlQueries": 0,
+      "worldModelExecuted": true,
+      "contextRecordsConsumed": 46,
+      "citationsResolved": true,
+      "citationReferences": 17,
+      "evidenceRows": 11,
+      "dossierSha256": "2ae7e1826fea73ae87bd723aa2035c7c8081cebcd31d0c6a7387f78e8e238810"
+    }
+  ],
+  "publicHosting": {
+    "origin": "https://traceharbor.web.app",
+    "verifiedAt": "2026-10-27T22:43:02.315Z",
+    "method": "Unauthenticated HTTPS GET of every intended production file; actual status, MIME, full-body SHA-256 and byte equality checked against the fresh isolated build and copied canonical source artifacts.",
+    "intendedFiles": 14,
+    "verifiedFiles": 14,
+    "complete": true,
+    "checks": [
+      {
+        "file": "/assets/index-B2vfitBo.js",
+        "status": 200,
+        "bytes": 300696,
+        "contentType": "text/javascript; charset=utf-8",
+        "mimeMatchesExpected": true,
+        "publicSha256": "16308be6b599bf4b72fbfd68f67b400cd84929109cf62cd2865515be41e02a01",
+        "buildSha256": "16308be6b599bf4b72fbfd68f67b400cd84929109cf62cd2865515be41e02a01",
+        "matchesBuild": true,
+        "canonicalSource": "Transformed by the fresh production build at the verified commit"
+      },
+      {
+        "file": "/assets/index-CG4W20OW.css",
+        "status": 200,
+        "bytes": 46689,
+        "contentType": "text/css; charset=utf-8",
+        "mimeMatchesExpected": true,
+        "publicSha256": "8a6783e9e55a6b59b3fe77fb209fb8265868a5b021ae0e17e70d8726c7a79ea4",
+        "buildSha256": "8a6783e9e55a6b59b3fe77fb209fb8265868a5b021ae0e17e70d8726c7a79ea4",
+        "matchesBuild": true,
+        "canonicalSource": "Transformed by the fresh production build at the verified commit"
+      },
+      {
+        "file": "/data/calibration.json",
+        "status": 200,
+        "bytes": 2310,
+        "contentType": "application/json",
+        "mimeMatchesExpected": true,
+        "publicSha256": "0331e35a5fe92855da51e3b733b18ece7913797937c16816597723df2796351e",
+        "buildSha256": "0331e35a5fe92855da51e3b733b18ece7913797937c16816597723df2796351e",
+        "matchesBuild": true,
+        "canonicalSource": "data/calibration.json",
+        "sourceSha256": "0331e35a5fe92855da51e3b733b18ece7913797937c16816597723df2796351e",
+        "matchesCanonicalSource": true
+      },
+      {
+        "file": "/data/incidents.json",
+        "status": 200,
+        "bytes": 3794,
+        "contentType": "application/json",
+        "mimeMatchesExpected": true,
+        "publicSha256": "9e40b57ca6c44ed00ae4a62f92ee371e8a16b6c363705a6c5166b1ac550bb639",
+        "buildSha256": "9e40b57ca6c44ed00ae4a62f92ee371e8a16b6c363705a6c5166b1ac550bb639",
+        "matchesBuild": true,
+        "canonicalSource": "data/incidents.json",
+        "sourceSha256": "9e40b57ca6c44ed00ae4a62f92ee371e8a16b6c363705a6c5166b1ac550bb639",
+        "matchesCanonicalSource": true
+      },
+      {
+        "file": "/data/manifest.json",
+        "status": 200,
+        "bytes": 2991,
+        "contentType": "application/json",
+        "mimeMatchesExpected": true,
+        "publicSha256": "0233ce7255160b6610ee2a82443b2cafbe5aa3e012a62b36c11a13947ad2577d",
+        "buildSha256": "0233ce7255160b6610ee2a82443b2cafbe5aa3e012a62b36c11a13947ad2577d",
+        "matchesBuild": true,
+        "canonicalSource": "data/manifest.json",
+        "sourceSha256": "0233ce7255160b6610ee2a82443b2cafbe5aa3e012a62b36c11a13947ad2577d",
+        "matchesCanonicalSource": true
+      },
+      {
+        "file": "/data/telemetry.json",
+        "status": 200,
+        "bytes": 6224,
+        "contentType": "application/json",
+        "mimeMatchesExpected": true,
+        "publicSha256": "4031a2d6babc3e62a4329862f1dfa69b1c5f99368277b21b317f0b025a1bc845",
+        "buildSha256": "4031a2d6babc3e62a4329862f1dfa69b1c5f99368277b21b317f0b025a1bc845",
+        "matchesBuild": true,
+        "canonicalSource": "data/telemetry.json",
+        "sourceSha256": "4031a2d6babc3e62a4329862f1dfa69b1c5f99368277b21b317f0b025a1bc845",
+        "matchesCanonicalSource": true
+      },
+      {
+        "file": "/favicon.svg",
+        "status": 200,
+        "bytes": 293,
+        "contentType": "image/svg+xml",
+        "mimeMatchesExpected": true,
+        "publicSha256": "1ac61a2a6e73436ad286f46663e4174e8c914e49b2e2d2145d11988baf0fac2d",
+        "buildSha256": "1ac61a2a6e73436ad286f46663e4174e8c914e49b2e2d2145d11988baf0fac2d",
+        "matchesBuild": true,
+        "canonicalSource": "public/favicon.svg",
+        "sourceSha256": "1ac61a2a6e73436ad286f46663e4174e8c914e49b2e2d2145d11988baf0fac2d",
+        "matchesCanonicalSource": true
+      },
+      {
+        "file": "/harbor-grid.svg",
+        "status": 200,
+        "bytes": 1306,
+        "contentType": "image/svg+xml",
+        "mimeMatchesExpected": true,
+        "publicSha256": "c013e9186fcfb9721cea4e0276a484380fc59d51969a31f17d8e1ac20ce8d1c1",
+        "buildSha256": "c013e9186fcfb9721cea4e0276a484380fc59d51969a31f17d8e1ac20ce8d1c1",
+        "matchesBuild": true,
+        "canonicalSource": "public/harbor-grid.svg",
+        "sourceSha256": "c013e9186fcfb9721cea4e0276a484380fc59d51969a31f17d8e1ac20ce8d1c1",
+        "matchesCanonicalSource": true
+      },
+      {
+        "file": "/index.html",
+        "status": 200,
+        "bytes": 1143,
+        "contentType": "text/html; charset=utf-8",
+        "mimeMatchesExpected": true,
+        "publicSha256": "f4bf87d15872eeeca10ab59a37d8952ddd212ec6a93dd5baa5ada2e0a9190ae0",
+        "buildSha256": "f4bf87d15872eeeca10ab59a37d8952ddd212ec6a93dd5baa5ada2e0a9190ae0",
+        "matchesBuild": true,
+        "canonicalSource": "Transformed by the fresh production build at the verified commit"
+      },
+      {
+        "file": "/submission/traceharbor-demo.mp4",
+        "status": 200,
+        "bytes": 11701778,
+        "contentType": "video/mp4",
+        "mimeMatchesExpected": true,
+        "publicSha256": "017e380fa68c4b23d9abd462c890df90eab03938640e210f48d8a7eac09ea48c",
+        "buildSha256": "017e380fa68c4b23d9abd462c890df90eab03938640e210f48d8a7eac09ea48c",
+        "matchesBuild": true,
+        "canonicalSource": "submission/traceharbor-demo.mp4",
+        "sourceSha256": "017e380fa68c4b23d9abd462c890df90eab03938640e210f48d8a7eac09ea48c",
+        "matchesCanonicalSource": true
+      },
+      {
+        "file": "/submission/traceharbor-demo.srt",
+        "status": 200,
+        "bytes": 4579,
+        "contentType": "application/x-subrip",
+        "mimeMatchesExpected": true,
+        "publicSha256": "0a0c695ebb4ec63296b0ba2d85389ae5cd1c4b59c1e0b5cc43e57d2ab3e17814",
+        "buildSha256": "0a0c695ebb4ec63296b0ba2d85389ae5cd1c4b59c1e0b5cc43e57d2ab3e17814",
+        "matchesBuild": true,
+        "canonicalSource": "submission/traceharbor-demo.srt",
+        "sourceSha256": "0a0c695ebb4ec63296b0ba2d85389ae5cd1c4b59c1e0b5cc43e57d2ab3e17814",
+        "matchesCanonicalSource": true
+      },
+      {
+        "file": "/submission/traceharbor.pdf",
+        "status": 200,
+        "bytes": 595118,
+        "contentType": "application/pdf",
+        "mimeMatchesExpected": true,
+        "publicSha256": "34c8d5cdbe557f3c3efb5aea1fd8f5f283f8f91b21e4c6b2b852d118ae19ecf9",
+        "buildSha256": "34c8d5cdbe557f3c3efb5aea1fd8f5f283f8f91b21e4c6b2b852d118ae19ecf9",
+        "matchesBuild": true,
+        "canonicalSource": "submission/traceharbor.pdf",
+        "sourceSha256": "34c8d5cdbe557f3c3efb5aea1fd8f5f283f8f91b21e4c6b2b852d118ae19ecf9",
+        "matchesCanonicalSource": true
+      },
+      {
+        "file": "/submission/traceharbor.pptx",
+        "status": 200,
+        "bytes": 345006,
+        "contentType": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+        "mimeMatchesExpected": true,
+        "publicSha256": "c34a2718afd8142e9283bdefef714dea91af38ce527b46fa89d64827fb86e7fa",
+        "buildSha256": "c34a2718afd8142e9283bdefef714dea91af38ce527b46fa89d64827fb86e7fa",
+        "matchesBuild": true,
+        "canonicalSource": "submission/traceharbor.pptx",
+        "sourceSha256": "c34a2718afd8142e9283bdefef714dea91af38ce527b46fa89d64827fb86e7fa",
+        "matchesCanonicalSource": true
+      },
+      {
+        "file": "/traceharbor-mark.svg",
+        "status": 200,
+        "bytes": 650,
+        "contentType": "image/svg+xml",
+        "mimeMatchesExpected": true,
+        "publicSha256": "ce48e6b75c23a8e8f3bab4792f6a80ea12870dbcab5e7edacbeb67fbcff81a15",
+        "buildSha256": "ce48e6b75c23a8e8f3bab4792f6a80ea12870dbcab5e7edacbeb67fbcff81a15",
+        "matchesBuild": true,
+        "canonicalSource": "public/traceharbor-mark.svg",
+        "sourceSha256": "ce48e6b75c23a8e8f3bab4792f6a80ea12870dbcab5e7edacbeb67fbcff81a15",
+        "matchesCanonicalSource": true
+      }
+    ]
+  },
+  "phases": [
+    {
+      "name": "remote-main-before",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 531
+    },
+    {
+      "name": "clone",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 19048
+    },
+    {
+      "name": "checkout",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 486
+    },
+    {
+      "name": "commit",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 57
+    },
+    {
+      "name": "published-reachability",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 76
+    },
+    {
+      "name": "origin",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 60
+    },
+    {
+      "name": "clean-before",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 187
+    },
+    {
+      "name": "install",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 42694
+    },
+    {
+      "name": "test",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 3304
+    },
+    {
+      "name": "build",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 7513
+    },
+    {
+      "name": "sample-TH-1041",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 1195
+    },
+    {
+      "name": "sample-TH-1042",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 962
+    },
+    {
+      "name": "sample-TH-1043",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 742
+    },
+    {
+      "name": "sample-TH-1044",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 792
+    },
+    {
+      "name": "remote-main-after",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 565
+    },
+    {
+      "name": "clean-after",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 160
+    },
+    {
+      "name": "commit-after",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 54
+    }
+  ],
+  "provenance": {
+    "structuredScratchReportSha256": "789a73a83ff6df7f4981c282aeec55098088a61e94486cb9214a86581af57abe",
+    "validatorSha256": "0f19faffc4b9d4a8995b7d7393874cae2853e838585ecb59606b8bbbb9f2749f",
+    "sanitization": "No machine paths, private environment values, emails, authorization headers or raw command logs included."
+  }
+}

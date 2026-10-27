@@ -293,5 +293,15 @@
     ],
     "bookings_or_external_messages_sent_during_review": false,
     "historical_warning_note": "submission.board_warning retains the eight unfinished tasks observed at submission; this later review does not replace that history."
+  },
+  "judges_final_check": {
+    "result": "no_blocking_issues_found_in_recorded_checks",
+    "completed_at_utc": "2026-10-27T23:03:00.717Z",
+    "tested_commit": "43b39d3c4834f8bb48cabc1cf10456f8d7b956f9",
+    "report": "docs/judges-final-review.md",
+    "technical_receipt": "docs/judges-final-technical-validation.json",
+    "media_receipt": "docs/judges-final-media-validation.json",
+    "browser_receipt": "docs/judges-final-browser-validation.json",
+    "application_or_artifact_changes": false
   }
 }

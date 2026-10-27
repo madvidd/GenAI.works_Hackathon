@@ -1,0 +1,85 @@
+{
+  "schema_version": "traceharbor.judges-final-browser.v1",
+  "checked_at_utc": "2026-10-27T23:03:00.717Z",
+  "source_commit": "43b39d3c4834f8bb48cabc1cf10456f8d7b956f9",
+  "result": "pass",
+  "submission": {
+    "status": "Submitted 1 / 1",
+    "track": "The Agent That Can Explain Why",
+    "team": "Vengers",
+    "exact_fields_match_saved_record": true,
+    "changed_during_audit": false,
+    "server_submission_timestamp": null
+  },
+  "public_site": {
+    "url": "https://traceharbor.web.app/",
+    "fresh_reload": true,
+    "search_filter": {
+      "query": "TH-1043",
+      "visible_case_count": 1,
+      "visible_case": "TH-1043"
+    },
+    "case_outcomes": {
+      "TH-1041": "Observed excursion",
+      "TH-1042": "Sensor bias explains the alarm",
+      "TH-1043": "Abstain: evidence is incomplete",
+      "TH-1044": "No excursion observed in this window"
+    },
+    "source_drawer": {
+      "record": "CALROW-42",
+      "offset_c": 4.5,
+      "exact_source_record_visible": true
+    },
+    "withheld_calibration_result": "Abstain: evidence is incomplete",
+    "reset_restores_baseline": true,
+    "sample_recomputation": true,
+    "dossier_json_downloaded": true,
+    "dataset_export_import_round_trip": true,
+    "changed_reading": {
+      "row": "TEL-1044-30",
+      "original_c": 5.2,
+      "new_c": 9,
+      "outcome": "Observed excursion",
+      "corrected_peak_c": 9
+    },
+    "original_sample_restored": true,
+    "public_live_mode_disabled_with_local_setup_explanation": true,
+    "navigation_views": [
+      "Investigations",
+      "Data sources",
+      "How it works"
+    ],
+    "mobile": {
+      "viewport_width": 320,
+      "document_scroll_width": 305,
+      "horizontal_page_overflow": false,
+      "navigation_open_close_passed": true,
+      "viewport_restored": true
+    },
+    "browser_error_logs": []
+  },
+  "submitted_video": {
+    "url": "https://iframe.mediadelivery.net/embed/778121/21475ca2-f757-48b6-8ebd-e7f5e2275fb8",
+    "playback_observed": true,
+    "duration_seconds": 188.396,
+    "observed_playback_time_seconds": 45.341737,
+    "width": 1920,
+    "height": 1080,
+    "ready_state": 4,
+    "media_error": null,
+    "paused_after_check": true,
+    "scope": "Playback smoke check of uploaded HackOS transcode; full canonical MP4 decoding is recorded in the media receipt."
+  },
+  "github": {
+    "url": "https://github.com/madvidd/GenAI.works_Hackathon",
+    "public": true,
+    "logged_out_readme_visible": true,
+    "main_document_images_loaded": 2,
+    "readme_headings_visible": true
+  },
+  "limitations": [
+    "The public site is a deterministic synthetic sample. Sponsor services require local setup; historical actual local-run receipts are separate.",
+    "Browser playback was a smoke check, not uninterrupted human review.",
+    "PDF rendering and public byte equality are recorded in separate media and technical receipts."
+  ]
+}
