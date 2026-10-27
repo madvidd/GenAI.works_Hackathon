@@ -1,0 +1,115 @@
+{
+  "verifiedAt": "2026-10-27T20:15:24.002Z",
+  "origin": "https://traceharbor.web.app",
+  "sourceCommit": "ca1f6b7723b86319d31f0a824c67d8ba1ea36daa",
+  "method": "Unauthenticated HTTPS downloads compared byte-for-byte with the production build, including all four source feeds and four presentation artifacts.",
+  "checks": [
+    {
+      "file": "/index.html",
+      "status": 200,
+      "bytes": 748,
+      "contentType": "text/html; charset=utf-8",
+      "sha256": "366b836430887226a0183f9d8f1fe73aa1f102744e19a5f87f94bc558fd1c7f9",
+      "matchesBuild": true
+    },
+    {
+      "file": "/assets/index-J75rIXo2.js",
+      "status": 200,
+      "bytes": 293633,
+      "contentType": "text/javascript; charset=utf-8",
+      "sha256": "22538e505707fbe9040a49ff15931e500280adc4f39742ff94a68f93226d0cd3",
+      "matchesBuild": true
+    },
+    {
+      "file": "/assets/index-DhbIzn0b.css",
+      "status": 200,
+      "bytes": 39203,
+      "contentType": "text/css; charset=utf-8",
+      "sha256": "af38e1af7970ced102f8c253e5d39b9e65889a3ac4731fc85c9937cd806f873d",
+      "matchesBuild": true
+    },
+    {
+      "file": "/data/manifest.json",
+      "status": 200,
+      "bytes": 2991,
+      "contentType": "application/json",
+      "sha256": "0233ce7255160b6610ee2a82443b2cafbe5aa3e012a62b36c11a13947ad2577d",
+      "matchesBuild": true
+    },
+    {
+      "file": "/data/telemetry.json",
+      "status": 200,
+      "bytes": 6224,
+      "contentType": "application/json",
+      "sha256": "4031a2d6babc3e62a4329862f1dfa69b1c5f99368277b21b317f0b025a1bc845",
+      "matchesBuild": true
+    },
+    {
+      "file": "/data/incidents.json",
+      "status": 200,
+      "bytes": 3794,
+      "contentType": "application/json",
+      "sha256": "9e40b57ca6c44ed00ae4a62f92ee371e8a16b6c363705a6c5166b1ac550bb639",
+      "matchesBuild": true
+    },
+    {
+      "file": "/data/calibration.json",
+      "status": 200,
+      "bytes": 2310,
+      "contentType": "application/json",
+      "sha256": "0331e35a5fe92855da51e3b733b18ece7913797937c16816597723df2796351e",
+      "matchesBuild": true
+    },
+    {
+      "file": "/submission/traceharbor-demo.mp4",
+      "status": 200,
+      "bytes": 8097929,
+      "contentType": "video/mp4",
+      "sha256": "b028005f2828b993e98135496b6dc149c5722cc3fc81b28d51d66afd74204f66",
+      "matchesBuild": true
+    },
+    {
+      "file": "/submission/traceharbor.pdf",
+      "status": 200,
+      "bytes": 580227,
+      "contentType": "application/pdf",
+      "sha256": "2f7d739f367bbf350a1e4d674c946d2f340d91307b97de235c8ebad6942c2e25",
+      "matchesBuild": true
+    },
+    {
+      "file": "/submission/traceharbor.pptx",
+      "status": 200,
+      "bytes": 221638,
+      "contentType": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "sha256": "e14abc1ed7111f80b4eb5e5ca423feb75c612fccee132bc5191f8132e13dfcca",
+      "matchesBuild": true
+    },
+    {
+      "file": "/submission/traceharbor-demo.srt",
+      "status": 200,
+      "bytes": 4571,
+      "contentType": "application/x-subrip",
+      "sha256": "27bf502652b752a00618073437c48bd5240bfde4e46d56e038b37d882ca7e0ac",
+      "matchesBuild": true
+    }
+  ],
+  "github": {
+    "repository": "madvidd/GenAI.works_Hackathon",
+    "anonymousApiAccess": true,
+    "private": false,
+    "observedCommit": "ca1f6b7723b86319d31f0a824c67d8ba1ea36daa"
+  },
+  "browserPlayback": {
+    "durationSeconds": 188.714,
+    "width": 1920,
+    "height": 1080,
+    "observedTimesSeconds": [
+      4.261806,
+      29.96
+    ],
+    "decodingError": null,
+    "pausedAfterCheck": true,
+    "screenshot": "docs/images/published-demo-playback.png",
+    "scope": "Public playback smoke check; complete local audio/video decoding and scene inspection are documented separately. Not uninterrupted human audiovisual review."
+  }
+}

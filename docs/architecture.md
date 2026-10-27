@@ -1,6 +1,6 @@
 # TraceHarbor architecture
 
-Status: 27 October 2026. The 16-test suite, actual Zetaris setup and full local Nightshift/World Model investigation are verified. Transport unit tests use mocks; separate [actual service receipts](../examples/live-agent/attempt-02/) show three model calls and four governed reads completing in 142.3 seconds. Final clean-clone verification remains a separate gate.
+Status: 27 October 2026. The 16-test suite, actual Zetaris setup and full local Nightshift/World Model investigation are verified. Transport unit tests use mocks; separate [actual service receipts](../examples/live-agent/attempt-02/) show three model calls and four governed reads completing in 142.3 seconds. The [final clean-clone check](clean-clone-validation.json) also passed at published commit ca1f6b7: fresh offline install, 16 tests, production build and three sample CLI cases without credentials or sponsor calls.
 
 ## Problem boundary
 

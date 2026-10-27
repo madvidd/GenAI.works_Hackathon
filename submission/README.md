@@ -1,6 +1,8 @@
 # Submission artifacts
 
-`traceharbor.pptx` is an editable eight-slide presentation, and `traceharbor.pdf` is its PDF export. Speaker notes identify evidence and limitations. Screenshots are real deployed application captures from `docs/images/`.
+Public files, verified without authentication: [demo video](https://traceharbor.web.app/submission/traceharbor-demo.mp4), [PDF deck](https://traceharbor.web.app/submission/traceharbor.pdf), [editable PowerPoint](https://traceharbor.web.app/submission/traceharbor.pptx), and [captions](https://traceharbor.web.app/submission/traceharbor-demo.srt). Published bytes match the reviewed originals; see [deployment verification](../docs/deployment-validation.json).
+
+`traceharbor.pptx` is an editable eight-slide presentation, and `traceharbor.pdf` is its PDF export. Speaker notes identify evidence and limitations. Screenshots are actual application captures from `docs/images/`; local live-run views are explicitly identified.
 
 The final exports include the verified 16-test result and actual Nightshift, Zetaris and World Model execution. The deck was built with `TRACEHARBOR_LIVE_MANIFEST=examples/live-agent/attempt-03-browser/manifest.json`, matching the video’s live screenshots. The source validates the manifest’s three model phases, sponsor flags, bounded query count and matching dossier. The source uses `@oai/artifact-tool`, the presentation helper/validation modules, and Arial. These authoring tools are not application runtime dependencies.
 

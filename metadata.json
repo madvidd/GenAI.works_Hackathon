@@ -5,8 +5,8 @@
   "primary_track": "The Agent That Can Explain Why",
   "repository_url": "https://github.com/madvidd/GenAI.works_Hackathon",
   "website_url": "https://traceharbor.web.app",
-  "demo_video_url": null,
-  "slide_deck_url": null,
+  "demo_video_url": "https://traceharbor.web.app/submission/traceharbor-demo.mp4",
+  "slide_deck_url": "https://traceharbor.web.app/submission/traceharbor.pdf",
   "team_name": "Vengers",
   "primary_contact": null,
   "contributors": [],
@@ -78,7 +78,7 @@
     "orchestration_transport_tests_use_mocks": true,
     "live_nightshift_run": true,
     "verified_nemotron_run": false,
-    "clean_clone_run": false,
+    "clean_clone_run": true,
     "recorded_demo": true,
     "finished_slide_deck": true,
     "deployed_site_verified": true,
@@ -90,7 +90,14 @@
     "live_browser_export_matches_server": true,
     "demo_duration_seconds": 188.714,
     "demo_technical_validation_passed": true,
-    "demo_human_full_playback_reviewed": false
+    "demo_human_full_playback_reviewed": false,
+    "clean_clone_commit": "ca1f6b7723b86319d31f0a824c67d8ba1ea36daa",
+    "clean_clone_test_count_passed": 16,
+    "clean_clone_sample_runs": 3,
+    "code_and_artifacts_ready": true,
+    "public_artifacts_verified": true,
+    "public_video_playback_verified": true,
+    "platform_submission_status": "not_started"
   },
   "limitations": [
     "All demonstration records are synthetic.",
@@ -125,6 +132,10 @@
     "demo_captions": "submission/traceharbor-demo.srt",
     "demo_scene_source": "submission/demo-scenes.json",
     "demo_validation": "submission/demo-validation.json",
-    "slide_deck_validation": "submission/validation.json"
-  }
+    "slide_deck_validation": "submission/validation.json",
+    "clean_clone_validation": "docs/clean-clone-validation.json",
+    "deployment_validation": "docs/deployment-validation.json"
+  },
+  "editable_slide_deck_url": "https://traceharbor.web.app/submission/traceharbor.pptx",
+  "captions_url": "https://traceharbor.web.app/submission/traceharbor-demo.srt"
 }

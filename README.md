@@ -4,25 +4,25 @@
 
 TraceHarbor is an Open Agent Hackathon 2026 project for **The Agent That Can Explain Why**. It helps an operations analyst examine a disputed temperature alert across a shipment manifest, sensor telemetry, carrier events, and calibration records. It preserves conflicting claims and explains which observations support an outcome.
 
-Built by **Vengers**. [Open the verified deployed sample](https://traceharbor.web.app).
+Built by **Vengers**. [Open the website](https://traceharbor.web.app) · [Watch the 3:09 demo](https://traceharbor.web.app/submission/traceharbor-demo.mp4) · [View the deck](https://traceharbor.web.app/submission/traceharbor.pdf).
 
 All demonstration data is synthetic. The application supports investigation; it does not authorize cargo release, disposal, consumption, or a safety certification. Temperature limits are fixture assumptions, not regulatory standards.
 
 ## Implementation status
 
-Status reviewed on **27 October 2026**. This is a development status, not a submission-ready claim.
+Code and artifacts verified on **27 October 2026**. The HackOS entry has not been submitted; contributor roles and primary-contact fields remain for the team to confirm.
 
-| Part | Evidence currently available | Remaining verification |
+| Part | Evidence currently available | Verification and limits |
 | --- | --- | --- |
-| Deterministic investigation | Input-dependent implementation; local 16-test suite passed | Clean-clone validation |
-| Evidence provenance | Stable row IDs, original source rows, timestamps, calibration matches, and citation checks | UI and export verification |
+| Deterministic investigation | Input-dependent implementation; 16-test suite passed in the isolated final checkout | [Clean-clone proof](docs/clean-clone-validation.json) at ca1f6b7 |
+| Evidence provenance | Stable row IDs, original source rows, timestamps, calibration matches, and citation checks | [Ten browser and export checks](submission/browser-qa/validation.json) passed, including the actual local live run |
 | Zetaris | All 34 setup statements executed; four USL reads matched 46 records and fed the World Model; DQ returned 26 total / 25 valid / 1 invalid | Verified in the [full live run](examples/live-agent/attempt-02/); [SQL setup receipts](examples/live-zetaris/) |
-| Meterless World Model | 46 source rows ingested; warm reload skipped all 46 unchanged rows; upstream conformance runner passed 8/8 | Clean-clone repeat pending |
+| Meterless World Model | 46 source rows ingested; warm reload skipped all 46 unchanged rows; upstream conformance runner passed 8/8 | Feature test and three CLI runs repeated successfully in the clean clone |
 | Meterless Nightshift | Three actual local Llama 3.2 1B completions: planner, critic and supported selection; full run completed in 142.3 seconds | Broader model-quality evaluation; [actual receipts](examples/live-agent/attempt-02/) |
 | NVIDIA | No current NVIDIA or Nemotron contribution claimed | The selected local-model path is not evidence of NVIDIA use |
-| Website and examples | Deployed sample verified; four feeds and calibration-withholding interaction checked; four actual sample runs in `examples/` | Final clean-clone repeat |
-| Deck | [Editable PowerPoint](submission/traceharbor.pptx) and [PDF](submission/traceharbor.pdf), eight slides, actual screenshots, all pages visually inspected | Refresh sponsor status after a successful live run |
-| Video | Actual narrated MP4 with subtitles and reproducible sources | Refresh final sponsor evidence and verify public playback |
+| Website and examples | Deployed sample verified; four feeds and calibration-withholding interaction checked; four actual sample runs in `examples/` | Three sample CLI scenarios verified from the final clean clone |
+| Deck | [Editable PowerPoint](submission/traceharbor.pptx) and [PDF](submission/traceharbor.pdf), eight slides, actual screenshots, all pages visually inspected | Sponsor status refreshed; public files match reviewed exports. Native PowerPoint rendering remains untested |
+| Video | Actual narrated MP4 with subtitles and reproducible sources | 188.71 seconds; actual live evidence included; public browser playback and complete decoding verified |
 
 An SQL file is not proof that Zetaris ran. A configured model name is not proof that NVIDIA handled a request. Sample computation never claims a sponsor call occurred. See the [requirements matrix](docs/requirements-matrix.md) for release gates.
 
@@ -43,7 +43,7 @@ Confidence is a transparent heuristic for evidence strength, **not a calibrated 
 
 ## Development commands
 
-Use Node.js 22.11 or later and npm. Commands below are the project package interface; the final clean-clone check remains pending.
+Use Node.js 22.11 or later and npm. The [clean-clone check](docs/clean-clone-validation.json) passed at published commit `ca1f6b7723b86319d31f0a824c67d8ba1ea36daa`: fresh offline `npm ci`, 16 tests, production build and three actual sample CLI cases. No `.env.local` or sponsor environment variables were present; all sample runs made zero model and SQL calls.
 
 On Windows PowerShell, use `npm.cmd` when forwarding options, for example `npm.cmd run agent:sample -- --shipment TH-1042`. The direct equivalent is `node --import tsx server/agent.mjs --mode sample --shipment TH-1042`. PowerShell’s `npm` wrapper may strip forwarded option names; that is a shell invocation issue, not an investigation failure.
 
@@ -59,7 +59,7 @@ npm run build
 npm run preview
 ```
 
-The World Model feature check is `official World Model warm-loads, preserves identities, and skips unchanged ingest` in [`tests/runtime.test.mjs`](tests/runtime.test.mjs). Run it with the full `npm run test` suite. The local suite passed 16 tests. The official upstream World Model conformance runner also passed 8/8 against the vendored implementation, covering stable IDs, merge bands, provenance rejection, unchanged/mutated ingestion, bitemporal edges, and audit behavior. A fresh-clone repeat remains a separate gate. Mocked transport tests are labeled in their names.
+The World Model feature check is `official World Model warm-loads, preserves identities, and skips unchanged ingest` in [`tests/runtime.test.mjs`](tests/runtime.test.mjs). Run it with the full `npm run test` suite. The local suite passed 16 tests. The official upstream World Model conformance runner also passed 8/8 against the vendored implementation, covering stable IDs, merge bands, provenance rejection, unchanged/mutated ingestion, bitemporal edges, and audit behavior. The project feature test and three actual sample runs also passed from the isolated final checkout; the earlier upstream 8/8 conformance run is separate evidence. Mocked transport tests are labeled in their names.
 
 The React/Vite frontend runs the deterministic demonstration on synthetic feeds. The programmatic agent commands are:
 
@@ -162,7 +162,7 @@ This makes unauthenticated HTTPS requests and compares the published HTML,
 JavaScript/CSS, four data feeds, MP4, PDF, PPTX and subtitles against the current
 build bytes. It also checks expected security/media headers and writes the
 source commit, hashes and results to ignored `logs/deployment-verification.json`.
-A successful local build alone is not proof that those bytes were deployed.
+The [published verification receipt](docs/deployment-validation.json) records matching bytes for all 11 checked files. The tested application/artifact commit is `ca1f6b7723b86319d31f0a824c67d8ba1ea36daa`; subsequent verification-document updates do not change those files. A successful local build alone is not proof that those bytes were deployed.
 
 ## Submission materials
 

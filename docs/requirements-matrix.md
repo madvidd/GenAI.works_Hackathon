@@ -9,39 +9,39 @@ Authority: current Official Rules and Announcements on [HackOS](https://hackatho
 | Requirement | TraceHarbor response / evidence | Current status |
 | --- | --- | --- |
 | Submit by 27 Oct 2026, 23:45 UTC | Keep timestamped final repo hash and artifact links | Pending submission |
-| One account, one team, one submission; 1–5 members | Verify actual HackOS roster; no invented contributors | Pending roster confirmation |
+| One account, one team, one submission; 1–5 members | Verify actual HackOS roster; no invented contributors | Two current Vengers members observed; contribution/contact confirmation remains |
 | Exactly one primary track | The Agent That Can Explain Why | Selected in project metadata; platform selection pending |
 | Team locks on first submission creation | Confirm members and primary contact before creating it | Pending |
-| Public GitHub repository with runnable code and README | `madvidd/GenAI.works_Hackathon` | Source present; final push/public-access check pending |
-| Demo video, 1–4 minutes, with audio | Narrated MP4, subtitles and reproducible sources | Recorded; final evidence refresh and public playback verification pending |
+| Public GitHub repository with runnable code and README | `madvidd/GenAI.works_Hackathon` | Pushed publicly; anonymous GitHub API verified the source commit |
+| Demo video, 1–4 minutes, with audio | Narrated MP4, subtitles and reproducible sources | 188.71-second narrated MP4; actual live evidence, captions, public playback and hash checks passed |
 | Slide deck | Eight-slide editable PowerPoint and PDF under `submission/` | Exported, structural/layout/import checks passed, all eight slides/pages visually inspected; sponsor status stays explicit |
 | Sponsor explanation | `docs/sponsor-technology.md` | Actual SQL, engine and full local-model receipts archived |
-| Declare pre-existing components | Metadata identifies upstream World Model and existing scaffold | Final declaration and revision audit pending |
+| Declare pre-existing components | Metadata identifies upstream World Model and existing scaffold | Upstream revision/license and original LICENSE/README scaffold disclosed |
 | Accurate participant names, HackOS emails, GitHub handles, roles, primary contact | Enter verified information in live form | Pending; private details omitted from public templates |
-| Links accessible through judging | Test logged out, retain copies | Pending final artifacts |
+| Links accessible through judging | Test logged out, retain copies | Public files returned HTTP 200 with matching hashes; retain hosting and repository through judging |
 
 ## Required technical behavior
 
 | Requirement | Implementation / intended evidence | Current status |
 | --- | --- | --- |
-| Real input-dependent work, no stored final-answer lookup | `core/investigator.mjs` derives result from source records | Present; local 16-test suite passed; clean-clone check pending |
-| Programmatic structured input/output, no UI-only dependency | Agent CLI and `/api/investigate` contract | Integration/clean-run verification pending |
+| Real input-dependent work, no stored final-answer lookup | `core/investigator.mjs` derives result from source records | Final clean clone passed 16 tests and three actual sample CLI cases |
+| Programmatic structured input/output, no UI-only dependency | Agent CLI and `/api/investigate` contract | Actual live CLI and browser API verified; three sample CLI cases passed from the clean clone |
 | At least two distinct agents with actual collaboration | Planner chooses 2–3 initial sources; critic retrieves missing sources and chooses an evidence-withholding rerun; synthesis selects supported IDs | Mock transport tests plus actual planner/critic/synthesis receipts; critic retrieval changed the computed outcome |
-| A feedback, critique, retry, or branch event | Record actual rejected claim and resulting action | Pending actual agent trace |
+| A feedback, critique, retry, or branch event | Record actual rejected claim and resulting action | Actual critic retrieval changed insufficient evidence to sensor bias; calibration withholding restored insufficient evidence |
 | Zetaris is the data layer | REST registration and shipment evidence USL | 34 real setup statements; four actual USL reads consumed through World Model and investigator; complete actual live model run archived |
 | A Meterless Engine powers a feature | Official World Model ingest, graph-context consumption, source-priority facts; `tests/runtime.test.mjs` warm-load/identity/unchanged-ingest test | Local feature test passed; separate upstream conformance runner passed 8/8 |
 | Nightshift is the primary live AI provider | Nightshift client using Runtime URL/token | Actual full run: three local Llama 3.2 1B phase completions, returned model IDs and timing retained |
 | NVIDIA where it contributes; award based on Nemotron through Nightshift | Record actual response model IDs and their contribution | Not currently used; selected local model does not establish NVIDIA or Nemotron use |
 | Cursor optional; actual coding tool disclosed | OpenAI Codex; Cursor not claimed | Documented |
-| Sample mode works without credentials or local sponsor services | Deterministic fixture processing, explicit mode | Core present; whole-run clean-environment check pending |
+| Sample mode works without credentials or local sponsor services | Deterministic fixture processing, explicit mode | Three clean-clone CLI cases passed with no private env file or sponsor env variables and zero model/SQL calls |
 | At least three sample inputs and matching generated outputs | Four JSON inputs in `examples/inputs/`, mapped in `examples/README.md` | Matching actual current sample runs published in `examples/TH-1041` through `TH-1044` |
 | Run-generated logs to stdout and `logs/` | Request ID, agent, action, handoff, status, retries, model, queries/results, engine activity | Actual stdout and archived trace/query/engine records verified |
-| No hidden manual data/database setup | Scripted registration and reproducible fixture publication | Scripts present; clean-clone validation pending |
+| No hidden manual data/database setup | Scripted registration and reproducible fixture publication | Actual 34-statement setup archived; separate clean-clone install/build/sample validation passed |
 | Timeouts, bounded retries/rounds, structured failures | Explicit service and run budgets | 16-test suite; actual 142.3-second live run within the 300-second cap |
-| No runtime dependency installs or large downloads | npm install/build stage; small fixtures | Final package/Docker inspection pending |
-| No GPU required to judge | Credential-free sample mode; local-model live setup is separate | Sample mode has no GPU dependency; whole-run clean-clone check pending |
-| No secrets in code, history, screenshots, logs, or artifacts | Ignored `.env.local`, blank example tokens, provider key only in Nightshift | Final secret/history/media scan pending |
-| Honest synthetic, fallback, limitation, and third-party disclosure | README, data contract, metadata, sponsor explanation | Present; final claim/code audit pending |
+| No runtime dependency installs or large downloads | npm install/build stage; small fixtures | Dependencies installed before execution; sample/live runners contain no dependency installation or model-download step |
+| No GPU required to judge | Credential-free sample mode; local-model live setup is separate | Sample mode has no GPU dependency; 16 tests and three clean-clone CLI cases passed without model calls |
+| No secrets in code, history, screenshots, logs, or artifacts | Ignored `.env.local`, blank example tokens, provider key only in Nightshift | Candidate files and prior Git history scanned; actual local-key matches and credential-pattern matches were zero; media reviewed |
+| Honest synthetic, fallback, limitation, and third-party disclosure | README, data contract, metadata, sponsor explanation | Verified claims reconciled with actual runs, clean-clone checks, browser evidence and public downloads |
 
 ## The 100-point rubric
 

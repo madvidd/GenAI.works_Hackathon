@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "1.0",
+  "startedAt": "2026-10-27T20:14:06.941Z",
+  "complete": true,
+  "commit": "ca1f6b7723b86319d31f0a824c67d8ba1ea36daa",
+  "isolatedRemoteClone": true,
+  "privateEnvFilePresent": false,
+  "sponsorEnvironmentVariablesPresent": [],
+  "phases": [
+    {
+      "name": "commit",
+      "command": "git rev-parse HEAD",
+      "exitCode": 0,
+      "durationMs": 278
+    },
+    {
+      "name": "origin",
+      "command": "git remote get-url origin",
+      "exitCode": 0,
+      "durationMs": 272
+    },
+    {
+      "name": "clean-before",
+      "command": "git status --porcelain",
+      "exitCode": 0,
+      "durationMs": 485
+    },
+    {
+      "name": "install",
+      "command": "node.exe npm-cli.js ci --offline --no-audit --no-fund",
+      "exitCode": 0,
+      "durationMs": 35265
+    },
+    {
+      "name": "test",
+      "command": "node.exe npm-cli.js test",
+      "exitCode": 0,
+      "durationMs": 6762
+    },
+    {
+      "name": "build",
+      "command": "node.exe npm-cli.js run build",
+      "exitCode": 0,
+      "durationMs": 23217
+    },
+    {
+      "name": "sample-TH-1041",
+      "command": "node.exe npm-cli.js run agent:sample -- --shipment TH-1041 --output logs/clean-clone-validation",
+      "exitCode": 0,
+      "durationMs": 5686
+    },
+    {
+      "name": "sample-TH-1042",
+      "command": "node.exe npm-cli.js run agent:sample -- --shipment TH-1042 --output logs/clean-clone-validation",
+      "exitCode": 0,
+      "durationMs": 5114
+    },
+    {
+      "name": "sample-TH-1043",
+      "command": "node.exe npm-cli.js run agent:sample -- --shipment TH-1043 --output logs/clean-clone-validation",
+      "exitCode": 0,
+      "durationMs": 3946
+    },
+    {
+      "name": "clean-after",
+      "command": "git status --porcelain",
+      "exitCode": 0,
+      "durationMs": 273
+    }
+  ],
+  "samples": [
+    {
+      "shipmentId": "TH-1041",
+      "runId": "traceharbor-f3aea125-e733-446d-84a6-b1fbb365b234",
+      "outcome": "excursion",
+      "mode": "sample",
+      "liveExecuted": false,
+      "modelCalls": 0,
+      "sqlQueries": 0,
+      "worldModelExecuted": true,
+      "contextRecordsConsumed": 46,
+      "citationsResolved": true,
+      "citationReferences": 42,
+      "evidenceRows": 13
+    },
+    {
+      "shipmentId": "TH-1042",
+      "runId": "traceharbor-80e0d866-31a4-4d0a-b69b-1699eac82083",
+      "outcome": "sensor_bias",
+      "mode": "sample",
+      "liveExecuted": false,
+      "modelCalls": 0,
+      "sqlQueries": 0,
+      "worldModelExecuted": true,
+      "contextRecordsConsumed": 46,
+      "citationsResolved": true,
+      "citationReferences": 52,
+      "evidenceRows": 16
+    },
+    {
+      "shipmentId": "TH-1043",
+      "runId": "traceharbor-ca8adc4c-fe4d-44ca-8be7-ce45d68c9d6e",
+      "outcome": "insufficient_evidence",
+      "mode": "sample",
+      "liveExecuted": false,
+      "modelCalls": 0,
+      "sqlQueries": 0,
+      "worldModelExecuted": true,
+      "contextRecordsConsumed": 46,
+      "citationsResolved": true,
+      "citationReferences": 21,
+      "evidenceRows": 6
+    }
+  ],
+  "origin": "https://github.com/madvidd/GenAI.works_Hackathon.git",
+  "nodeVersion": "v22.11.0",
+  "packageLockSha256": "ba3335e0738e17f449f75bb469407d215028c6b2ca195bfca985bc17a76e4619",
+  "packageJsonSha256": "263163777dede978b23aa7412a8845836452c36b4c788bd999f10d043cfd9d24",
+  "dependencyInstall": {
+    "name": "install",
+    "command": "node.exe npm-cli.js ci --offline --no-audit --no-fund",
+    "exitCode": 0,
+    "durationMs": 35265,
+    "performedAtFinalCommit": "ca1f6b7723b86319d31f0a824c67d8ba1ea36daa",
+    "packageLockSha256": "ba3335e0738e17f449f75bb469407d215028c6b2ca195bfca985bc17a76e4619",
+    "packageJsonSha256": "263163777dede978b23aa7412a8845836452c36b4c788bd999f10d043cfd9d24"
+  },
+  "tests": {
+    "total": 16,
+    "passed": 16,
+    "failed": 0
+  },
+  "completedAt": "2026-10-27T20:15:28.309Z",
+  "scope": "Fresh offline dependency installation at the published commit, tests, production build, and three credential-free sample CLI executions. Services were not invoked by sample mode. This does not repeat sponsor installation or claim another live run.",
+  "secretScanPassed": true
+}
