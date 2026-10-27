@@ -1,0 +1,214 @@
+{
+  "schemaVersion": "1.0",
+  "startedAt": "2026-10-27T21:36:55.786Z",
+  "complete": true,
+  "commit": "1c71b1cfdd051119f347443ef4d9209b652478ca",
+  "expectedTests": 33,
+  "expectedAnalysisVersion": "1.0.2",
+  "isolatedRemoteClone": true,
+  "freshCheckoutCreated": true,
+  "privateEnvFilePresent": false,
+  "sponsorEnvironmentVariablesPresent": [],
+  "phases": [
+    {
+      "name": "clone",
+      "command": "git clone --no-checkout https://github.com/madvidd/GenAI.works_Hackathon.git clean-check-redesign",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 13255
+    },
+    {
+      "name": "checkout",
+      "command": "git checkout --detach 1c71b1cfdd051119f347443ef4d9209b652478ca",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 1782
+    },
+    {
+      "name": "commit",
+      "command": "git rev-parse HEAD",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 311
+    },
+    {
+      "name": "published-reachability",
+      "command": "git branch -r --contains 1c71b1cfdd051119f347443ef4d9209b652478ca",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 447
+    },
+    {
+      "name": "origin",
+      "command": "git remote get-url origin",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 301
+    },
+    {
+      "name": "clean-before",
+      "command": "git status --porcelain",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 749
+    },
+    {
+      "name": "install",
+      "command": "node.exe npm-cli.js ci --offline --no-audit --no-fund",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 42825
+    },
+    {
+      "name": "test",
+      "command": "node.exe npm-cli.js test",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 9445
+    },
+    {
+      "name": "build",
+      "command": "node.exe npm-cli.js run build",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 31230
+    },
+    {
+      "name": "sample-TH-1041",
+      "command": "node.exe npm-cli.js run agent:sample -- --shipment TH-1041 --output logs/clean-clone-validation",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 4253
+    },
+    {
+      "name": "sample-TH-1042",
+      "command": "node.exe npm-cli.js run agent:sample -- --shipment TH-1042 --output logs/clean-clone-validation",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 5113
+    },
+    {
+      "name": "sample-TH-1043",
+      "command": "node.exe npm-cli.js run agent:sample -- --shipment TH-1043 --output logs/clean-clone-validation",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 4549
+    },
+    {
+      "name": "sample-TH-1044",
+      "command": "node.exe npm-cli.js run agent:sample -- --shipment TH-1044 --output logs/clean-clone-validation",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 4136
+    },
+    {
+      "name": "clean-after",
+      "command": "git status --porcelain",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 423
+    },
+    {
+      "name": "commit-after",
+      "command": "git rev-parse HEAD",
+      "exitCode": 0,
+      "timedOut": false,
+      "durationMs": 285
+    }
+  ],
+  "samples": [
+    {
+      "shipmentId": "TH-1041",
+      "runId": "traceharbor-11318664-90ab-4e66-b82f-9c7727b7ca02",
+      "analysisVersion": "1.0.2",
+      "outcome": "excursion",
+      "mode": "sample",
+      "liveExecuted": false,
+      "modelCalls": 0,
+      "sqlQueries": 0,
+      "worldModelExecuted": true,
+      "contextRecordsConsumed": 46,
+      "citationsResolved": true,
+      "citationReferences": 42,
+      "evidenceRows": 13,
+      "dossierSha256": "ba49dbcfcaff50bd45460f00439ed22458c7e5d614d4b0f68885d1abc7ff2cf9"
+    },
+    {
+      "shipmentId": "TH-1042",
+      "runId": "traceharbor-be0f93a8-3fdf-4666-8325-32595fe6b9b1",
+      "analysisVersion": "1.0.2",
+      "outcome": "sensor_bias",
+      "mode": "sample",
+      "liveExecuted": false,
+      "modelCalls": 0,
+      "sqlQueries": 0,
+      "worldModelExecuted": true,
+      "contextRecordsConsumed": 46,
+      "citationsResolved": true,
+      "citationReferences": 52,
+      "evidenceRows": 16,
+      "dossierSha256": "e21d39ffc009d557a663fbd71d00da65c61d53a022941787e18a300dff6eede2"
+    },
+    {
+      "shipmentId": "TH-1043",
+      "runId": "traceharbor-f68334a1-b211-4968-8321-b0ccceb2a908",
+      "analysisVersion": "1.0.2",
+      "outcome": "insufficient_evidence",
+      "mode": "sample",
+      "liveExecuted": false,
+      "modelCalls": 0,
+      "sqlQueries": 0,
+      "worldModelExecuted": true,
+      "contextRecordsConsumed": 46,
+      "citationsResolved": true,
+      "citationReferences": 21,
+      "evidenceRows": 6,
+      "dossierSha256": "8b5f2ced3459c125a1c8bace0efbac257a0583c82ee4c3405b62911bdc94e2c9"
+    },
+    {
+      "shipmentId": "TH-1044",
+      "runId": "traceharbor-b5bca792-ae74-4c5d-a4b8-7b0a763c1773",
+      "analysisVersion": "1.0.2",
+      "outcome": "within_range",
+      "mode": "sample",
+      "liveExecuted": false,
+      "modelCalls": 0,
+      "sqlQueries": 0,
+      "worldModelExecuted": true,
+      "contextRecordsConsumed": 46,
+      "citationsResolved": true,
+      "citationReferences": 17,
+      "evidenceRows": 11,
+      "dossierSha256": "16a113f88e6e43a9958d1bcd1dfede170599c172016ceb85a5a69c9a6d7ac662"
+    }
+  ],
+  "origin": "https://github.com/madvidd/GenAI.works_Hackathon.git",
+  "nodeVersion": "v24.22.1",
+  "packageLockSha256": "ba3335e0738e17f449f75bb469407d215028c6b2ca195bfca985bc17a76e4619",
+  "packageJsonSha256": "263163777dede978b23aa7412a8845836452c36b4c788bd999f10d043cfd9d24",
+  "dependencyInstall": {
+    "name": "install",
+    "command": "node.exe npm-cli.js ci --offline --no-audit --no-fund",
+    "exitCode": 0,
+    "timedOut": false,
+    "durationMs": 42825,
+    "performedAtFinalCommit": "1c71b1cfdd051119f347443ef4d9209b652478ca",
+    "packageLockSha256": "ba3335e0738e17f449f75bb469407d215028c6b2ca195bfca985bc17a76e4619",
+    "packageJsonSha256": "263163777dede978b23aa7412a8845836452c36b4c788bd999f10d043cfd9d24",
+    "note": "Fresh node_modules from npm ci; offline installation uses the existing npm package cache."
+  },
+  "tests": {
+    "total": 33,
+    "passed": 33,
+    "failed": 0
+  },
+  "completedAt": "2026-10-27T21:38:55.004Z",
+  "sourceReportSha256": "29b3e57ec77be9400766058e6be225c1ca51401847028fb8defb2b0c6d4ab848",
+  "publication": {
+    "sanitizationPassed": true,
+    "privateEnvironmentValuesIncluded": false,
+    "privatePathsIncluded": false,
+    "rawCommandLogsPublished": false,
+    "note": "The original structured report already used repository-relative labels. Its verification results are retained; raw command logs remain outside the public repository."
+  }
+}

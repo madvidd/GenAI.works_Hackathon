@@ -14,11 +14,11 @@ Evaluate three distinct questions:
 
 ## Evidence already available
 
-The [clean-clone receipt](clean-clone-validation.json) records 16 passing tests and three actual sample runs for baseline commit `ca1f6b7`. The current local suite passes 33 tests. The official World Model’s separate upstream conformance run passed 8/8. [Actual integration receipts](live-revision-validation.json) record two successful current investigations and six completed full runs out of seven recorded attempts overall, with the earlier timeout retained. These are functional and integration checks on synthetic cases, not a representative field benchmark or a reliability estimate.
+The [final isolated-clone receipt](clean-clone-redesign-validation.json) records a fresh dependency installation, 33 passing tests, a production build and all four actual sample runs at source/artifact commit `1c71b1c`. The [earlier receipt](clean-clone-validation.json) retains its 16-test, three-case scope at `ca1f6b7`. The official World Model’s separate upstream conformance run passed 8/8. [Actual integration receipts](live-revision-validation.json) record two successful current investigations and six completed full runs out of seven recorded attempts overall, with the earlier timeout retained. These are functional and integration checks on synthetic cases, not a representative field benchmark or a reliability estimate.
 
 Subsequent fixes must be evaluated on their own checkout. Do not treat a historical test count or published screenshot as evidence that a new revision passed.
 
-The revised core is 1.0.2; the current local suite passes 33 tests, and all four sample archives were regenerated with resolved citations and zero model/SQL calls. [The readiness review](readiness-review.md) describes the regression fixes and final current-revision live evidence and separate publication checks.
+The revised core is 1.0.2; the current local suite passes 33 tests, and all four sample archives were regenerated with resolved citations and zero model/SQL calls. [The readiness review](readiness-review.md) describes the regression fixes and final current-revision live evidence. The separate [release verification](release-validation.md) records the completed clone, deployment and public smoke checks.
 
 ## Functional test families
 

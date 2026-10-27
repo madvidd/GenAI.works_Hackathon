@@ -4,7 +4,7 @@
 
 The verified baseline is dated 27 October 2026. Its [clean-clone check](clean-clone-validation.json) covers published commit `ca1f6b7`: fresh dependency installation, 16 tests, production build and three sample CLI cases without credentials or sponsor calls. Separate [actual service receipts](../examples/live-agent/attempt-02/) show three model calls and four governed reads completing in 142.323 seconds. New source changes require new validation; transport unit tests and actual service receipts remain distinct.
 
-The current 1.0.2 revision has 33 passing local tests. It also has [two actual browser-driven investigations](live-revision-validation.json): TH-1042 supports sensor bias, while TH-1043 retains insufficient evidence. Each used three actual Nightshift calls, four Zetaris reads and official World Model context. The [current UI checks](ui-validation.json) cover the redesigned interactions. Final publication and exact-revision clean-clone verification remain distinct from these local runs.
+The current 1.0.2 revision has 33 passing local tests. It also has [two actual browser-driven investigations](live-revision-validation.json): TH-1042 supports sensor bias, while TH-1043 retains insufficient evidence. Each used three actual Nightshift calls, four Zetaris reads and official World Model context. The [current UI checks](ui-validation.json) cover the redesigned interactions. The separate [release checks](release-validation.md) verify published source/artifact commit `1c71b1c`, its isolated clone and all 14 deployed files.
 
 ## Implementation map
 

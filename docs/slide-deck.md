@@ -4,7 +4,7 @@
 
 The [PowerPoint](../submission/traceharbor.pptx) and [PDF](../submission/traceharbor.pdf) use the redesigned interface and its ink, teal and cyan palette. [The authoring source](../submission/build-deck.mjs) creates native editable text and two tables; screenshots are actual application captures. The matching live evidence is `examples/live-agent/attempt-06-final-decimal/manifest.json`. [The validation receipt](../submission/validation.json) records the exact tested revision, test count, hashes and export limitations. The visible slides say “Regression suite passes”; exact counts belong to the versioned receipt.
 
-All eight slide renders and all eight exported PDF pages were visually inspected, and package, layout and first-party import checks passed. Native Microsoft PowerPoint rendering has not been verified. The PDF preserves the actual reviewed slide pixels. Publication is a separate check from local export validation, and neither constitutes an official hackathon submission.
+All eight slide renders and all eight exported PDF pages were visually inspected, and package, layout and first-party import checks passed. Native Microsoft PowerPoint rendering has not been verified. The PDF preserves the actual reviewed slide pixels. The [final deployment receipt](deployment-redesign-validation.json) verifies the published PDF/PPTX hashes separately from these local export checks. Neither publication nor export validation constitutes an official hackathon submission.
 
 ## 1. TraceHarbor
 

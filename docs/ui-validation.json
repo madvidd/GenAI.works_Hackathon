@@ -252,8 +252,40 @@
     }
   ],
   "publicDeployment": {
-    "status": "pending-revised-release",
-    "historicalReceipt": "docs/deployment-validation.json"
+    "status": "verified",
+    "sourceCommit": "1c71b1cfdd051119f347443ef4d9209b652478ca",
+    "receipt": "docs/deployment-redesign-validation.json",
+    "checkedAt": "2026-10-27T21:43:42.425Z",
+    "applicationAsset": "index-B2vfitBo.js",
+    "checks": [
+      "Deployed final application asset loaded; public mode remained Sample workspace.",
+      "Calibration withholding changed sensor_bias to insufficient evidence; Reset restored baseline.",
+      "CALROW-42 citation opened the matching4.5C certificate; Escape closed the drawer.",
+      "Oxford search returned one case; clearing restored the queue.",
+      "Run investigation recomputed the public sample in29ms; actual downloaded1.0.2dossier is sensor_bias.",
+      "Runtime dialog disabled local live mode on Firebase and linked all four presentation artifacts.",
+      "At320px, source view width and scroll width were both305px; menu navigation closed the overlay.",
+      "No public browser error or warning logs were recorded during the interaction smoke checks.",
+      "Public MP4 loaded1920x1080, duration188.48s, played past23.25s without media error, and was paused at41.08s."
+    ],
+    "download": {
+      "file": "submission/browser-qa/TH-1042-published-redesign.json",
+      "sha256": "7813c09f0be3103baab36a8657851b7ffcc0476cbc56b066cee5a3339a80ffe1"
+    },
+    "video": {
+      "durationSeconds": 188.48,
+      "observedPlayingAtSeconds": 23.250554,
+      "pausedAtSeconds": 41.08,
+      "width": 1920,
+      "height": 1080,
+      "mediaError": null,
+      "fullHumanPlaybackReviewed": false
+    },
+    "screenshots": [
+      "docs/images/published-redesign.png",
+      "docs/images/published-mobile.png",
+      "docs/images/published-video.png"
+    ]
   },
   "screenshots": [
     "docs/images/traceharbor-redesign-desktop.png",

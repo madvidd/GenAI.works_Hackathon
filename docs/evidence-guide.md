@@ -10,14 +10,14 @@ The current 1.0.2 sample archives and 33-test local suite are recorded in the [r
 
 | Question | Evidence to inspect | What it establishes |
 | --- | --- | --- |
-| Can another checkout run the sample? | [Clean-clone receipt](clean-clone-validation.json) | Baseline `ca1f6b7`: dependency installation, 16 tests, build and three sample cases without private credentials |
+| Can another checkout run the sample? | [Final clean-clone receipt](clean-clone-redesign-validation.json) | Commit `1c71b1c`: fresh offline dependency installation, 33 tests, build and all four sample cases without private credentials or model/SQL calls |
 | What does a generated sample look like? | [Four input/output examples](../examples/README.md) | Input-dependent computation and actual World Model events; no sponsor network calls |
 | Did Zetaris actually run? | [SQL setup archive](../examples/live-zetaris/) and [validation](zetaris-validation.json) | Actual source exploration, USL/DQ execution and record consumption |
 | Did the complete model workflow run? | [Attempt 02](../examples/live-agent/attempt-02/) and [validation](live-agent-validation.json) | Three local Nightshift phases, four SQL reads, 46 World Model records and the resulting dossier |
 | Did the UI invoke the actual backend? | [Browser run](../examples/live-agent/attempt-03-browser/) and [downloaded export](../submission/browser-qa/TH-1042-live.json) | Matching run identity, outcome, citation evidence and browser/server result |
 | Did the revised core and UI run live? | [Current revision summary](live-revision-validation.json), [TH-1042](../examples/live-agent/attempt-06-final-decimal/) and [TH-1043](../examples/live-agent/attempt-07-final-abstention/) | Analysis 1.0.2: supported sensor bias and retained abstention, each with three real model calls, four SQL reads and matching exports |
 | Do current browser interactions work? | [Grouped UI checks](ui-validation.json) | Actual navigation, imports, editing, citations, keyboard, mobile and API interactions; not exhaustive coverage |
-| Were the intended files published? | [Deployment receipt](deployment-validation.json) | Unauthenticated downloads matched the intended baseline build bytes |
+| Were the intended files published? | [Final deployment receipt](deployment-redesign-validation.json) and [release explanation](release-validation.md) | All 14 production-build files returned HTTP 200 and matched the source/artifact commit's intended bytes |
 | Are the media exports usable? | [Video validation](../submission/demo-validation.json), [deck validation](../submission/validation.json) and [asset guide](../submission/README.md) | Declared technical checks, reviewed images/pages and explicit playback/rendering limits |
 
 ## Read a complete live run

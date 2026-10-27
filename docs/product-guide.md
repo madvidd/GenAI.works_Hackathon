@@ -70,7 +70,7 @@ Import validation runs before replacing the current workspace, including string-
 
 Reading edits apply to the selected shipment only and recompute sample results. They do not update Zetaris or a physical logger. The What if comparison retains the workspace's unedited baseline so the original conclusion remains visible beside the current experiment. An edited source drawer explicitly identifies the browser experiment and exposes `browser_edit` provenance, including the original and modified temperatures; repeat edits retain the first original value. The dataset is labeled as modified in the browser.
 
-**Restore original sample** clears browser edits and experiments and restores the built-in demonstration. An imported dataset becomes the comparison baseline for its own subsequent edits. Press `/` to focus shipment search; use the active tabs and citation controls to navigate to the evidence behind a finding. These controls were exercised in the [current browser validation](ui-validation.json), which records actual checks and their limits. Publication checks remain separate.
+**Restore original sample** clears browser edits and experiments and restores the built-in demonstration. An imported dataset becomes the comparison baseline for its own subsequent edits. Press `/` to focus shipment search; use the active tabs and citation controls to navigate to the evidence behind a finding. These controls were exercised in the [current browser validation](ui-validation.json), which records actual checks and their limits. The separate [release checks](release-validation.md) verify the published application and artifacts.
 
 ## Interpret the limits correctly
 

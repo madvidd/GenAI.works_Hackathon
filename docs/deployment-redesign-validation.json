@@ -1,0 +1,120 @@
+{
+  "verifiedAt": "2026-10-27T21:39:05.265Z",
+  "origin": "https://traceharbor.web.app",
+  "sourceCommit": "1c71b1cfdd051119f347443ef4d9209b652478ca",
+  "method": "Unauthenticated HTTPS downloads of every production-build file compared byte-for-byte, including application assets, SVG branding, all four source feeds and four presentation artifacts.",
+  "checks": [
+    {
+      "file": "/assets/index-B2vfitBo.js",
+      "status": 200,
+      "bytes": 300696,
+      "contentType": "text/javascript; charset=utf-8",
+      "sha256": "16308be6b599bf4b72fbfd68f67b400cd84929109cf62cd2865515be41e02a01",
+      "matchesBuild": true
+    },
+    {
+      "file": "/assets/index-CG4W20OW.css",
+      "status": 200,
+      "bytes": 46689,
+      "contentType": "text/css; charset=utf-8",
+      "sha256": "8a6783e9e55a6b59b3fe77fb209fb8265868a5b021ae0e17e70d8726c7a79ea4",
+      "matchesBuild": true
+    },
+    {
+      "file": "/data/calibration.json",
+      "status": 200,
+      "bytes": 2310,
+      "contentType": "application/json",
+      "sha256": "0331e35a5fe92855da51e3b733b18ece7913797937c16816597723df2796351e",
+      "matchesBuild": true
+    },
+    {
+      "file": "/data/incidents.json",
+      "status": 200,
+      "bytes": 3794,
+      "contentType": "application/json",
+      "sha256": "9e40b57ca6c44ed00ae4a62f92ee371e8a16b6c363705a6c5166b1ac550bb639",
+      "matchesBuild": true
+    },
+    {
+      "file": "/data/manifest.json",
+      "status": 200,
+      "bytes": 2991,
+      "contentType": "application/json",
+      "sha256": "0233ce7255160b6610ee2a82443b2cafbe5aa3e012a62b36c11a13947ad2577d",
+      "matchesBuild": true
+    },
+    {
+      "file": "/data/telemetry.json",
+      "status": 200,
+      "bytes": 6224,
+      "contentType": "application/json",
+      "sha256": "4031a2d6babc3e62a4329862f1dfa69b1c5f99368277b21b317f0b025a1bc845",
+      "matchesBuild": true
+    },
+    {
+      "file": "/favicon.svg",
+      "status": 200,
+      "bytes": 293,
+      "contentType": "image/svg+xml",
+      "sha256": "1ac61a2a6e73436ad286f46663e4174e8c914e49b2e2d2145d11988baf0fac2d",
+      "matchesBuild": true
+    },
+    {
+      "file": "/harbor-grid.svg",
+      "status": 200,
+      "bytes": 1306,
+      "contentType": "image/svg+xml",
+      "sha256": "c013e9186fcfb9721cea4e0276a484380fc59d51969a31f17d8e1ac20ce8d1c1",
+      "matchesBuild": true
+    },
+    {
+      "file": "/index.html",
+      "status": 200,
+      "bytes": 1143,
+      "contentType": "text/html; charset=utf-8",
+      "sha256": "f4bf87d15872eeeca10ab59a37d8952ddd212ec6a93dd5baa5ada2e0a9190ae0",
+      "matchesBuild": true
+    },
+    {
+      "file": "/submission/traceharbor-demo.mp4",
+      "status": 200,
+      "bytes": 11701778,
+      "contentType": "video/mp4",
+      "sha256": "017e380fa68c4b23d9abd462c890df90eab03938640e210f48d8a7eac09ea48c",
+      "matchesBuild": true
+    },
+    {
+      "file": "/submission/traceharbor-demo.srt",
+      "status": 200,
+      "bytes": 4579,
+      "contentType": "application/x-subrip",
+      "sha256": "0a0c695ebb4ec63296b0ba2d85389ae5cd1c4b59c1e0b5cc43e57d2ab3e17814",
+      "matchesBuild": true
+    },
+    {
+      "file": "/submission/traceharbor.pdf",
+      "status": 200,
+      "bytes": 595118,
+      "contentType": "application/pdf",
+      "sha256": "34c8d5cdbe557f3c3efb5aea1fd8f5f283f8f91b21e4c6b2b852d118ae19ecf9",
+      "matchesBuild": true
+    },
+    {
+      "file": "/submission/traceharbor.pptx",
+      "status": 200,
+      "bytes": 345006,
+      "contentType": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "sha256": "c34a2718afd8142e9283bdefef714dea91af38ce527b46fa89d64827fb86e7fa",
+      "matchesBuild": true
+    },
+    {
+      "file": "/traceharbor-mark.svg",
+      "status": 200,
+      "bytes": 650,
+      "contentType": "image/svg+xml",
+      "sha256": "ce48e6b75c23a8e8f3bab4792f6a80ea12870dbcab5e7edacbeb67fbcff81a15",
+      "matchesBuild": true
+    }
+  ]
+}

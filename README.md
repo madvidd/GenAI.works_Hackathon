@@ -118,20 +118,21 @@ The [live setup guide](docs/getting-started.md#run-the-local-live-companion) inc
 
 ## Evidence, with its scope
 
-The current evidence core is **1.0.2** with **33 passing local tests** and four regenerated sample outputs. The redesigned interface has [actual browser checks](docs/ui-validation.json), and both final cases have [completed live investigations](docs/live-revision-validation.json) on the same 1.0.2 core. TH-1042 resolves to sensor bias; TH-1043 retains insufficient evidence. Each actual run made three Nightshift calls and four Zetaris reads. These two synthetic cases establish their recorded behavior, not broad reliability. Final publication and a clean-clone check of the intended pushed revision remain separate release gates.
+The current evidence core is **1.0.2** with **33 passing tests**, including an isolated remote-clone check and four actual sample CLI runs. The redesigned interface has [actual browser checks](docs/ui-validation.json), and both final cases have [completed live investigations](docs/live-revision-validation.json) on the same 1.0.2 core. TH-1042 resolves to sensor bias; TH-1043 retains insufficient evidence. Each actual run made three Nightshift calls and four Zetaris reads. These two synthetic cases establish their recorded behavior, not broad reliability.
 
-The published baseline was verified on **27 October 2026** at commit [`ca1f6b7`](https://github.com/madvidd/GenAI.works_Hackathon/commit/ca1f6b7723b86319d31f0a824c67d8ba1ea36daa). These receipts describe that revision and its archived runs; subsequent changes require their own validation.
+The published source and artifacts are commit [`1c71b1c`](https://github.com/madvidd/GenAI.works_Hackathon/commit/1c71b1cfdd051119f347443ef4d9209b652478ca), verified on **27 October 2026**. All 14 production files returned HTTP 200 and matched the intended build hashes; the public UI and video also passed browser smoke checks. [Release verification](docs/release-validation.md) explains this source commit and the later commits that record its receipts. Earlier `ca1f6b7` receipts remain historical evidence.
 
 | Check | Observed result | Inspect the proof |
 | --- | --- | --- |
 | Current local regressions | 33 tests passed; duplicate identities/timestamps, unrounded thresholds, empty-evidence review and workspace validation covered | [Current readiness review](docs/readiness-review.md) |
 | Current browser and live runs | Redesigned UI exercised; TH-1042 sensor bias and TH-1043 abstention; downloaded exports match server dossiers | [UI checks](docs/ui-validation.json) · [Actual live runs](docs/live-revision-validation.json) |
+| Current clean clone | Node 24.22.1; fresh offline `npm ci`, 33 tests, build and all four sample CLI cases; no credentials or model/SQL calls | [Final clone receipt](docs/clean-clone-redesign-validation.json) |
 | Baseline clean clone | Fresh dependency installation, 16 passing tests, production build, three sample CLI cases with no credentials or sponsor calls | [Clean-clone receipt](docs/clean-clone-validation.json) |
-| Actual live CLI investigation | 3 local Nightshift calls, 4 Zetaris reads, 46 World Model records; completed in 142.323 seconds | [Run archive](examples/live-agent/attempt-02/) · [Validation](docs/live-agent-validation.json) |
-| Actual live browser investigation | Export matched the server dossier; critic retrieval and withholding changed the outcome as described above | [Browser run](examples/live-agent/attempt-03-browser/) · [UI checks](submission/browser-qa/validation.json) |
+| Earlier live CLI investigation | 3 local Nightshift calls, 4 Zetaris reads, 46 World Model records; completed in 142.323 seconds | [Run archive](examples/live-agent/attempt-02/) · [Validation](docs/live-agent-validation.json) |
+| Earlier live browser investigation | Export matched the server dossier; critic retrieval and withholding changed the outcome | [Browser run](examples/live-agent/attempt-03-browser/) · [UI checks](submission/browser-qa/validation.json) |
 | Zetaris | 34 setup statements; 12 exploration queries; USL activation; DQ found 26 rows, 25 valid and 1 invalid | [SQL receipts](examples/live-zetaris/) |
 | World Model | 46 ingested records; 46 unchanged records skipped on warm reload; separate upstream conformance run passed 8/8 | [Feature test](tests/runtime.test.mjs) · [Integration explanation](docs/sponsor-technology.md) |
-| Published artifacts | Unauthenticated downloads matched the verified build, including feeds, video, PDF, PPTX and captions | [Deployment receipt](docs/deployment-validation.json) |
+| Current public release | All 14 files matched the build, including feeds, video, PDF, PPTX and captions; public interactions and video playback passed smoke checks | [Deployment receipt](docs/deployment-redesign-validation.json) · [Public UI checks](docs/ui-validation.json) |
 
 Automated orchestration tests use mocked transports; actual service runs are archived separately. Earlier failures remain visible, including a timed-out live attempt and a preflight that responded but did not follow its instruction. See the [evidence guide](docs/evidence-guide.md).
 

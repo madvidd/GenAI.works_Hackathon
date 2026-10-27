@@ -166,4 +166,4 @@ After deploying the intended build, `node scripts/verify-deployment.mjs` makes u
 | Live request times out or returns malformed decisions | Keep the failure, inspect phase receipts and resource availability; do not label a later sample as that live result |
 | Live control is unavailable on the public website | Use the local companion where both services are reachable; Firebase Hosting serves the static sample |
 
-The [evidence guide](evidence-guide.md) distinguishes the verified baseline from any new local attempt.
+The [evidence guide](evidence-guide.md) and [release verification](release-validation.md) identify the exact published source/artifact commit and distinguish its receipts from a new local attempt.

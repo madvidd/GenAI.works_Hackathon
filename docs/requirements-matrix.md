@@ -4,9 +4,9 @@
 
 Snapshot: **27 October 2026**. `Present` means the artifact or implementation exists. `Pending` means the corresponding test, run, or final artifact has not been verified in this snapshot. Neither a planned adapter nor an installed service proves a successful integration. Update statuses only from actual evidence, with the relevant file or receipt.
 
-The 16-test clean-clone and deployment entries below refer to published baseline `ca1f6b7`. They do not validate subsequent interface or evidence-core changes. New local checks and regenerated examples must remain distinguishable from the historical live-service and publication receipts.
+The current release is source/artifact commit `1c71b1cfdd051119f347443ef4d9209b652478ca`. Its [isolated clone](clean-clone-redesign-validation.json) passed 33 tests, the production build and four actual sample CLI cases; [all 14 public files](deployment-redesign-validation.json) matched the intended build. Earlier `ca1f6b7` receipts remain historical evidence. [Release verification](release-validation.md) explains the later receipt-only commits.
 
-The current 1.0.2 revision separately passes 33 local tests. The redesigned interface has [actual browser checks](ui-validation.json), and the same 1.0.2 core has [two completed actual live cases](live-revision-validation.json). Each current live case made three model calls and four governed reads. Publication and final clean-clone checks remain separate gates; the official entry is still unsubmitted.
+The current 1.0.2 revision separately passes 33 local tests. The redesigned interface has [actual browser checks](ui-validation.json), and the same 1.0.2 core has [two completed actual live cases](live-revision-validation.json). Each current live case made three model calls and four governed reads. Publication and final clean-clone checks have their own verified receipts; the official entry is still unsubmitted.
 
 Authority: current Official Rules and Announcements on [HackOS](https://hackathon.genai.works/dashboard), then current challenge/submission instructions. The Participant Setup Guide contains mixed revisions; recent AI Usage Policy, Vibe Coding Starter Guide, and Pre-Submission Self-Check clarify Nightshift and optional Cursor. The resource ledger records conflicts.
 
@@ -19,7 +19,7 @@ Authority: current Official Rules and Announcements on [HackOS](https://hackatho
 | Exactly one primary track | The Agent That Can Explain Why | Selected in project metadata; platform selection pending |
 | Team locks on first submission creation | Confirm members and primary contact before creating it | Pending |
 | Public GitHub repository with runnable code and README | `madvidd/GenAI.works_Hackathon` | Pushed publicly; anonymous GitHub API verified the source commit |
-| Demo video, 1–4 minutes, with audio | Narrated MP4, subtitles and reproducible sources | 188.48-second refreshed MP4; actual final live evidence, captions and decode/visual checks passed; final public hash/playback check remains separate |
+| Demo video, 1–4 minutes, with audio | Narrated MP4, subtitles and reproducible sources | 188.48-second refreshed MP4; final live evidence, captions, decode/visual checks and public hash/playback smoke checks passed |
 | Slide deck | Eight-slide editable PowerPoint and PDF under `submission/` | Exported, structural/layout/import checks passed, all eight slides/pages visually inspected; sponsor status stays explicit |
 | Sponsor explanation | `docs/sponsor-technology.md` | Actual SQL, engine and full local-model receipts archived |
 | Declare pre-existing components | Metadata identifies upstream World Model and existing scaffold | Upstream revision/license and original LICENSE/README scaffold disclosed |
@@ -30,8 +30,8 @@ Authority: current Official Rules and Announcements on [HackOS](https://hackatho
 
 | Requirement | Implementation / intended evidence | Current status |
 | --- | --- | --- |
-| Real input-dependent work, no stored final-answer lookup | `core/investigator.mjs` derives result from source records | Final clean clone passed 16 tests and three actual sample CLI cases |
-| Programmatic structured input/output, no UI-only dependency | Agent CLI and `/api/investigate` contract | Actual live CLI and browser API verified; three sample CLI cases passed from the clean clone |
+| Real input-dependent work, no stored final-answer lookup | `core/investigator.mjs` derives result from source records | Final isolated clone passed 33 tests and all four actual sample CLI cases |
+| Programmatic structured input/output, no UI-only dependency | Agent CLI and `/api/investigate` contract | Actual live CLI and browser API verified; all four sample CLI cases passed from the final isolated clone |
 | At least two distinct agents with actual collaboration | Planner chooses 2–3 initial sources; critic retrieves missing sources and chooses an evidence-withholding rerun; synthesis selects supported IDs | Mock transport tests plus actual planner/critic/synthesis receipts; critic retrieval changed the computed outcome |
 | A feedback, critique, retry, or branch event | Record actual rejected claim and resulting action | Actual critic retrieval changed insufficient evidence to sensor bias; calibration withholding restored insufficient evidence |
 | Zetaris is the data layer | REST registration and shipment evidence USL | 34 real setup statements; four actual USL reads consumed through World Model and investigator; complete actual live model run archived |
@@ -39,13 +39,13 @@ Authority: current Official Rules and Announcements on [HackOS](https://hackatho
 | Nightshift is the primary live AI provider | Nightshift client using Runtime URL/token | Actual full run: three local Llama 3.2 1B phase completions, returned model IDs and timing retained |
 | NVIDIA where it contributes; award based on Nemotron through Nightshift | Record actual response model IDs and their contribution | Not currently used; selected local model does not establish NVIDIA or Nemotron use |
 | Cursor optional; actual coding tool disclosed | OpenAI Codex; Cursor not claimed | Documented |
-| Sample mode works without credentials or local sponsor services | Deterministic fixture processing, explicit mode | Three clean-clone CLI cases passed with no private env file or sponsor env variables and zero model/SQL calls |
+| Sample mode works without credentials or local sponsor services | Deterministic fixture processing, explicit mode | All four final clean-clone CLI cases passed with no private env file or sponsor env variables and zero model/SQL calls |
 | At least three sample inputs and matching generated outputs | Four JSON inputs in `examples/inputs/`, mapped in `examples/README.md` | Matching actual current sample runs generated in `examples/TH-1041` through `TH-1044` |
 | Run-generated logs to stdout and `logs/` | Request ID, agent, action, handoff, status, retries, model, queries/results, engine activity | Actual stdout and archived trace/query/engine records verified |
 | No hidden manual data/database setup | Scripted registration and reproducible fixture publication | Actual 34-statement setup archived; separate clean-clone install/build/sample validation passed |
 | Timeouts, bounded retries/rounds, structured failures | Explicit service and run budgets | Current 33-test suite; final 1.0.2 live UI durations 153.028 and 153.347 seconds within the 300-second cap; earlier timeout retained |
 | No runtime dependency installs or large downloads | npm install/build stage; small fixtures | Dependencies installed before execution; sample/live runners contain no dependency installation or model-download step |
-| No GPU required to judge | Credential-free sample mode; local-model live setup is separate | Sample mode has no GPU dependency; 16 tests and three clean-clone CLI cases passed without model calls |
+| No GPU required to judge | Credential-free sample mode; local-model live setup is separate | Sample mode has no GPU dependency; 33 tests and all four final clean-clone CLI cases passed without model calls |
 | No secrets in code, history, screenshots, logs, or artifacts | Ignored `.env.local`, blank example tokens, provider key only in Nightshift | Candidate files and prior Git history scanned; actual local-key matches and credential-pattern matches were zero; media reviewed |
 | Honest synthetic, fallback, limitation, and third-party disclosure | README, data contract, metadata, sponsor explanation | Verified claims reconciled with actual runs, clean-clone checks, browser evidence and public downloads |
 
@@ -56,10 +56,10 @@ Weights were read from the current event criteria. This table maps the design to
 | Criterion | Points | TraceHarbor's case | Evidence and remaining validation |
 | --- | ---: | --- | --- |
 | Impact | 30 | A bounded operations task: resolve disputed exceptions and expose missing evidence | Real user feedback or explicitly unvalidated hypothesis; no fabricated savings |
-| Technical | 20 | Data validation, provenance, calibration rules, feedback, abstention, reproducibility | Baseline tests, live traces and clean clone are archived; repeat relevant checks for the final revised checkout |
+| Technical | 20 | Data validation, provenance, calibration rules, feedback, abstention, reproducibility | Final 33-test clone/build, four sample cases, actual live traces and 14-file public hash verification are archived |
 | Innovation | 15 | Compare raw alarm, calibrated explanation, and evidence-withheld result; critic can refuse confidence | Actual retrieval and withholding changed TH-1042 outcomes; broader evaluation remains |
-| Demo | 15 | One coherent real investigation, visible critique, source evidence, and abstention | Reviewed 3:08 refreshed demonstration uses the redesigned interface and final live receipts; verify the published bytes |
-| UX | 10 | Readable evidence dossier, visible mode, uncertainty, source inspection, useful next actions | Baseline browser/mobile/export checks exist; repeat on revised interactions and styling |
+| Demo | 15 | One coherent real investigation, visible critique, source evidence, and abstention | Reviewed 3:08 refreshed demonstration uses the redesigned interface and final live receipts; published bytes and browser playback smoke checks passed |
+| UX | 10 | Readable evidence dossier, visible mode, uncertainty, source inspection, useful next actions | Versioned browser checks, targeted final regressions, exported dossiers and public/mobile smoke checks are recorded |
 | Sponsor Tech | 10 | Zetaris data/USL/DQ, World Model feature, Nightshift reasoning, bounded local-model selection; no NVIDIA contribution claimed | Actual integration receipts are archived; new integration changes require fresh evidence |
 | **Total** | **100** | | |
 
