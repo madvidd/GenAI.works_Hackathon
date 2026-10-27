@@ -1,0 +1,10 @@
+{
+  "kind": "cli-launch-failure",
+  "command": "npm run agent:live -- --shipment TH-1042 --output logs/live-validation",
+  "actualForwardedArguments": "--mode live TH-1042 logs/live-validation",
+  "exitCode": 1,
+  "error": "Unknown argument or missing value. Use --help.",
+  "modelCalls": 0,
+  "sqlQueries": 0,
+  "note": "PowerShell npm wrapper did not forward option names. Direct node --import tsx invocation was used for the authorized actual combined run."
+}

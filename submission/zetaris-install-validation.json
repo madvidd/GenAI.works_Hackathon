@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "project": "TraceHarbor",
+  "recordedAt": "2026-10-27T19:08:45Z",
+  "verificationDate": "2026-10-27",
+  "timestampNote": "Recorded from successful tool results in this setup session. Exact start and finish timestamps were not captured for the original verification commands.",
+  "scope": "Actual local Zetaris installation and API connectivity",
+  "officialVerifier": {
+    "command": "./verify.sh",
+    "exitCode": 0,
+    "passed": 9,
+    "total": 9,
+    "checks": [
+      { "name": "postgres", "status": "passed", "evidence": "Running and healthy" },
+      { "name": "driver", "status": "passed", "evidence": "Running and healthy" },
+      { "name": "api", "status": "passed", "evidence": "Running and healthy" },
+      { "name": "ui", "status": "passed", "evidence": "Running and healthy" },
+      { "name": "init", "status": "passed", "evidence": "One-shot initialization completed with exit code 0" },
+      { "name": "bootstrap", "status": "passed", "evidence": "One-shot sample registration completed with exit code 0" },
+      { "name": "ui_configuration", "status": "passed", "evidence": "UI /api/config returned HTTP 200" },
+      { "name": "administrator_login", "status": "passed", "evidence": "Configured local account successfully authenticated; identity and credentials omitted" },
+      { "name": "end_to_end_query", "status": "passed", "evidence": "SELECT 7 AS seven executed through UI, API, driver and Spark; returned seven = 7" }
+    ]
+  },
+  "directApiVerification": {
+    "status": "passed",
+    "successfulExecutions": 2,
+    "method": "POST",
+    "endpoint": "/api/v1.0/sql-editor/sqls/run",
+    "authentication": "Actual Zetaris API token using Bearer authorization and the discovered organization ID",
+    "sql": "SELECT 1 AS one",
+    "expected": { "columns": ["one"], "rowCount": 1, "normalizedValue": 1 },
+    "observed": { "columns": ["one"], "rowCount": 1, "normalizedValue": 1 }
+  },
+  "interpretation": "These results verify the local sponsor platform and direct SQL API connection. Application-specific pipeline and agent results are recorded separately."
+}

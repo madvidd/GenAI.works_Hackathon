@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AlertTriangle, ArrowUpRight } from "lucide-react";
 const time = (value) =>
   new Date(value).toLocaleTimeString("en-GB", {
@@ -9,13 +9,23 @@ const time = (value) =>
 export default function TemperatureChart({ result, onEvidence }) {
   const [hover, setHover] = useState(null),
     points = result.chart;
+  const container = useRef(null);
+  const [chartWidth, setChartWidth] = useState(750);
+  useEffect(() => {
+    const observer = new ResizeObserver(([entry]) => {
+      if (entry.contentRect.width > 0)
+        setChartWidth(Math.max(220, Math.floor(entry.contentRect.width)));
+    });
+    observer.observe(container.current);
+    return () => observer.disconnect();
+  }, []);
   const temperatures = points
     .flatMap((p) => [p.rawC, p.correctedC, p.referenceC])
     .filter(Number.isFinite);
   const min = Math.min(0, result.shipment.min_temp_c - 1, ...temperatures),
     max = Math.max(result.shipment.max_temp_c + 3, ...temperatures) + 1;
-  const left = 40,
-    right = 710,
+  const left = 32,
+    right = chartWidth - 20,
     top = 20,
     bottom = 178,
     start = Date.parse(result.shipment.investigation_window_start),
@@ -45,9 +55,9 @@ export default function TemperatureChart({ result, onEvidence }) {
   }
   const hasReferences = points.some((p) => Number.isFinite(p.referenceC));
   return (
-    <div className="chart-wrap" onMouseLeave={() => setHover(null)}>
+    <div className="chart-wrap" ref={container} onMouseLeave={() => setHover(null)}>
       <svg
-        viewBox="0 0 750 215"
+        viewBox={`0 0 ${chartWidth} 215`}
         role="img"
         aria-label={`Raw peak ${result.metrics.rawPeakC} degrees, corrected peak ${result.metrics.correctedPeakC} degrees. ${result.coverage.percent} percent of scheduled observations available.`}
       >

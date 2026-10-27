@@ -1,39 +1,31 @@
-# Three-minute demo script
+# TraceHarbor demo narration
 
-Target: **3:00**, inside the required 1–4 minutes. **Audio is required.** This is a narration and shot plan, not a recorded demo. Record the current application, inputs, outputs, and actual trace. Cuts may shorten waiting time; they must not fabricate a result or a sponsor call.
+The final [MP4 demonstration](../submission/traceharbor-demo.mp4) is 188.71 seconds, 1920×1080, with stereo AAC narration and embedded English captions. The exact narration, screenshot paths and editorial framing are in [demo-scenes.json](../submission/demo-scenes.json); [standalone captions](../submission/traceharbor-demo.srt) and a [validation receipt](../submission/demo-validation.json) accompany it.
 
-The live section below is conditional on a successful real run. If a service is unavailable, replace its spoken claim with the accurate failure and the explicitly labeled sample path. Do not submit an adapter screenshot as proof of execution.
+This is an edited screen demonstration using actual application captures, synthetic shipment data and a disclosed offline Windows synthetic narrator. It shows four sample cases and actual local execution evidence. It does not claim to be an uninterrupted recording of model execution. The public website remains an explicit deterministic sample; the local companion performed the live investigation.
 
-## Narration and shots
+The live scenes match [the archived browser run](../examples/live-agent/attempt-03-browser/manifest.json): three actual Nightshift calls, four actual Zetaris reads and 46 records consumed through the official World Model. The critic retrieved incidents and calibration, changing insufficient evidence to sensor bias; withholding calibration restored insufficient evidence. The selected model was local Llama 3.2 1B. No NVIDIA cloud use, measured commercial savings or cargo-release authority is claimed.
 
-| Time | On screen | Narration |
+## Exported narration
+
+| Approximate time | Screen and purpose | Narration |
 | --- | --- | --- |
-| 0:00–0:20 | Title, track, synthetic-data label; open one disputed shipment | “This is TraceHarbor, for The Agent That Can Explain Why. It helps an operations analyst investigate a disputed cold-chain exception. A shipment status, a sensor alarm, an event log, and a calibration record can tell different stories. These records are synthetic. The question is what the evidence actually supports.” |
-| 0:20–0:45 | Raw versus corrected chart; select `TH-1042`; inspect the certificate | “Here the raw readings trigger an alarm. The applicable confirmed certificate records a sensor offset, and the corrected readings fall within the stated range. Independent reference observations corroborate that correction. An expired certificate remains visible but cannot authorize a correction. This explains the sensor alarm; it does not authorize cargo release.” |
-| 0:45–1:10 | Row-level evidence drawer; source IDs, event/source times, contradiction | “Every finding points back to its source rows. We preserve the original claim even when the evidence contradicts it. Event time and source-update time are distinct. The evidence-strength score explains its assumptions; it is a heuristic, not a probability of safety.” |
-| 1:10–1:40 | Actual live trace and result, or clearly labeled sample trace if live is unavailable | **Only after verified live execution:** “The planner chooses a bounded retrieval plan. Zetaris supplies the governed rows through the shipment evidence USL. The official Meterless World Model ingests that evidence and returns the context used by the investigator. Nightshift handles the planner, critic, and synthesis requests. These receipts show the actual model used on each call.” |
-| 1:40–2:05 | Critic challenge and evidence-withheld rerun | “The critic asks whether the conclusion survives without a piece of supporting evidence. We execute that test. Without the applicable calibration, the explanation must change. This is a sensitivity check on the record, not a claim about what would happen to a physical shipment. The final dossier keeps the challenge and both results.” |
-| 2:05–2:30 | `TH-1043`: missing schedule and abstention; then `TH-1041` invalid row | “For this shipment, only two of seven expected observations are present. A confident operator note and a pending calibration cannot fill the gap, so TraceHarbor abstains and requests the missing evidence. In the excursion case, an impossible sensor reading is excluded, and a nearby door event is described as an association rather than proven causation.” |
-| 2:30–2:50 | Structured output, trace artifacts, sample command; actual DQ receipt if available | “Judges can run the system programmatically. Sample mode executes the logic without credentials; it never replays a stored answer. Live runs keep query, model, engine, and critique evidence. The public interface states which mode is running.” |
-| 2:50–3:00 | Final dossier and public repository link | “The result is a bounded operational handoff: supported findings, unresolved conflicts, evidence gaps, and next actions. TraceHarbor makes the explanation inspectable, including when the right answer is that we do not know enough.” |
+| 0:00–0:16 | One shipment. Four conflicting stories. | This is TraceHarbor, built by Vengers for The Agent That Can Explain Why. This edited demonstration uses actual application captures, synthetic shipment records, and a synthetic narrator. We will inspect four working cases, then the receipts from a real local agent investigation. |
+| 0:16–0:39 | Start with the disputed exception | An operations analyst needs to understand a disputed temperature alert. The manifest, sensor readings, carrier events, and calibration records tell different stories. In this case, three calibrated readings exceed the stated limit. The original clear status stays visible as a contradiction. A nearby door event is an association, not proof of the cause. |
+| 0:39–1:02 | The raw alarm is only the beginning | Now consider a different shipment. Its raw readings appear too warm. A confirmed calibration certificate records a sensor offset, and the corrected readings fall within the stated range. Independently calibrated reference observations agree. An expired certificate cannot replace the applicable one. The explanation is sensor bias, with its supporting evidence preserved. |
+| 1:02–1:24 | Inspect the rows behind the conclusion | Open the evidence view to inspect the actual rows behind a finding. Stable record identifiers connect the explanation to the source, including the original reported values. Contradictions and rejected observations remain inspectable. The evidence strength is a transparent heuristic, not a probability of safety. The application does not authorize cargo release. |
+| 1:24–1:43 | Withhold calibration. Recompute the answer. | The What If experiment tests whether the explanation survives without its supporting calibration. Withhold that evidence, and TraceHarbor recomputes the result. The sensor bias explanation becomes an abstention because the record is incomplete. This is a sensitivity check on the available evidence, not a prediction of a physical intervention. |
+| 1:43–2:00 | Missing evidence stays missing | This shipment has only two of seven expected observations and a long sampling gap. A confident operator note and a pending calibration cannot fill those missing measurements. TraceHarbor abstains and asks for the missing evidence. It proposes a bounded next step rather than inventing a complete history. |
+| 2:00–2:22 | Follow the analysis and its limits | Here is the actual live agent investigation. The initial manifest and telemetry leave the result unresolved. The critic chooses to retrieve incidents and calibration through Zetaris. The agent then explains the sensor bias. Its calibration-withholding check returns to insufficient evidence. These model decisions change the available evidence and the computed conclusion. |
+| 2:22–2:45 | A normal control should stay normal | The fourth case is a normal control: the available observations remain within the fixture's stated range. Different records produce different conclusions. 16 local tests pass, including a critic that retrieves missing calibration and changes an unresolved result into a supported explanation. Automated orchestration tests use mocked network transports; actual execution has separate receipts. |
+| 2:45–3:08 | Clear evidence. Clear status. | A complete investigation now has three actual Nightshift model calls, 4 Zetaris reads, and 46 records consumed from the official World Model. The local Llama model uses structured decisions. The public website remains a clearly labeled synthetic sample. Reproducible source and execution receipts are on GitHub. Our next validation is a real operations user study. |
 
-Approximate spoken duration depends on pace and pauses. Rehearse against the actual recording and cut words rather than speed up unreadably.
+## Reproduction and review
 
-## Required recording evidence
+Run `node submission/prepare-final-artifacts.mjs --manifest examples/live-agent/attempt-03-browser/manifest.json --live-image docs/images/live-investigation.png --live-reasoning-image docs/images/live-reasoning.png` to prepare a private evidence-checked draft. Review its narration and actual-image crops before replacing the canonical scene source. A sample manifest or mismatched dossier is rejected. Rebuild narration/video with `submission/build-demo.ps1`, inspect the actual output, then run `node submission/sync-demo-script.mjs` to synchronize this document with its export receipt.
 
-- Show a real input and the resulting output from the current build.
-- Show an actual critique and resulting branch or rerun.
-- Show the meaningful Zetaris query/USL path and a real DQ execution receipt, if completed.
-- Show World Model activity and a live Nightshift request only when those artifacts exist.
-- Show actual returned model IDs when claiming Nemotron contribution.
-- Show the explicit synthetic/sample/live label and an insufficient-evidence outcome.
+All nine layouts and nine end-of-scene encoded frames were visually inspected. All video and audio decoded without errors, all nine narration segments contain non-silent audio, and the English caption stream is present. Uninterrupted human audiovisual playback remains pending and is not implied by automated decoding.
 
-## Capture and publication checks
+Keep the previous export privately until its replacement passes validation. Never substitute sample output for a failed live run. Preserve failed attempts, synthetic-data and narration disclosures, and the difference between mocked automated transports and actual execution receipts. Keep service tokens and unrelated private windows out of every capture.
 
-Prefer 1080p, 16:9, MP4, clear microphone narration, and readable browser/terminal text. Keep token settings, `.env.local`, provider keys, personal inboxes, and unrelated private tabs out of frame. Review frames around any terminal or provider console. Avoid a wall of slides replacing the working product.
-
-Watch the exported file from start to finish: check duration, intelligible audio, legibility, and that the displayed results match the narration. Test the shared video while logged out. Preserve the exported file and a second copy/link through judging. Record its URL in metadata only after access is verified.
-
-## If live integration remains incomplete
-
-Say: “This recording shows the input-dependent sample mode. The live adapter is implemented, but a successful full sponsor run is not yet verified.” That is accurate; it does not satisfy the missing live-integration requirement. Keep the unmet gate visible in the requirements matrix rather than hide it with sponsor logos.
+The required duration is one to four minutes with audio. Verify public MP4/PDF/PPTX/SRT access before adding their URLs to metadata. A published artifact is not evidence that the official hackathon entry was submitted.

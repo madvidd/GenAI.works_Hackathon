@@ -7,6 +7,7 @@ import { buildWorldContext } from '../server/world-context.mjs';
 import { runInvestigation, loadFixtureFeeds } from '../server/agent.mjs';
 import { FEED_COLUMNS } from '../scripts/zetaris-schema.mjs';
 import { NightshiftClient } from '../server/nightshift.mjs';
+import { plannerSchema } from '../server/output-schemas.mjs';
 import { ZetarisClient } from '../scripts/zetaris-client.mjs';
 import { loadPlan } from '../scripts/zetaris-setup.mjs';
 
@@ -36,7 +37,7 @@ test('bounded agent orchestration uses tool data, real engine, and critic rerun 
     generateJson: async ({ phase }) => {
       phases.push(phase);
       const values = {
-        planner: { sources: ['telemetry', 'manifest', 'incidents'], focus: 'Check whether the current certificate resolves the alarm.' },
+        planner: { sources: ['telemetry', 'manifest', 'incidents'], focus: 'Check whether valid calibration changes a temperature alarm.' },
         critic: { retrieve_sources: ['calibration'], challenge: 'Would the raw alarm remain explained without calibration?', recheck: 'calibration', citation_ids: ['TEL-1042-20'] },
         synthesis: { finding_ids: ['bias'], action_ids: ['sensor-service'], citation_ids: ['CALROW-42', 'TEL-1042-20R'] },
       };
@@ -66,7 +67,7 @@ test('a critic that declines a missing source cannot receive a fabricated clear 
   const nightshift = {
     preflight: async () => ({ testTransport: true }),
     generateJson: async ({ phase }) => ({ value: {
-      planner: { sources: ['manifest', 'telemetry', 'incidents'], focus: 'Investigate the alert.' },
+      planner: { sources: ['manifest', 'telemetry', 'incidents'], focus: 'Check whether temperature observations support the reported status.' },
       critic: { retrieve_sources: [], challenge: 'What if the last observation were absent?', recheck: 'coverage', citation_ids: ['MAN-1042'] },
       synthesis: { finding_ids: ['source-gap'], action_ids: ['recover-evidence'], citation_ids: ['MAN-1042'] },
     }[phase], receipt: { testTransport: true, phase } }),
@@ -88,9 +89,11 @@ test('documented REST and Nightshift headers are sent and secrets are redacted',
   assert.equal(request.options.headers['X-Org-ID'], '1');
   assert.equal(JSON.parse(request.options.body).source, 'SqlEditor');
   const nightshift = new NightshiftClient({ apiKey: secret, fetchImpl: async (url, options) => { request = { url, options }; return new Response(JSON.stringify({ model: 'test-model', choices: [{ message: { content: '{"ok":true}' } }] }), { status: 200 }); } });
-  await nightshift.generateJson({ system: 'test', prompt: 'test', phase: 'test' });
+  await nightshift.generateJson({ system: 'test', prompt: 'test', phase: 'planner', schema: plannerSchema() });
   assert.equal(request.options.headers['meterless-app'], 'traceharbor');
   assert.equal(request.options.headers['meterless-scope'], 'user');
+  assert.deepEqual(JSON.parse(request.options.body).response_format, { type: 'json_schema', json_schema: plannerSchema() });
+  assert.equal(JSON.parse(request.options.body).max_tokens, 256);
   const failure = new ZetarisClient({ apiKey: secret, fetchImpl: async () => new Response(`Bearer ${secret}`, { status: 401 }) });
   await assert.rejects(failure.run('SELECT 1'), error => error.message.includes('[REDACTED]') && !error.message.includes(secret));
 });

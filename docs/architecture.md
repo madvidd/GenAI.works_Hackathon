@@ -1,6 +1,6 @@
 # TraceHarbor architecture
 
-Status: implementation contract, 27 October 2026. The deterministic core, live orchestration, and Zetaris plan are present. The local 14-test suite passed, including the actual World Model feature. Network orchestration tests use mocks; real sponsor execution remains unverified.
+Status: 27 October 2026. The 16-test suite, actual Zetaris setup and full local Nightshift/World Model investigation are verified. Transport unit tests use mocks; separate [actual service receipts](../examples/live-agent/attempt-02/) show three model calls and four governed reads completing in 142.3 seconds. Final clean-clone verification remains a separate gate.
 
 ## Problem boundary
 
@@ -34,7 +34,7 @@ flowchart LR
   K -->|Withhold evidence and recompute| A
   K -->|Approved bounded claims| D[Evidence dossier]
   W[Meterless World Model] <--> A
-  N[Nightshift] <--> P[Planner and live reasoning agents]
+  N[Nightshift] <--> P[Planner and bounded selection agents]
   P <--> R
   P <--> K
 ```
@@ -45,7 +45,7 @@ This diagram describes the code. It is not a real-service execution receipt.
 
 | Role | Decision owned | Required run evidence |
 | --- | --- | --- |
-| Planner | Bound the shipment/window and choose evidence to retrieve | Request, plan, handoff, actual model receipt in live mode |
+| Planner | Choose initial allowed sources and an investigation question | Request, plan, handoff, actual model receipt in live mode |
 | Retriever / data steward | Retrieve and validate evidence without losing original rows | SQL, row results/counts, rejected records and reasons |
 | Analyst | Calculate calibrated observations, schedule coverage, and supported hypotheses | Inputs, calculations, and source IDs |
 | Critic | Retrieve missing evidence and choose a bounded evidence-withholding recheck; preserve unsupported conclusions as unresolved | Actual extra query, provisional/final outcome, challenge, selected intervention, recomputed result |
@@ -53,7 +53,7 @@ This diagram describes the code. It is not a real-service execution receipt.
 
 Names alone are insufficient. The critic must change what can be concluded. Preserve initial and revised interpretations so a judge can see why the answer changed. Record the returned model ID rather than infer it from a configured alias.
 
-The planner chooses two or three initial sources, with manifest and telemetry required. The critic sees the provisional result and unfetched source list, can request missing sources, and causes actual allowlisted SQL reads. Returned rows are re-ingested into the official World Model before factual analysis is recomputed. In the mocked transport test, retrieving calibration changes insufficient evidence to a sensor-bias explanation; declining that retrieval leaves the case unresolved. The manifest records `initialSources`, `criticSources`, `provisionalOutcome`, `finalOutcome`, and `remainingMissingSources`. This test proves the code branch, not a live sponsor execution.
+The planner chooses two or three initial sources, with manifest and telemetry required. The critic sees the provisional result and unfetched source list, can request missing sources, and causes actual allowlisted SQL reads. Returned rows are re-ingested into the official World Model before factual analysis is recomputed. In the mocked transport test, retrieving calibration changes insufficient evidence to a sensor-bias explanation; declining that retrieval leaves the case unresolved. The manifest records `initialSources`, `criticSources`, `provisionalOutcome`, `finalOutcome`, and `remainingMissingSources`. That unit test proves the code branch. In the separate actual live run, the planner chose manifest and telemetry; the critic selected both missing sources and calibration withholding. Four real USL reads and World Model context consumption changed insufficient evidence to sensor bias; withholding certificates then restored insufficient evidence. The selected model was `local-runtime/llama-3.2-1b-instruct`.
 
 ## Deterministic evidence contract
 
@@ -88,6 +88,6 @@ The successful envelope is `{ "result": <investigation result> }`. `npm start` s
 
 ## Runtime controls and evidence
 
-External requests, retries, critique rounds, and the overall run need explicit bounds. Incident prose is untrusted evidence, never executable instructions. Calculations and citation validation must remain independent of source-note commands.
+The live runner permits three model calls, four governed source reads and 300 seconds total. Individual model calls allow 180 seconds and live SQL reads 120 seconds within that remaining total. Setup/contract-check SQL retains its 60-second default. Streaming response caps are 1 MB for Nightshift and 2 MB for Zetaris. Strict JSON schemas limit legitimate task questions, tool names and existing finding/action/citation IDs; source/recheck choices remain model decisions. The deterministic core retains authority over numerical claims and outcomes. The critic’s displayed challenge is a canonical description of its chosen test. Incident prose is untrusted evidence, never executable instructions. Calculations and citation validation must remain independent of source-note commands.
 
 Before claiming the full architecture works, retain: clean-clone sample execution with no credentials/services; changed-input results; actual live critique/retrieval branching; passing World Model tests; Zetaris source/USL/DQ receipts; a Nightshift completion with returned model ID; and browser/export/deployment checks. Selected published artifacts must be redacted. Missing evidence and partial failures stay visible.

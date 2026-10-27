@@ -25,7 +25,7 @@
   "sponsor_technology": {
     "zetaris": {
       "role": "Data layer: registered REST feeds, shipment evidence USL, exploration and data-quality execution",
-      "status": "implementation_present_live_execution_pending"
+      "status": "actual_setup_34_statements_and_usl_world_model_contract_verified"
     },
     "meterless_engine": {
       "name": "World Model",
@@ -34,9 +34,12 @@
     },
     "meterless_nightshift": {
       "role": "Primary provider for live agent model requests",
-      "status": "runtime_authenticated_local_model_selected_completion_pending",
+      "status": "complete_local_model_agent_run_verified",
       "selected_inference_mode": "local",
-      "initial_local_model_label": "Llama 3.2 1B Instruct"
+      "initial_local_model_label": "Llama 3.2 1B Instruct",
+      "verified_model_ids": [
+        "local-runtime/llama-3.2-1b-instruct"
+      ]
     },
     "nvidia": {
       "role": "No current NVIDIA or Nemotron contribution claimed",
@@ -67,18 +70,27 @@
   "verification": {
     "as_of_utc_date": "2026-10-27",
     "submission_ready": false,
-    "live_zetaris_run": false,
+    "live_zetaris_run": true,
     "engine_feature_test": true,
     "engine_upstream_conformance_passed": 8,
     "engine_upstream_conformance_total": 8,
-    "local_test_count_passed": 14,
+    "local_test_count_passed": 16,
     "orchestration_transport_tests_use_mocks": true,
-    "live_nightshift_run": false,
+    "live_nightshift_run": true,
     "verified_nemotron_run": false,
     "clean_clone_run": false,
-    "recorded_demo": false,
+    "recorded_demo": true,
     "finished_slide_deck": true,
-    "deployed_site_verified": true
+    "deployed_site_verified": true,
+    "full_live_agent_run": true,
+    "full_live_agent_attempts": 3,
+    "full_live_agent_successes": 2,
+    "full_live_agent_elapsed_ms": 142323,
+    "live_browser_run": true,
+    "live_browser_export_matches_server": true,
+    "demo_duration_seconds": 188.714,
+    "demo_technical_validation_passed": true,
+    "demo_human_full_playback_reviewed": false
   },
   "limitations": [
     "All demonstration records are synthetic.",
@@ -103,6 +115,16 @@
       "examples/inputs/TH-1042.json",
       "examples/inputs/TH-1043.json",
       "examples/inputs/TH-1044.json"
-    ]
+    ],
+    "zetaris_evidence": "examples/live-zetaris",
+    "live_agent_evidence": "examples/live-agent/attempt-02",
+    "live_agent_validation": "docs/live-agent-validation.json",
+    "live_browser_evidence": "examples/live-agent/attempt-03-browser",
+    "live_browser_export": "submission/browser-qa/TH-1042-live.json",
+    "demo_video": "submission/traceharbor-demo.mp4",
+    "demo_captions": "submission/traceharbor-demo.srt",
+    "demo_scene_source": "submission/demo-scenes.json",
+    "demo_validation": "submission/demo-validation.json",
+    "slide_deck_validation": "submission/validation.json"
   }
 }

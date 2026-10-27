@@ -1,0 +1,15 @@
+{
+  "kind": "existing-query-history-diagnostic",
+  "queryId": "f4958a88-7f4c-467b-97af-8c163198451e",
+  "requestId": "54c55b9f-8833-4066-bf4b-265a22c45b33",
+  "historyTime": "2026-10-27T19:36:44.538459Z",
+  "historyStatus": "Success",
+  "runQueryAsHeaderRowsElapsedMs": 60017,
+  "runSqlElapsedMs": 60509,
+  "httpStatus": 200,
+  "httpResponseLoggedAt": "2026-10-27T19:37:45.455Z",
+  "responseContentLength": 1438,
+  "newSqlSubmittedForDiagnostic": false,
+  "savedRowsAvailableInHistory": false,
+  "interpretation": "The server completed the existing query after the client's 60-second timeout. Driver logs are consistent with cold Spark/JIT initialization. This does not turn the failed client attempt into a successful full-agent run."
+}

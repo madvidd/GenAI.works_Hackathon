@@ -1,0 +1,167 @@
+1
+00:00:00,000 --> 00:00:05,080
+This is TraceHarbor, built by Vengers for The Agent That Can Explain Why.
+
+2
+00:00:05,080 --> 00:00:10,550
+This edited demonstration uses actual application captures, synthetic shipment records, and a synthetic narrator.
+
+3
+00:00:10,550 --> 00:00:16,411
+We will inspect four working cases, then the receipts from a real local agent investigation.
+
+4
+00:00:16,961 --> 00:00:21,115
+An operations analyst needs to understand a disputed temperature alert.
+
+5
+00:00:21,115 --> 00:00:26,099
+The manifest, sensor readings, carrier events, and calibration records tell different stories.
+
+6
+00:00:26,099 --> 00:00:30,253
+In this case, three calibrated readings exceed the stated limit.
+
+7
+00:00:30,253 --> 00:00:33,991
+The original clear status stays visible as a contradiction.
+
+8
+00:00:33,991 --> 00:00:38,976
+A nearby door event is an association, not proof of the cause.
+
+9
+00:00:39,526 --> 00:00:41,695
+Now consider a different shipment.
+
+10
+00:00:41,695 --> 00:00:44,299
+Its raw readings appear too warm.
+
+11
+00:00:44,299 --> 00:00:51,675
+A confirmed calibration certificate records a sensor offset, and the corrected readings fall within the stated range.
+
+12
+00:00:51,675 --> 00:00:53,845
+Independently calibrated reference observations agree.
+
+13
+00:00:53,845 --> 00:00:57,316
+An expired certificate cannot replace the applicable one.
+
+14
+00:00:57,316 --> 00:01:01,656
+The explanation is sensor bias, with its supporting evidence preserved.
+
+15
+00:01:02,206 --> 00:01:07,286
+Open the evidence view to inspect the actual rows behind a finding.
+
+16
+00:01:07,286 --> 00:01:13,212
+Stable record identifiers connect the explanation to the source, including the original reported values.
+
+17
+00:01:13,212 --> 00:01:15,752
+Contradictions and rejected observations remain inspectable.
+
+18
+00:01:15,752 --> 00:01:20,832
+The evidence strength is a transparent heuristic, not a probability of safety.
+
+19
+00:01:20,832 --> 00:01:23,796
+The application does not authorize cargo release.
+
+20
+00:01:24,346 --> 00:01:29,332
+The What If experiment tests whether the explanation survives without its supporting calibration.
+
+21
+00:01:29,332 --> 00:01:32,401
+Withhold that evidence, and TraceHarbor recomputes the result.
+
+22
+00:01:32,401 --> 00:01:37,004
+The sensor bias explanation becomes an abstention because the record is incomplete.
+
+23
+00:01:37,004 --> 00:01:43,141
+This is a sensitivity check on the available evidence, not a prediction of a physical intervention.
+
+24
+00:01:43,691 --> 00:01:48,617
+This shipment has only two of seven expected observations and a long sampling gap.
+
+25
+00:01:48,617 --> 00:01:53,190
+A confident operator note and a pending calibration cannot fill those missing measurements.
+
+26
+00:01:53,190 --> 00:01:56,005
+TraceHarbor abstains and asks for the missing evidence.
+
+27
+00:01:56,005 --> 00:02:00,227
+It proposes a bounded next step rather than inventing a complete history.
+
+28
+00:02:00,777 --> 00:02:03,693
+Here is the actual live agent investigation.
+
+29
+00:02:03,693 --> 00:02:07,442
+The initial manifest and telemetry leave the result unresolved.
+
+30
+00:02:07,442 --> 00:02:11,608
+The critic chooses to retrieve incidents and calibration through Zetaris.
+
+31
+00:02:11,608 --> 00:02:14,524
+The agent then explains the sensor bias.
+
+32
+00:02:14,524 --> 00:02:17,440
+Its calibration-withholding check returns to insufficient evidence.
+
+33
+00:02:17,440 --> 00:02:22,022
+These model decisions change the available evidence and the computed conclusion.
+
+34
+00:02:22,572 --> 00:02:29,385
+The fourth case is a normal control: the available observations remain within the fixture's stated range.
+
+35
+00:02:29,385 --> 00:02:31,514
+Different records produce different conclusions.
+
+36
+00:02:31,514 --> 00:02:40,031
+16 local tests pass, including a critic that retrieves missing calibration and changes an unresolved result into a supported explanation.
+
+37
+00:02:40,031 --> 00:02:45,141
+Automated orchestration tests use mocked network transports; actual execution has separate receipts.
+
+38
+00:02:45,691 --> 00:02:54,639
+A complete investigation now has three actual Nightshift model calls, 4 Zetaris reads, and 46 records consumed from the official World Model.
+
+39
+00:02:54,639 --> 00:02:57,486
+The local Llama model uses structured decisions.
+
+40
+00:02:57,486 --> 00:03:01,147
+The public website remains a clearly labeled synthetic sample.
+
+41
+00:03:01,147 --> 00:03:04,400
+Reproducible source and execution receipts are on GitHub.
+
+42
+00:03:04,400 --> 00:03:08,061
+Our next validation is a real operations user study.

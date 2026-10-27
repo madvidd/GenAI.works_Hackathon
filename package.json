@@ -6,7 +6,7 @@
   "description": "Evidence-led shipment exception investigation for the Open Agent Hackathon 2026",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "build": "node scripts/copy-data.mjs && vite build",
+    "build": "node scripts/copy-data.mjs && vite build && node scripts/copy-submission.mjs",
     "preview": "vite preview --host 127.0.0.1",
     "start": "tsx server/http.mjs",
     "agent:sample": "tsx server/agent.mjs --mode sample",

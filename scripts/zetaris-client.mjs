@@ -1,4 +1,5 @@
 import { randomUUID } from 'node:crypto';
+import { readBoundedText } from '../core/http-body.mjs';
 
 export function redact(value, secrets = []) {
   let output = String(value);
@@ -23,7 +24,7 @@ export class ZetarisClient {
     this.baseUrl = normalizeZetarisUrl(baseUrl);
     this.apiKey = apiKey;
     this.orgId = String(orgId);
-    this.timeoutMs = Math.max(1000, Math.min(60_000, timeoutMs));
+    this.timeoutMs = Math.max(1000, Math.min(120_000, timeoutMs));
     this.fetchImpl = fetchImpl;
   }
 
@@ -40,8 +41,7 @@ export class ZetarisClient {
         body: JSON.stringify({ queryId, sql, source: 'SqlEditor', limit }),
         signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(this.timeoutMs)]) : AbortSignal.timeout(this.timeoutMs),
       });
-      const content = await response.text();
-      if (content.length > 2_000_000) throw new Error('Zetaris response exceeded the bounded response budget.');
+      const content = await readBoundedText(response, 2_000_000, 'Zetaris');
       if (!response.ok) throw new Error(`Zetaris HTTP ${response.status}: ${content.slice(0, 500)}`);
       let result;
       try { result = JSON.parse(content); } catch { throw new Error('Zetaris returned a non-JSON response.'); }
@@ -51,7 +51,9 @@ export class ZetarisClient {
       if (!Array.isArray(rows) || rows.some(row => !Array.isArray(row))) throw new Error('Expected Zetaris data as row arrays; refusing to guess the response shape.');
       return { queryId, requestId, sql, rows, durationMs: Date.now() - started, raw: result };
     } catch (error) {
-      throw new Error(redact(error?.message || error, [this.apiKey]), { cause: undefined });
+      const failure = new Error(redact(error?.message || error, [this.apiKey]), { cause: undefined });
+      Object.assign(failure, { queryId, requestId, sql, durationMs: Date.now() - started });
+      throw failure;
     }
   }
 }

@@ -1,0 +1,26 @@
+{
+  "runId": "traceharbor-f819006a-6108-4019-a59f-3e90326edbeb",
+  "evidence": "examples/live-agent/attempt-03-browser",
+  "manifest": "examples/live-agent/attempt-03-browser/manifest.json",
+  "mode": "live",
+  "outcome": "sensor_bias",
+  "modelCalls": 3,
+  "sqlQueries": 4,
+  "sourceRowsConsumed": 46,
+  "uiReportedElapsedMs": 143631,
+  "traceElapsedMs": 142735,
+  "citationsResolve": true,
+  "exportCoreMatchesServer": true,
+  "downloadedExport": "submission/browser-qa/TH-1042-live.json",
+  "downloadedExportSha256": "a2f36f1ebc7e06455c85d32ace79781b7c6011e81e5863c3c70a6c6329116ce2",
+  "archiveSha256": {
+    "dossier.json": "9442703bbe8a9a4a0fc305cb90438b93e5dbf0a25f042c263d283be1a819be59",
+    "manifest.json": "e66c9daa3a9d48043a138b03908785ab4463c9b35d24c8e6b1435255504ad6de",
+    "trace.jsonl": "e154b398c90f51ae2463894394f35c39c3bef10b58a866ce07a6cb4fded00ce2",
+    "world-events.jsonl": "301c2da8cc064480fb8f63b302276432000335a1cf4edccb6709482eb3ee86a3",
+    "world-audit.jsonl": "966c49c05a991a55d35b2904d6e9bd2252552abf77e6aeba38f748177ace7e1d",
+    "zetaris-queries.jsonl": "392a28894546d109425695f9757cfcbc2e92af12d50b5df3cb4363c4c820b5f5"
+  },
+  "secretScanPassed": true,
+  "normalization": "Only completed.runFolder normalized to repository-relative path."
+}

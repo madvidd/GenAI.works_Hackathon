@@ -1,0 +1,15 @@
+{
+  "runId": "traceharbor-0c826523-7dde-409d-8ead-e3d3297dfa27",
+  "complete": false,
+  "status": "failed",
+  "modelCallsCompleted": 1,
+  "sqlQueriesAttempted": 1,
+  "sqlQueriesCompleted": 0,
+  "failedPhase": "first-governed-manifest-read",
+  "error": "The operation was aborted due to timeout",
+  "queryTimeoutMs": 60000,
+  "nightshiftModel": "local-runtime/llama-3.2-1b-instruct",
+  "plannerDurationMs": 19997,
+  "sampleFallbackUsed": false,
+  "note": "Actual planner succeeded, then the first database read timed out after platform restart. No critic, synthesis, dossier or successful full-agent result was produced."
+}

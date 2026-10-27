@@ -1,0 +1,5 @@
+{
+  "modifiedField": "trace.jsonl completed.runFolder",
+  "normalization": "Private absolute checkout path replaced by repository-relative path; all observations, outcomes and execution receipts otherwise retained.",
+  "traceSha256": "faf3cc43e573d3c60a198d3ded8834a49da44ae7d780ca1943dfd8183fa5c24c"
+}

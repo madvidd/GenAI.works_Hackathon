@@ -1,6 +1,6 @@
 # Zetaris reflections
 
-These address the three reflections in the supplied Zetaris scoring methodology. Written on 27 October 2026. **All time figures below are planning estimates, not measured benchmarks or customer results.** Real platform execution and a timed manual comparator are still pending. The SQL and product concept below must not be presented as executed evidence.
+These address the three reflections in the supplied Zetaris scoring methodology. Written on 27 October 2026. **All time figures below are planning estimates, not measured benchmarks or customer results.** Real platform execution is verified in [the evidence archive](../examples/live-zetaris/); a timed manual comparator remains pending. The proposed product feature below is a concept, not an implemented platform capability.
 
 ## 1. Time saved compared with a manual investigation
 
@@ -23,7 +23,7 @@ To turn this into evidence, time the same shipment/task manually and through the
 
 ## 2. Where the USL helps, where it stops, and a future use
 
-The proposed `shipment_evidence` USL gives the application a consistent relationship between manifests, observations, incidents, and calibration. It keeps identifiers and source timestamps available for citations. A stable table contract lets the agent choose governed read tools without generating arbitrary SQL. The source registration and activation steps make the data layer reproducible rather than relying on hand-copied exports.
+The implemented `shipment_evidence` USL gives the application a consistent relationship between manifests, observations, incidents, and calibration. It keeps identifiers and source timestamps available for citations. A stable table contract lets the agent choose governed read tools without generating arbitrary SQL. The source registration and activation steps make the data layer reproducible rather than relying on hand-copied exports.
 
 The USL does not establish that a reported fact is true. It does not decide whether an expired certificate is admissible, fill missing observations, prove a door event caused an excursion, or make one-to-many join counts safe automatically. Those checks remain explicit in TraceHarbor's deterministic evidence logic. This prototype uses small synthetic datasets on one host; it has not demonstrated production-scale federation, schema drift handling, latency, or customer permissions.
 

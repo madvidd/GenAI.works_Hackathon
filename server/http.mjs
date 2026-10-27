@@ -7,7 +7,7 @@ import { loadLocalEnv } from '../scripts/zetaris-setup.mjs';
 import { redact } from '../scripts/zetaris-client.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const mime = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon', '.woff2': 'font/woff2' };
+const mime = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon', '.woff2': 'font/woff2', '.mp4': 'video/mp4', '.pdf': 'application/pdf', '.pptx': 'application/vnd.openxmlformats-officedocument.presentationml.presentation', '.srt': 'application/x-subrip' };
 
 export function createTraceHarborServer({ shipments, run = runInvestigation, dist = path.join(root, 'dist') }) {
   const allowedShipments = new Set(shipments);
@@ -28,11 +28,17 @@ export function createTraceHarborServer({ shipments, run = runInvestigation, dis
         if (running) return send(429, { error: 'A bounded investigation is already running.' });
         recentRuns = recentRuns.filter(at => at > Date.now() - 10 * 60_000);
         if (recentRuns.length >= 3) return send(429, { error: 'Local run budget reached: at most three live investigations per ten minutes.' });
-        let text = '';
-        for await (const chunk of request) { text += chunk; if (text.length > 2048) return send(413, { error: 'Request body exceeds 2 KB.' }); }
+        const chunks = [];
+        let bodyBytes = 0;
+        for await (const chunk of request) { bodyBytes += chunk.length; if (bodyBytes > 2048) return send(413, { error: 'Request body exceeds 2 KB.' }); chunks.push(chunk); }
         let body;
-        try { body = JSON.parse(text); } catch { return send(400, { error: 'Invalid JSON.' }); }
-        if (body.mode !== 'live' || !allowedShipments.has(body.shipmentId) || Object.keys(body).some(key => !['mode', 'shipmentId'].includes(key))) return send(400, { error: 'Use an allowlisted shipment ID and mode live.' });
+        try { body = JSON.parse(Buffer.concat(chunks).toString('utf8')); } catch { return send(400, { error: 'Invalid JSON.' }); }
+        if (!body || typeof body !== 'object' || Array.isArray(body) || body.mode !== 'live' || !allowedShipments.has(body.shipmentId) || Object.keys(body).some(key => !['mode', 'shipmentId'].includes(key))) return send(400, { error: 'Use an allowlisted shipment ID and mode live.' });
+        // Other request handlers can progress while this one's body is arriving.
+        // Recheck and reserve in one synchronous section after that await.
+        if (running) return send(429, { error: 'A bounded investigation is already running.' });
+        recentRuns = recentRuns.filter(at => at > Date.now() - 10 * 60_000);
+        if (recentRuns.length >= 3) return send(429, { error: 'Local run budget reached: at most three live investigations per ten minutes.' });
         running = true; recentRuns.push(Date.now());
         try {
           const completed = await run({ mode: 'live', shipmentId: body.shipmentId });

@@ -29,3 +29,9 @@ Fresh executions write new run IDs and timestamps under `logs/runs/`; those
 fields are expected to differ. The outcome, source citations, and numerical
 analysis depend on the supplied records. No credentials, model download, or
 sponsor service is needed for sample mode.
+
+For publication, only each archived trace's `completed.runFolder` field was
+normalized from a private absolute checkout path to a repository-relative path.
+Each folder's `archive-normalization.json` discloses that change and records
+the resulting trace SHA-256. Measurements, outcomes and execution receipts
+were retained. Fresh runs still write their actual local output path.

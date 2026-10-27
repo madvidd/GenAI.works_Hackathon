@@ -1,8 +1,8 @@
 {
   "verified_utc_date": "2026-10-27",
   "slides": 8,
-  "pptx_sha256": "fe608da44b4b8830ff2716e0e59a25865b59ee8dca30195aacdb0a125398495e",
-  "pdf_sha256": "426fa2e884bf74983ec2f38e20d002f10a6949d91339af30aa8efc88845962c2",
+  "pptx_sha256": "e14abc1ed7111f80b4eb5e5ca423feb75c612fccee132bc5191f8132e13dfcca",
+  "pdf_sha256": "2f7d739f367bbf350a1e4d674c946d2f340d91307b97de235c8ebad6942c2e25",
   "package_integrity": "pass",
   "layout_findings": 0,
   "first_party_import_passed": true,
@@ -17,5 +17,8 @@
   ],
   "pdf_representation": "original slide render images",
   "native_powerpoint_rendering_verified": false,
-  "sponsor_live_execution_claimed": false
+  "sponsor_live_execution_claimed": true,
+  "live_manifest": "examples/live-agent/attempt-03-browser/manifest.json",
+  "local_tests_passed": 16,
+  "heading_fit_revision": "Slide 6 shortened to Withhold evidence. Test the answer.; all eight slide renders and PDF pages visually rechecked."
 }

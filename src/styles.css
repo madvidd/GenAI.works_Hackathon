@@ -725,6 +725,13 @@ main {
   display: flex;
   justify-content: space-between;
   padding: 24px 25px 22px;
+  gap: 8px;
+}
+.dossier-header > div {
+  min-width: 0;
+}
+.dossier-header > button {
+  flex-shrink: 0;
 }
 .overline {
   font-size: 9px;
@@ -2472,6 +2479,7 @@ tr:hover td {
     font-size: 21px;
     gap: 9px;
     margin-top: 11px;
+    flex-wrap: wrap;
   }
   .dossier-header h2 svg {
     width: 16px;
@@ -2487,11 +2495,14 @@ tr:hover td {
   }
   .dossier-tabs {
     padding: 0 16px;
-    gap: 24px;
+    gap: 0;
+    justify-content: space-between;
   }
   .dossier-tabs > button {
     font-size: 11px;
     padding: 11px 0;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
   .dossier-tabs > button > span {
     font-size: 9px;
@@ -2996,4 +3007,16 @@ tr:hover td {
 }
 .chart-gap > svg {
   flex-shrink: 0;
+}
+.artifact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  margin-top: 20px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.artifact-links a {
+  color: #315e50;
+  text-underline-offset: 3px;
 }

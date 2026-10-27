@@ -123,6 +123,7 @@ function App() {
     [excluded, setExcluded] = useState([]),
     [evidenceId, setEvidenceId] = useState(null),
     [busy, setBusy] = useState(false),
+    [runningShipment, setRunningShipment] = useState(null),
     [runTime, setRunTime] = useState(null),
     [toast, setToast] = useState(""),
     [mobileNav, setMobileNav] = useState(false),
@@ -133,6 +134,8 @@ function App() {
     [editRow, setEditRow] = useState(""),
     [editValue, setEditValue] = useState("");
   const upload = useRef();
+  const currentContext = useRef();
+  currentContext.current = { selected, mode, feeds, ignoreCalibration, excluded };
   useEffect(() => {
     if (!evidenceId && !showSettings) return;
     const previous = document.activeElement;
@@ -233,7 +236,12 @@ function App() {
     setView("Investigations");
   }
   async function run() {
+    const requestContext = currentContext.current;
+    const isCurrent = () => Object.entries(requestContext).every(
+      ([key, value]) => currentContext.current[key] === value,
+    );
     setBusy(true);
+    setRunningShipment(selected);
     setLiveError("");
     const start = performance.now();
     try {
@@ -242,16 +250,18 @@ function App() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ shipmentId: selected, mode: "live" }),
+          signal: AbortSignal.timeout(310_000),
         });
+        const body = await r.json().catch(() => null);
         if (!r.ok)
           throw Error(
-            `Live service unavailable (${r.status}). Start the local server with configured sponsor services.`,
+            body?.error || `Live service unavailable (${r.status}). Check the local server and configured sponsor services.`,
           );
-        const body = await r.json();
-        if (!body.result?.evidence)
+        if (!body?.result?.evidence)
           throw Error(
             "The live server did not return a verified investigation.",
           );
+        if (!isCurrent()) return;
         setLiveResult(body.result);
       } else {
         investigateShipment(feeds, selected, {
@@ -260,6 +270,7 @@ function App() {
         });
         await new Promise((resolve) => requestAnimationFrame(resolve));
       }
+      if (!isCurrent()) return;
       setRunTime(Math.round(performance.now() - start));
       notify(
         mode === "sample"
@@ -267,9 +278,10 @@ function App() {
           : "Live investigation completed.",
       );
     } catch (e) {
-      setLiveError(e.message);
+      if (isCurrent()) setLiveError(e.message);
     } finally {
       setBusy(false);
+      setRunningShipment(null);
     }
   }
   async function importFile(event) {
@@ -635,9 +647,9 @@ function App() {
                         INVESTIGATION DOSSIER <span>/{selected}</span>
                       </div>
                       <h2>
-                        {result.shipment.origin}
+                        <span>{result.shipment.origin}</span>
                         <ArrowRight size={20} />
-                        {result.shipment.destination}
+                        <span>{result.shipment.destination}</span>
                       </h2>
                       <div className="dossier-meta">
                         <span>{selected}</span>
@@ -1072,7 +1084,7 @@ function App() {
                       ) : (
                         <Play size={14} />
                       )}{" "}
-                      {busy ? "Investigating…" : "Run investigation"}
+                      {busy ? `Investigating ${runningShipment}…` : "Run investigation"}
                     </button>
                   </div>
                 </section>
@@ -1325,6 +1337,12 @@ function App() {
               Setup & integration evidence
               <ArrowUpRight size={16} />
             </a>
+            <nav className="artifact-links" aria-label="Project presentation">
+              <a href="/submission/traceharbor-demo.mp4" target="_blank" rel="noreferrer">Watch the demo</a>
+              <a href="/submission/traceharbor.pdf" target="_blank" rel="noreferrer">View the deck</a>
+              <a href="/submission/traceharbor.pptx" download>Editable slides</a>
+              <a href="/submission/traceharbor-demo.srt" download>Captions</a>
+            </nav>
           </section>
         </div>
       )}

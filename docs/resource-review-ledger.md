@@ -67,3 +67,7 @@ The dashboard's official rules, announcements, track statements, current judging
 | Orientation deck lists $15,000 cash / $5,000 in-kind rewards | Newer Winner Next Steps and current rules list $13,000 cash / $7,000 in-kind; the current official terms control |
 
 No source guarantees a win. The reviewed guidance explicitly warns against promises about judging outcomes. The project is aligned to published criteria and must earn its claims through working evidence.
+
+## Final platform check
+
+The signed-in dashboard and the latest hackathon-wide announcement were rechecked at approximately 20:04 UTC on 27 October. The organizer's 17:18 announcement explicitly confirms **23:45 UTC tonight** and says judges see the last submitted version. The dashboard still contains an older 23:59 status line alongside its 23:45 upcoming deadline; this project continues to use the earlier cutoff. The dashboard showed two Vengers members and **submission not started**. No submission was created by the build workflow. The already-reviewed required Zetaris scoring guide was marked read.

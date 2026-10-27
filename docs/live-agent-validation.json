@@ -1,0 +1,153 @@
+{
+  "kind": "actual-full-live-agent-verification",
+  "verifiedAt": "2026-10-27T19:44:32.650Z",
+  "runId": "traceharbor-e0867ddf-6ce5-4d36-b196-9377ec7c052d",
+  "complete": true,
+  "shipmentId": "TH-1042",
+  "mode": "live",
+  "outcome": "sensor_bias",
+  "elapsedMs": 142323,
+  "modelCalls": 3,
+  "sqlQueries": 4,
+  "sourceRowsConsumed": 46,
+  "modelReceipts": [
+    {
+      "phase": "planner",
+      "provider": "Nightshift Runtime",
+      "requestedModel": "local-runtime/llama-3.2-1b-instruct",
+      "returnedModel": "local-runtime/llama-3.2-1b-instruct",
+      "usage": {
+        "prompt_tokens": 256,
+        "completion_tokens": 32,
+        "total_tokens": 288
+      },
+      "durationMs": 8132,
+      "completionId": "chatcmpl-c4bbc062-e91f-4487-98f5-a6ab7eaa73ba",
+      "responseFormat": "json_schema",
+      "schemaName": "traceharbor_planner",
+      "finishReason": "stop",
+      "nvidiaProviderVerified": false
+    },
+    {
+      "phase": "critic",
+      "provider": "Nightshift Runtime",
+      "requestedModel": "local-runtime/llama-3.2-1b-instruct",
+      "returnedModel": "local-runtime/llama-3.2-1b-instruct",
+      "usage": {
+        "prompt_tokens": 888,
+        "completion_tokens": 52,
+        "total_tokens": 940
+      },
+      "durationMs": 56999,
+      "completionId": "chatcmpl-889ebcf0-a87d-459e-a5ce-bd332d4a2d3e",
+      "responseFormat": "json_schema",
+      "schemaName": "traceharbor_critic",
+      "finishReason": "stop",
+      "nvidiaProviderVerified": false
+    },
+    {
+      "phase": "synthesis",
+      "provider": "Nightshift Runtime",
+      "requestedModel": "local-runtime/llama-3.2-1b-instruct",
+      "returnedModel": "local-runtime/llama-3.2-1b-instruct",
+      "usage": {
+        "prompt_tokens": 765,
+        "completion_tokens": 53,
+        "total_tokens": 818
+      },
+      "durationMs": 50116,
+      "completionId": "chatcmpl-202b46e2-a7ad-4da1-b5d5-f1201061f19a",
+      "responseFormat": "json_schema",
+      "schemaName": "traceharbor_synthesis",
+      "finishReason": "stop",
+      "nvidiaProviderVerified": false
+    }
+  ],
+  "retrievalPlan": {
+    "initialSources": [
+      "manifest",
+      "telemetry"
+    ],
+    "criticSources": [
+      "incidents",
+      "calibration"
+    ],
+    "provisionalOutcome": "insufficient_evidence",
+    "finalOutcome": "sensor_bias",
+    "remainingMissingSources": []
+  },
+  "counterfactual": {
+    "recheck": "calibration",
+    "factualOutcome": "sensor_bias",
+    "rerunOutcome": "insufficient_evidence",
+    "changed": true
+  },
+  "metrics": {
+    "rawPeakC": 10.1,
+    "correctedPeakC": 5.6,
+    "excursionReadings": 0,
+    "rawExcursionReadings": 7,
+    "rejectedReadings": 0,
+    "correctionAppliedCount": 7,
+    "corroboratingReferenceReadings": 2,
+    "referenceDisagreements": 0
+  },
+  "coverage": {
+    "expectedCount": 7,
+    "observedCount": 7,
+    "percent": 100,
+    "maxGapMinutes": 10,
+    "missingTimestamps": [],
+    "complete": true
+  },
+  "evidenceRows": 16,
+  "citationReferences": 52,
+  "citationsResolve": true,
+  "selectedModelCitationReferencesResolve": true,
+  "modelChoiceScope": "Bounded selection of source tools, sensitivity test and existing findings/actions. Output schemas constrain admissible choices; deterministic finding citations and calculations remain authoritative.",
+  "fullRunAttempts": {
+    "attempted": 3,
+    "complete": 2,
+    "priorFailure": "examples/live-agent/attempt-01",
+    "reason": "First client request timed out at60s; existing server history later showed successful completion in60.5s. Live SQL limit increased to120s within the unchanged300s total."
+  },
+  "earlierProbes": "examples/live-nightshift-preflight",
+  "nvidiaContributionClaimed": false,
+  "evidence": "examples/live-agent/attempt-02",
+  "normalization": "Only trace completed.runFolder changed from a private absolute path to its repository-relative logs path. Other archived artifact content is unchanged.",
+  "sha256": {
+    "dossier.json": "5c18ca3f183c5bf0ac81a999c5fab5d0c297b708e343e09365b66e4379d9ed1d",
+    "manifest.json": "35721408aa37a33c3cdbf0da2712f6eafd7046507d6c78bb7d5b04e6df4d4f5c",
+    "trace.jsonl": "ac852886154a04f774c130134af1d4ed827245f22c0bd063a27379f0d4caa5a1",
+    "world-events.jsonl": "9e14e1279dcf352dbbe32ceb50919e712cd984e35f5f9226a0f64294232676ea",
+    "world-audit.jsonl": "f88832bf5d205de1cb128e1f4ff097df53dfc1bf0460da805d1213e9fa3692e4",
+    "zetaris-queries.jsonl": "8d8ff71aa971fd31cb1ed3cf6e5cc1d3a0c80c07d5820cd4738c6a4d60c276aa"
+  },
+  "secretScanPassed": true,
+  "browserRun": {
+    "runId": "traceharbor-f819006a-6108-4019-a59f-3e90326edbeb",
+    "evidence": "examples/live-agent/attempt-03-browser",
+    "manifest": "examples/live-agent/attempt-03-browser/manifest.json",
+    "mode": "live",
+    "outcome": "sensor_bias",
+    "modelCalls": 3,
+    "sqlQueries": 4,
+    "sourceRowsConsumed": 46,
+    "uiReportedElapsedMs": 143631,
+    "traceElapsedMs": 142735,
+    "citationsResolve": true,
+    "exportCoreMatchesServer": true,
+    "downloadedExport": "submission/browser-qa/TH-1042-live.json",
+    "downloadedExportSha256": "a2f36f1ebc7e06455c85d32ace79781b7c6011e81e5863c3c70a6c6329116ce2",
+    "archiveSha256": {
+      "dossier.json": "9442703bbe8a9a4a0fc305cb90438b93e5dbf0a25f042c263d283be1a819be59",
+      "manifest.json": "e66c9daa3a9d48043a138b03908785ab4463c9b35d24c8e6b1435255504ad6de",
+      "trace.jsonl": "e154b398c90f51ae2463894394f35c39c3bef10b58a866ce07a6cb4fded00ce2",
+      "world-events.jsonl": "301c2da8cc064480fb8f63b302276432000335a1cf4edccb6709482eb3ee86a3",
+      "world-audit.jsonl": "966c49c05a991a55d35b2904d6e9bd2252552abf77e6aeba38f748177ace7e1d",
+      "zetaris-queries.jsonl": "392a28894546d109425695f9757cfcbc2e92af12d50b5df3cb4363c4c820b5f5"
+    },
+    "secretScanPassed": true,
+    "normalization": "Only completed.runFolder normalized to repository-relative path."
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "title": "TraceHarbor — an explanation you can inspect",
+  "mode": "sample-cases-and-verified-live-execution",
+  "disclosure": "Synthetic data · Edited screen demonstration · Synthetic narration",
+  "voice_rate": 1,
+  "scenes": [
+    {
+      "id": "01-introduction",
+      "title": "One shipment. Four conflicting stories.",
+      "image": "docs/images/video/01-overview.png",
+      "narration": "This is TraceHarbor, built by Vengers for The Agent That Can Explain Why. This edited demonstration uses actual application captures, synthetic shipment records, and a synthetic narrator. We will inspect four working cases, then the receipts from a real local agent investigation.",
+      "label": "THE PROBLEM",
+      "headline": "One shipment.\nFour conflicting\nstories.",
+      "callout": "Investigate a disputed alert.\nConnect the evidence.\nKeep the limits visible.",
+      "crop": [
+        0,
+        0,
+        1440,
+        1100
+      ],
+      "pan_to_y": 0
+    },
+    {
+      "id": "02-excursion",
+      "title": "Start with the disputed exception",
+      "image": "docs/images/video/02-excursion.png",
+      "narration": "An operations analyst needs to understand a disputed temperature alert. The manifest, sensor readings, carrier events, and calibration records tell different stories. In this case, three calibrated readings exceed the stated limit. The original clear status stays visible as a contradiction. A nearby door event is an association, not proof of the cause.",
+      "label": "CASE 01 / OBSERVED EXCURSION",
+      "headline": "The exception\nhas evidence.",
+      "callout": "Three calibrated readings\nexceed the stated range.\nThe original claim survives\nas a visible contradiction.",
+      "crop": [
+        16,
+        495,
+        660,
+        540
+      ],
+      "pan_to_y": 660
+    },
+    {
+      "id": "03-calibration",
+      "title": "The raw alarm is only the beginning",
+      "image": "docs/images/video/03-sensor-bias.png",
+      "narration": "Now consider a different shipment. Its raw readings appear too warm. A confirmed calibration certificate records a sensor offset, and the corrected readings fall within the stated range. Independently calibrated reference observations agree. An expired certificate cannot replace the applicable one. The explanation is sensor bias, with its supporting evidence preserved.",
+      "label": "CASE 02 / SENSOR BIAS",
+      "headline": "Explain the\nraw alarm.",
+      "callout": "A valid calibration offset.\nIndependent reference checks.\nOne supported explanation.",
+      "crop": [
+        574,
+        528,
+        790,
+        660
+      ],
+      "pan_to_y": 528
+    },
+    {
+      "id": "04-citations",
+      "title": "Inspect the rows behind the conclusion",
+      "image": "docs/images/video/04-citations.png",
+      "narration": "Open the evidence view to inspect the actual rows behind a finding. Stable record identifiers connect the explanation to the source, including the original reported values. Contradictions and rejected observations remain inspectable. The evidence strength is a transparent heuristic, not a probability of safety. The application does not authorize cargo release.",
+      "label": "SOURCE RECORD / CALROW-42",
+      "headline": "Open the row\nbehind the\nreasoning.",
+      "callout": "Source. Identifier. Timestamp.\nOriginal values.\nInspect the supporting record.",
+      "crop": [
+        223,
+        0,
+        440,
+        648
+      ],
+      "pan_to_y": 0
+    },
+    {
+      "id": "05-challenge",
+      "title": "Withhold calibration. Recompute the answer.",
+      "image": "docs/images/video/05-calibration-withheld.png",
+      "narration": "The What If experiment tests whether the explanation survives without its supporting calibration. Withhold that evidence, and TraceHarbor recomputes the result. The sensor bias explanation becomes an abstention because the record is incomplete. This is a sensitivity check on the available evidence, not a prediction of a physical intervention.",
+      "label": "EVIDENCE EXPERIMENT",
+      "headline": "Remove the\nsupport. Change\nthe conclusion.",
+      "callout": "Sensor bias becomes abstention\nwhen calibration is withheld.\nRecomputed from the evidence.",
+      "crop": [
+        550,
+        470,
+        840,
+        630
+      ],
+      "pan_to_y": 470
+    },
+    {
+      "id": "06-abstention",
+      "title": "Missing evidence stays missing",
+      "image": "docs/images/video/06-insufficient-evidence.png",
+      "narration": "This shipment has only two of seven expected observations and a long sampling gap. A confident operator note and a pending calibration cannot fill those missing measurements. TraceHarbor abstains and asks for the missing evidence. It proposes a bounded next step rather than inventing a complete history.",
+      "label": "CASE 03 / MISSING EVIDENCE",
+      "headline": "Abstention is\nan outcome.",
+      "callout": "Only 2 of 7 observations.\nUnresolved calibration.\nAsk for the missing evidence.",
+      "crop": [
+        574,
+        528,
+        790,
+        572
+      ],
+      "pan_to_y": 528
+    },
+    {
+      "id": "07-reasoning",
+      "title": "Follow the analysis and its limits",
+      "image": "docs/images/live-reasoning.png",
+      "narration": "Here is the actual live agent investigation. The initial manifest and telemetry leave the result unresolved. The critic chooses to retrieve incidents and calibration through Zetaris. The agent then explains the sensor bias. Its calibration-withholding check returns to insufficient evidence. These model decisions change the available evidence and the computed conclusion.",
+      "label": "ACTUAL LIVE AGENT / CRITIC RETRIEVAL",
+      "headline": "The critic changes\nwhat the agent\ncan explain.",
+      "callout": "Missing evidence: abstain.\nRetrieve calibration: sensor bias.\nWithhold it again: abstain.",
+      "crop": [
+        550,
+        370,
+        850,
+        600
+      ],
+      "pan_to_y": 489
+    },
+    {
+      "id": "08-control",
+      "title": "A normal control should stay normal",
+      "image": "docs/images/video/08-normal-control.png",
+      "narration": "The fourth case is a normal control: the available observations remain within the fixture's stated range. Different records produce different conclusions. 16 local tests pass, including a critic that retrieves missing calibration and changes an unresolved result into a supported explanation. Automated orchestration tests use mocked network transports; actual execution has separate receipts.",
+      "label": "CASE 04 / NORMAL CONTROL",
+      "headline": "Different inputs.\nDifferent answers.",
+      "callout": "The control stays in range.\n16 local tests pass.\nTest transports are mocked.\nLive receipts are separate.",
+      "crop": [
+        16,
+        500,
+        660,
+        540
+      ],
+      "pan_to_y": 660
+    },
+    {
+      "id": "09-status",
+      "title": "Clear evidence. Clear status.",
+      "image": "docs/images/live-investigation.png",
+      "narration": "A complete investigation now has three actual Nightshift model calls, 4 Zetaris reads, and 46 records consumed from the official World Model. The local Llama model uses structured decisions. The public website remains a clearly labeled synthetic sample. Reproducible source and execution receipts are on GitHub. Our next validation is a real operations user study.",
+      "label": "VERIFIED LOCAL EXECUTION",
+      "headline": "Clear evidence.\nClear status.",
+      "callout": "Three actual model calls.\n4 governed SQL reads.\nArchived engine context.\nPublic site remains sample mode.",
+      "crop": [
+        550,
+        1180,
+        840,
+        769
+      ],
+      "pan_to_y": 1180
+    }
+  ],
+  "verification_snapshot": {
+    "tests": 16,
+    "live_manifest": "examples/live-agent/attempt-03-browser/manifest.json",
+    "live_verified": true,
+    "returned_models": [
+      "local-runtime/llama-3.2-1b-instruct"
+    ]
+  }
+}

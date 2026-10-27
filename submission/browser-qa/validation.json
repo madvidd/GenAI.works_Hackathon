@@ -1,7 +1,8 @@
 {
   "date": "2026-10-27",
   "target": "https://traceharbor.web.app",
-  "mode": "sample",
+  "responsiveTarget": "http://127.0.0.1:8787",
+  "mode": "sample-and-local-live",
   "method": "Actual browser controls, DOM observations, screenshots and a downloaded JSON dossier",
   "checks": [
     {
@@ -42,10 +43,51 @@
       "artifact": "TH-1044-mutated.json",
       "observed": "Downloaded JSON contains shipment TH-1044, outcome excursion and corrected peak 9.2 C",
       "passed": true
+    },
+    {
+      "name": "320-pixel responsive dossier",
+      "shipment": "TH-1043",
+      "clientWidth": 305,
+      "scrollWidth": 305,
+      "observed": "Long route wraps without clipping; export and tabs fit; chart labels remain readable; missing observations are unconnected points",
+      "screenshot": "../../docs/images/traceharbor-mobile-320.png",
+      "passed": true
+    },
+    {
+      "name": "390-pixel responsive sensor evidence",
+      "shipment": "TH-1042",
+      "clientWidth": 375,
+      "scrollWidth": 375,
+      "observed": "Raw and corrected readings, reference markers, source citations and action remain readable without horizontal page overflow",
+      "screenshot": "../../docs/images/traceharbor-mobile-390.png",
+      "passed": true
+    },
+    {
+      "name": "Actual local live investigation completes in the browser",
+      "shipment": "TH-1042",
+      "runId": "traceharbor-f819006a-6108-4019-a59f-3e90326edbeb",
+      "observed": "Three local Nightshift calls, four actual Zetaris reads, 46 World Model records, and sensor-bias result; critic-selected calibration withholding restores insufficient evidence.",
+      "screenshots": [
+        "../../docs/images/live-investigation.png",
+        "../../docs/images/live-reasoning.png"
+      ],
+      "passed": true
+    },
+    {
+      "name": "Live dossier downloads through the UI and matches the server result",
+      "artifact": "TH-1042-live.json",
+      "runId": "traceharbor-f819006a-6108-4019-a59f-3e90326edbeb",
+      "mode": "live",
+      "runtimeMode": "live",
+      "exportCoreMatchesServer": true,
+      "citationReferences": 52,
+      "citationsResolve": true,
+      "passed": true
     }
   ],
   "limitations": [
-    "These checks do not establish live sponsor execution.",
+    "Sample checks do not establish sponsor execution; the separately labeled local-live checks retain actual model, database, engine and exported-dossier receipts.",
     "The changed reading is synthetic and exists only in the test browser's in-memory dataset."
-  ]
+  ],
+  "liveTarget": "http://127.0.0.1:8787"
 }

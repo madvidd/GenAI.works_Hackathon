@@ -14,15 +14,15 @@ Status reviewed on **27 October 2026**. This is a development status, not a subm
 
 | Part | Evidence currently available | Remaining verification |
 | --- | --- | --- |
-| Deterministic investigation | Input-dependent implementation; local 14-test suite passed | Clean-clone validation |
+| Deterministic investigation | Input-dependent implementation; local 16-test suite passed | Clean-clone validation |
 | Evidence provenance | Stable row IDs, original source rows, timestamps, calibration matches, and citation checks | UI and export verification |
-| Zetaris | REST adapter, source-registration plan, USL DDL, exploration queries, and data-quality SQL | Execute against a real instance and retain actual receipts |
+| Zetaris | All 34 setup statements executed; four USL reads matched 46 records and fed the World Model; DQ returned 26 total / 25 valid / 1 invalid | Verified in the [full live run](examples/live-agent/attempt-02/); [SQL setup receipts](examples/live-zetaris/) |
 | Meterless World Model | 46 source rows ingested; warm reload skipped all 46 unchanged rows; upstream conformance runner passed 8/8 | Clean-clone repeat pending |
-| Meterless Nightshift | Installed runtime reachable; authenticated model discovery succeeds; local inference selected | Start the selected Llama 3.2 1B Instruct model and retain successful calls; the earlier completion returned `no_provider_configured` |
+| Meterless Nightshift | Three actual local Llama 3.2 1B completions: planner, critic and supported selection; full run completed in 142.3 seconds | Broader model-quality evaluation; [actual receipts](examples/live-agent/attempt-02/) |
 | NVIDIA | No current NVIDIA or Nemotron contribution claimed | The selected local-model path is not evidence of NVIDIA use |
 | Website and examples | Deployed sample verified; four feeds and calibration-withholding interaction checked; four actual sample runs in `examples/` | Final clean-clone repeat |
 | Deck | [Editable PowerPoint](submission/traceharbor.pptx) and [PDF](submission/traceharbor.pdf), eight slides, actual screenshots, all pages visually inspected | Refresh sponsor status after a successful live run |
-| Video | Three-minute narration and shot plan | Actual audio recording and public-access verification |
+| Video | Actual narrated MP4 with subtitles and reproducible sources | Refresh final sponsor evidence and verify public playback |
 
 An SQL file is not proof that Zetaris ran. A configured model name is not proof that NVIDIA handled a request. Sample computation never claims a sponsor call occurred. See the [requirements matrix](docs/requirements-matrix.md) for release gates.
 
@@ -45,6 +45,8 @@ Confidence is a transparent heuristic for evidence strength, **not a calibrated 
 
 Use Node.js 22.11 or later and npm. Commands below are the project package interface; the final clean-clone check remains pending.
 
+On Windows PowerShell, use `npm.cmd` when forwarding options, for example `npm.cmd run agent:sample -- --shipment TH-1042`. The direct equivalent is `node --import tsx server/agent.mjs --mode sample --shipment TH-1042`. PowerShell’s `npm` wrapper may strip forwarded option names; that is a shell invocation issue, not an investigation failure.
+
 ```sh
 npm ci
 npm run dev
@@ -57,7 +59,7 @@ npm run build
 npm run preview
 ```
 
-The World Model feature check is `official World Model warm-loads, preserves identities, and skips unchanged ingest` in [`tests/runtime.test.mjs`](tests/runtime.test.mjs). Run it with the full `npm run test` suite. The local suite passed 14 tests. The official upstream World Model conformance runner also passed 8/8 against the vendored implementation, covering stable IDs, merge bands, provenance rejection, unchanged/mutated ingestion, bitemporal edges, and audit behavior. A fresh-clone repeat remains a separate gate. Mocked transport tests are labeled in their names.
+The World Model feature check is `official World Model warm-loads, preserves identities, and skips unchanged ingest` in [`tests/runtime.test.mjs`](tests/runtime.test.mjs). Run it with the full `npm run test` suite. The local suite passed 16 tests. The official upstream World Model conformance runner also passed 8/8 against the vendored implementation, covering stable IDs, merge bands, provenance rejection, unchanged/mutated ingestion, bitemporal edges, and audit behavior. A fresh-clone repeat remains a separate gate. Mocked transport tests are labeled in their names.
 
 The React/Vite frontend runs the deterministic demonstration on synthetic feeds. The programmatic agent commands are:
 
@@ -98,7 +100,7 @@ This last command does not call any sponsor service.
 
 ## Sponsor configuration
 
-Copy `.env.example` to the ignored `.env.local`, then enter real local values. Never commit either token. This build is being configured for a **local model through Nightshift**, initially Llama 3.2 1B Instruct to limit memory use. No cloud-model key is required for that path. A model download or selected setting is not a successful inference receipt.
+Copy `.env.example` to the ignored `.env.local`, then enter real local values. Never commit either token. The verified live run used **local Llama 3.2 1B Instruct through Nightshift**, selected to limit memory use. No cloud-model key is required for that path. The example uses the actual returned model ID; a download or selected setting alone is not a successful inference receipt.
 
 | Variable | Purpose |
 | --- | --- |
@@ -136,15 +138,31 @@ For an already configured instance:
 node scripts/zetaris-setup.mjs --origin https://YOUR_PROJECT.web.app --verify-only --execute
 ```
 
+The actual setup and application-contract verification passed on 27 October 2026. Run `node --import tsx scripts/zetaris-verify.mjs` to repeat four governed reads, exact record comparison, World Model context consumption and four outcome/citation checks. See [actual receipts](examples/live-zetaris/) and the [report](docs/zetaris-validation.json). This read-only check makes no Nightshift call.
+
 Read [SQL setup and evidence](sql/README.md) before running mutations. A successful connectivity query alone is insufficient: the live application must consume the USL evidence and the data-quality rule must be shown executing.
 
 ## Architecture and evidence
 
-The implemented live workflow uses Nightshift for a planner, critic, and supported synthesis. The planner chooses two or three initial sources from four allowlisted Zetaris reads. The critic can retrieve missing sources; those results are ingested into the World Model and factual analysis is recomputed. Unfetched sources remain explicitly unknown. The World Model ingests evidence and its graph context is read back into the deterministic investigator. The critic selects an evidence-withholding test that actually reruns the analysis. Synthesis selects existing supported findings/actions; numerical claims and citation validation remain in the deterministic core. This path is implemented and locally tested, but real service execution remains pending.
+The implemented live workflow uses Nightshift for a planner, critic, and supported synthesis. The planner chooses two or three initial sources from four allowlisted Zetaris reads. The critic can retrieve missing sources; those results are ingested into the World Model and factual analysis is recomputed. Unfetched sources remain explicitly unknown. The World Model ingests evidence and its graph context is read back into the deterministic investigator. The critic selects an evidence-withholding test that actually reruns the analysis. Synthesis selects existing supported findings/actions; numerical claims and citation validation remain in the deterministic core. The actual full run is archived at [examples/live-agent/attempt-02](examples/live-agent/attempt-02/): the model chose two initial sources, then incidents and calibration; real retrieval changed insufficient evidence to sensor bias, and withholding calibration changed it back. Three actual local model calls and four actual USL reads completed in 142.3 seconds. This is bounded model selection with deterministic calculations and citations, not a claim that output constraints prove independent reasoning.
 
 The public static website cannot access the builder's private local services. Live runs belong in the documented backend environment where Zetaris and Nightshift are reachable. The frontend's same-origin integration contract is `POST /api/investigate` with `{ "shipmentId": "TH-1041", "mode": "live" }`, returning `{ "result": ... }`. Backend availability is a separate deployment requirement. See [architecture](docs/architecture.md).
 
 Every live run should retain its request, generated result, JSONL trace, actual Zetaris receipts, engine activity, returned model IDs, and failures or fallbacks. Redact credentials before selecting evidence for publication. Never handwrite a trace or pass a sample trace off as a live run.
+
+## Final verification
+
+After building and deploying the intended checkout, run:
+
+```sh
+node scripts/verify-deployment.mjs
+```
+
+This makes unauthenticated HTTPS requests and compares the published HTML,
+JavaScript/CSS, four data feeds, MP4, PDF, PPTX and subtitles against the current
+build bytes. It also checks expected security/media headers and writes the
+source commit, hashes and results to ignored `logs/deployment-verification.json`.
+A successful local build alone is not proof that those bytes were deployed.
 
 ## Submission materials
 
@@ -157,7 +175,7 @@ Every live run should retain its request, generated result, JSONL trace, actual 
 - [Submission fields and final validation](docs/submission-checklist.md)
 - [`metadata.json`](metadata.json)
 
-The narration and slide source are preparation materials, not a recorded video or finished deck. Deadline: **27 October 2026, 23:45 UTC**. Team membership locks when the first submission is created. Official rules and current announcements govern conflicts with older guides.
+The repository includes an actual narrated MP4 with subtitles and an editable PowerPoint/PDF deck, alongside their source and scripts. Their verification and published links are tracked in [submission artifacts](submission/README.md). Deadline: **27 October 2026, 23:45 UTC**. Team membership locks when the first submission is created. Official rules and current announcements govern conflicts with older guides.
 
 ## Attribution and limitations
 

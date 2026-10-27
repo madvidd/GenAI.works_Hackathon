@@ -2,7 +2,8 @@
 
 The SQL uses the official Zetaris REST, USL and DQ syntax reviewed at
 [`zetaris/getting-started` commit 6a2fbaa](https://github.com/zetaris/getting-started/tree/6a2fbaa47c32c9ac33f6584c64b43b146c621bed).
-These files are implementation plans until executed against an actual instance.
+All 34 statements were executed against an actual instance on 27 October 2026.
+[Actual receipts](../examples/live-zetaris/) retain query IDs, results and timings.
 Local fixture computation or dry-run parsing is not proof of Zetaris execution.
 
 1. Obtain a licensed/evaluation Zetaris instance, its actual API token, and
