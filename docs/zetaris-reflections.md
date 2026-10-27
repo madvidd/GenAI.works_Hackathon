@@ -1,5 +1,7 @@
 # Zetaris reflections
 
+[Documentation](README.md) · [Evaluation plan](evaluation.md) · [SQL integration](../sql/README.md)
+
 These address the three reflections in the supplied Zetaris scoring methodology. Written on 27 October 2026. **All time figures below are planning estimates, not measured benchmarks or customer results.** Real platform execution is verified in [the evidence archive](../examples/live-zetaris/); a timed manual comparator remains pending. The proposed product feature below is a concept, not an implemented platform capability.
 
 ## 1. Time saved compared with a manual investigation

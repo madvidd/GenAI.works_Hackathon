@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "actual-live-ui-run-verification",
+  "verifiedAt": "2026-10-27T21:05:39.549Z",
+  "runId": "traceharbor-d6e7942b-7cef-4337-8478-85a75a468f0d",
+  "evidence": "examples/live-agent/attempt-05-abstention",
+  "analysisVersion": "1.0.1",
+  "shipmentId": "TH-1043",
+  "mode": "live",
+  "outcome": "insufficient_evidence",
+  "syntheticData": true,
+  "modelCalls": 3,
+  "sqlQueries": 4,
+  "sourcesRead": [
+    "manifest",
+    "telemetry",
+    "incidents",
+    "calibration"
+  ],
+  "sourceRowsConsumed": 46,
+  "returnedModels": [
+    "local-runtime/llama-3.2-1b-instruct"
+  ],
+  "traceElapsedMs": 159374,
+  "uiReportedElapsedMs": 160702,
+  "timingScope": "Trace elapsed time starts after provider preflight completes. UI elapsed time, if supplied, is independently observed by the browser operator.",
+  "citationsResolve": true,
+  "citationReferences": 21,
+  "modelSelectionsSupported": true,
+  "canonicalVerdictMatches": true,
+  "counterfactual": {
+    "recheck": "calibration",
+    "factualOutcome": "insufficient_evidence",
+    "rerunOutcome": "insufficient_evidence",
+    "changed": false
+  },
+  "exportCoreMatchesServer": true,
+  "browserBuild": {
+    "script": "index-KqLeXhm5.js",
+    "stylesheet": "index-CG4W20OW.css",
+    "evidenceScope": "Asset filenames observed by the browser operator during this run. Commit identity and loaded-bundle hash verification are recorded separately."
+  },
+  "archiveSha256": {
+    "dossier.json": "8cde286001ab646cf9aba82b612e9b1e241085b215ad379edc7e3c065cd5b6d0",
+    "manifest.json": "45b7628ec8d6e4df3664f9accf4c5a2d802504f1fda380a0f11576880ed07e0c",
+    "trace.jsonl": "61aef1b5bab1e28b2d53d11f16b9307642f3e58d63fdf15d0589991b63b6971b",
+    "world-events.jsonl": "317b00317cf6d4e1b415afc0ddfa8c58c8d7bdabc7b9e7047c73cf1a63cf0cf2",
+    "world-audit.jsonl": "8f467609869433f5dbe7b470dd4fcf982adc499f90961a917f18afd4447325b0",
+    "zetaris-queries.jsonl": "4803025ddee9763624955b868b65d7333eb1e4631493b6d3da7c1c7381a3b37a",
+    "browser-export.json": "565c882bd09f1b47d31a2857d4de1b25d1ce1fd64ac9b1f782d938bec391bd1c"
+  },
+  "originalRunSha256": {
+    "dossier.json": "8cde286001ab646cf9aba82b612e9b1e241085b215ad379edc7e3c065cd5b6d0",
+    "manifest.json": "45b7628ec8d6e4df3664f9accf4c5a2d802504f1fda380a0f11576880ed07e0c",
+    "trace.jsonl": "45feb30187d4e77df36fc3639ff6dcefda8cff257ceaa0a60ce81c74b0378ad2",
+    "world-events.jsonl": "317b00317cf6d4e1b415afc0ddfa8c58c8d7bdabc7b9e7047c73cf1a63cf0cf2",
+    "world-audit.jsonl": "8f467609869433f5dbe7b470dd4fcf982adc499f90961a917f18afd4447325b0",
+    "zetaris-queries.jsonl": "4803025ddee9763624955b868b65d7333eb1e4631493b6d3da7c1c7381a3b37a"
+  },
+  "secretScanPassed": true,
+  "normalization": "Only trace completed.runFolder normalized to a repository-relative path. Original outcome, observations, requests, responses, and earlier attempts were not rewritten."
+}

@@ -1,5 +1,7 @@
 # Local Nightshift model setup evidence
 
+[Documentation](README.md) · [Practical setup sequence](getting-started.md#run-the-local-live-companion) · [Actual run evidence](evidence-guide.md)
+
 This is an installation and execution record. Actual local inference and a complete bounded investigation through Nightshift are verified. The selected path uses a local Llama model through Nightshift; no NVIDIA cloud or Nemotron usage is claimed.
 
 ## Verified artifact

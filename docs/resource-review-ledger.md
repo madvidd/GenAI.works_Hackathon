@@ -1,5 +1,7 @@
 # Resource review ledger
 
+[Documentation](README.md) · [Requirements](requirements-matrix.md) · [Sponsor attribution](sponsor-technology.md)
+
 Review date: **27 October 2026**. Sources were accessed through the signed-in [HackOS dashboard](https://hackathon.genai.works/dashboard). This ledger records reading coverage and interpretation, not completion of the required engineering work. Authenticated source documents are not redistributed in this public repository.
 
 ## Completed full-text reading

@@ -61,3 +61,24 @@ test('overlapping partial POST bodies cannot start concurrent live investigation
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+test('local API preserves the distinction between an evidence-gap review and a withholding test', async () => {
+  const interpretation = 'Evidence-availability review only: no applicable observation, calibration match, or operator-note claim was available for a withholding test.';
+  const server = createTraceHarborServer({ shipments: ['TH-1044'], run: async () => ({
+    dossier: { outcome: 'insufficient_evidence', trace: [] },
+    events: [{ phase: 'critic-rerun', status: 'complete', counterfactual: {
+      challenge: { challenge: 'Does the available source evidence support a conclusion?', citation_ids: ['MAN-1044'] },
+      factualOutcome: 'insufficient_evidence', rerunOutcome: 'insufficient_evidence', interpretation,
+    } }],
+  }) });
+  server.listen(0, '127.0.0.1');
+  await once(server, 'listening');
+  const origin = `http://127.0.0.1:${server.address().port}`;
+  try {
+    const response = await fetch(`${origin}/api/investigate`, { method: 'POST', headers: { 'Content-Type': 'application/json', Origin: origin }, body: JSON.stringify({ shipmentId: 'TH-1044', mode: 'live' }) });
+    assert.equal(response.status, 200);
+    const detail = (await response.json()).result.trace[0].detail;
+    assert.ok(detail.endsWith(interpretation));
+    assert.ok(!detail.includes('This is an evidence sensitivity check'));
+  } finally { await new Promise(resolve => server.close(resolve)); }
+});

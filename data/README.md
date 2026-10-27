@@ -1,5 +1,7 @@
 # TraceHarbor synthetic evidence feeds
 
+[Project overview](../README.md) · [Product guide](../docs/product-guide.md) · [SQL integration](../sql/README.md)
+
 Every record in this directory is invented for a reproducible demonstration. No
 customer, carrier, shipment, cargo disposition, or commercial result is real.
 The four feeds represent separate operational systems but share one demo host.
@@ -38,6 +40,10 @@ These fixtures use a synthetic sensor integrity envelope of -80 through 80 C.
 This envelope rejects impossible demo readings; it is separate from each cargo's
 2 through 8 C operational range.
 
+Analysis version 1.0.2 compares unrounded temperatures with the stated limits; display rounding cannot change the outcome. Calibration subtraction and reference differences use the decimal representations of finite parsed numbers, with integer coefficient/exponent arithmetic before conversion back to a number. This prevents binary subtraction noise from turning `2.3 − 0.3` into a value below `2`, without an arbitrary tolerance or fixed-decimal rounding that would hide a real `1.9996` or `8.0004` excursion.
+
+Repeated reading IDs quarantine all versions. Equivalent ISO timestamp strings are normalized before duplicate and reference checks, and reference duplicates cannot silently corroborate a correction. Invalid or non-advancing sampling cadence is rejected. These are evidence-admissibility rules, separate from the JSON feed’s schema version.
+
 ## Reproducible cases
 
 - `TH-1041`: three above-limit readings coincide with a door-open event; the
@@ -70,3 +76,30 @@ content against these local fixtures before creating objects. See
 
 All fixture contents are original project work covered by the repository's MIT
 licence. Sponsor guides are referenced, not redistributed here.
+
+## Browser import format
+
+The browser imports a single object containing all four feed envelopes, rather than four separately selected files:
+
+```json
+{
+  "manifest": {"records": []},
+  "telemetry": {"records": []},
+  "incidents": {"records": []},
+  "calibration": {"records": []}
+}
+```
+
+This is the structural shape only: an empty manifest is deliberately rejected. Use the field definitions and original records above as the starting point. The browser accepts files up to 2,000,000 bytes, 50 shipments and 5,000 rows per source; these are input bounds, not demonstrated scale or performance figures.
+
+Generate an importable copy of the existing fixtures from the repository root:
+
+```powershell
+node --input-type=module -e "import fs from 'node:fs'; const names=['manifest','telemetry','incidents','calibration']; fs.writeFileSync('workspace-input.json',JSON.stringify(Object.fromEntries(names.map(name=>[name,JSON.parse(fs.readFileSync('data/'+name+'.json','utf8'))])),null,2));"
+```
+
+Optional `source_system` and `dataset_id` values must be strings when present; this applies to all four feed envelopes.
+
+Select `workspace-input.json` through **Import dataset**. Validation is atomic: malformed envelopes, empty manifests, duplicate global row IDs or invalid shipment identity do not replace the current workspace. The import is a browser sample; it does not register new Zetaris sources or establish live execution.
+
+Preserve the distinction between an invalid observation and an invalid dataset. A syntactically readable 999°C record can be retained as rejected evidence. Ambiguous identifiers cannot be silently used to attach a citation to the wrong row. **Restore original sample** recovers the built-in fixtures after exploratory browser changes.

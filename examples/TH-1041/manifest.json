@@ -1,9 +1,9 @@
 {
-  "runId": "traceharbor-916a9334-0b80-4d86-b566-f6ebf339d873",
+  "runId": "traceharbor-e8cf3720-d003-4b7f-a705-b70083bbb2de",
   "mode": "sample",
   "liveExecuted": false,
   "shipmentId": "TH-1041",
-  "createdAt": "2026-10-27T18:07:51.972Z",
+  "createdAt": "2026-10-27T21:14:41.305Z",
   "syntheticData": true,
   "sponsorRuntime": {
     "zetaris": false,
@@ -17,6 +17,8 @@
     "maxModelCalls": 3,
     "sqlQueries": 0,
     "maxSqlQueries": 4,
+    "maxSqlRequestMs": 120000,
+    "maxModelRequestMs": 180000,
     "maxRunMs": 300000
   },
   "wiredHelpers": [

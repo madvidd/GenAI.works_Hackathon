@@ -1,0 +1,542 @@
+{
+  "analysisVersion": "1.0.2",
+  "mode": "deterministic",
+  "shipment": {
+    "row_id": "MAN-1044",
+    "shipment_id": "TH-1044",
+    "consignee": "Estuary Hub Demo",
+    "route": "Cambridge to Norwich",
+    "origin": "Cambridge",
+    "destination": "Norwich",
+    "cargo_label": "Synthetic chilled sample D",
+    "primary_sensor_id": "SNS-44A",
+    "min_temp_c": 2,
+    "max_temp_c": 8,
+    "investigation_window_start": "2026-10-26T10:00:00Z",
+    "investigation_window_end": "2026-10-26T11:00:00Z",
+    "expected_interval_minutes": 10,
+    "promised_at": "2026-10-26T12:30:00Z",
+    "reported_status": "in_range",
+    "reported_status_at": "2026-10-26T11:00:00Z",
+    "source_updated_at": "2026-10-26T11:01:00Z"
+  },
+  "outcome": "within_range",
+  "title": "No excursion observed in this window",
+  "summary": "All scheduled, valid primary observations are within the stated range after confirmed calibration.",
+  "recommendation": "Record the bounded observation result and retain the evidence. This is not a statement about unobserved time or product safety.",
+  "synthetic": true,
+  "confidence": {
+    "score": 0.9,
+    "label": "Strong observed evidence",
+    "basis": "100% scheduled coverage; 7 confirmed calibration matches; 0 corroborating reference points.",
+    "method": "Transparent heuristic evidence strength; not a calibrated probability."
+  },
+  "coverage": {
+    "expectedCount": 7,
+    "observedCount": 7,
+    "percent": 100,
+    "maxGapMinutes": 10,
+    "missingTimestamps": [],
+    "complete": true
+  },
+  "metrics": {
+    "rawPeakC": 5.2,
+    "correctedPeakC": 4.9,
+    "excursionReadings": 0,
+    "rawExcursionReadings": 0,
+    "rejectedReadings": 0,
+    "correctionAppliedCount": 7,
+    "corroboratingReferenceReadings": 0,
+    "referenceDisagreements": 0
+  },
+  "chart": [
+    {
+      "timestamp": "2026-10-26T10:00:00Z",
+      "rawC": 2.3,
+      "correctedC": 2,
+      "referenceC": null,
+      "referenceValuesC": [],
+      "valid": true,
+      "readingId": "RD-1044-00",
+      "rowId": "TEL-1044-00",
+      "calibrationId": "CAL-44-CURRENT",
+      "calibrationRowId": "CALROW-44",
+      "referenceRowIds": [],
+      "referenceCalibrationRowIds": []
+    },
+    {
+      "timestamp": "2026-10-26T10:10:00Z",
+      "rawC": 4.9,
+      "correctedC": 4.6,
+      "referenceC": null,
+      "referenceValuesC": [],
+      "valid": true,
+      "readingId": "RD-1044-10",
+      "rowId": "TEL-1044-10",
+      "calibrationId": "CAL-44-CURRENT",
+      "calibrationRowId": "CALROW-44",
+      "referenceRowIds": [],
+      "referenceCalibrationRowIds": []
+    },
+    {
+      "timestamp": "2026-10-26T10:20:00Z",
+      "rawC": 5,
+      "correctedC": 4.7,
+      "referenceC": null,
+      "referenceValuesC": [],
+      "valid": true,
+      "readingId": "RD-1044-20",
+      "rowId": "TEL-1044-20",
+      "calibrationId": "CAL-44-CURRENT",
+      "calibrationRowId": "CALROW-44",
+      "referenceRowIds": [],
+      "referenceCalibrationRowIds": []
+    },
+    {
+      "timestamp": "2026-10-26T10:30:00Z",
+      "rawC": 5.2,
+      "correctedC": 4.9,
+      "referenceC": null,
+      "referenceValuesC": [],
+      "valid": true,
+      "readingId": "RD-1044-30",
+      "rowId": "TEL-1044-30",
+      "calibrationId": "CAL-44-CURRENT",
+      "calibrationRowId": "CALROW-44",
+      "referenceRowIds": [],
+      "referenceCalibrationRowIds": []
+    },
+    {
+      "timestamp": "2026-10-26T10:40:00Z",
+      "rawC": 5.1,
+      "correctedC": 4.8,
+      "referenceC": null,
+      "referenceValuesC": [],
+      "valid": true,
+      "readingId": "RD-1044-40",
+      "rowId": "TEL-1044-40",
+      "calibrationId": "CAL-44-CURRENT",
+      "calibrationRowId": "CALROW-44",
+      "referenceRowIds": [],
+      "referenceCalibrationRowIds": []
+    },
+    {
+      "timestamp": "2026-10-26T10:50:00Z",
+      "rawC": 5,
+      "correctedC": 4.7,
+      "referenceC": null,
+      "referenceValuesC": [],
+      "valid": true,
+      "readingId": "RD-1044-50",
+      "rowId": "TEL-1044-50",
+      "calibrationId": "CAL-44-CURRENT",
+      "calibrationRowId": "CALROW-44",
+      "referenceRowIds": [],
+      "referenceCalibrationRowIds": []
+    },
+    {
+      "timestamp": "2026-10-26T11:00:00Z",
+      "rawC": 4.9,
+      "correctedC": 4.6,
+      "referenceC": null,
+      "referenceValuesC": [],
+      "valid": true,
+      "readingId": "RD-1044-60",
+      "rowId": "TEL-1044-60",
+      "calibrationId": "CAL-44-CURRENT",
+      "calibrationRowId": "CALROW-44",
+      "referenceRowIds": [],
+      "referenceCalibrationRowIds": []
+    }
+  ],
+  "evidence": [
+    {
+      "id": "MAN-1044",
+      "source": "manifest",
+      "sourceLabel": "Shipment manifest",
+      "recordId": "TH-1044",
+      "timestamp": "2026-10-26T11:00:00Z",
+      "sourceUpdatedAt": "2026-10-26T11:01:00Z",
+      "summary": "Cambridge to Norwich: stated range 2–8 C; reported in_range.",
+      "record": {
+        "row_id": "MAN-1044",
+        "shipment_id": "TH-1044",
+        "consignee": "Estuary Hub Demo",
+        "route": "Cambridge to Norwich",
+        "origin": "Cambridge",
+        "destination": "Norwich",
+        "cargo_label": "Synthetic chilled sample D",
+        "primary_sensor_id": "SNS-44A",
+        "min_temp_c": 2,
+        "max_temp_c": 8,
+        "investigation_window_start": "2026-10-26T10:00:00Z",
+        "investigation_window_end": "2026-10-26T11:00:00Z",
+        "expected_interval_minutes": 10,
+        "promised_at": "2026-10-26T12:30:00Z",
+        "reported_status": "in_range",
+        "reported_status_at": "2026-10-26T11:00:00Z",
+        "source_updated_at": "2026-10-26T11:01:00Z"
+      }
+    },
+    {
+      "id": "TEL-1044-00",
+      "source": "telemetry",
+      "sourceLabel": "Sensor telemetry",
+      "recordId": "RD-1044-00",
+      "timestamp": "2026-10-26T10:00:00Z",
+      "sourceUpdatedAt": "2026-10-26T10:00:30Z",
+      "summary": "SNS-44A measured 2.3 C at 2026-10-26T10:00:00Z.",
+      "record": {
+        "row_id": "TEL-1044-00",
+        "reading_id": "RD-1044-00",
+        "shipment_id": "TH-1044",
+        "sensor_id": "SNS-44A",
+        "observed_at": "2026-10-26T10:00:00Z",
+        "temperature_c": 2.3,
+        "reading_quality": "reported",
+        "source_updated_at": "2026-10-26T10:00:30Z"
+      }
+    },
+    {
+      "id": "TEL-1044-10",
+      "source": "telemetry",
+      "sourceLabel": "Sensor telemetry",
+      "recordId": "RD-1044-10",
+      "timestamp": "2026-10-26T10:10:00Z",
+      "sourceUpdatedAt": "2026-10-26T10:10:30Z",
+      "summary": "SNS-44A measured 4.9 C at 2026-10-26T10:10:00Z.",
+      "record": {
+        "row_id": "TEL-1044-10",
+        "reading_id": "RD-1044-10",
+        "shipment_id": "TH-1044",
+        "sensor_id": "SNS-44A",
+        "observed_at": "2026-10-26T10:10:00Z",
+        "temperature_c": 4.9,
+        "reading_quality": "reported",
+        "source_updated_at": "2026-10-26T10:10:30Z"
+      }
+    },
+    {
+      "id": "TEL-1044-20",
+      "source": "telemetry",
+      "sourceLabel": "Sensor telemetry",
+      "recordId": "RD-1044-20",
+      "timestamp": "2026-10-26T10:20:00Z",
+      "sourceUpdatedAt": "2026-10-26T10:20:30Z",
+      "summary": "SNS-44A measured 5 C at 2026-10-26T10:20:00Z.",
+      "record": {
+        "row_id": "TEL-1044-20",
+        "reading_id": "RD-1044-20",
+        "shipment_id": "TH-1044",
+        "sensor_id": "SNS-44A",
+        "observed_at": "2026-10-26T10:20:00Z",
+        "temperature_c": 5,
+        "reading_quality": "reported",
+        "source_updated_at": "2026-10-26T10:20:30Z"
+      }
+    },
+    {
+      "id": "TEL-1044-30",
+      "source": "telemetry",
+      "sourceLabel": "Sensor telemetry",
+      "recordId": "RD-1044-30",
+      "timestamp": "2026-10-26T10:30:00Z",
+      "sourceUpdatedAt": "2026-10-26T10:30:30Z",
+      "summary": "SNS-44A measured 5.2 C at 2026-10-26T10:30:00Z.",
+      "record": {
+        "row_id": "TEL-1044-30",
+        "reading_id": "RD-1044-30",
+        "shipment_id": "TH-1044",
+        "sensor_id": "SNS-44A",
+        "observed_at": "2026-10-26T10:30:00Z",
+        "temperature_c": 5.2,
+        "reading_quality": "reported",
+        "source_updated_at": "2026-10-26T10:30:30Z"
+      }
+    },
+    {
+      "id": "TEL-1044-40",
+      "source": "telemetry",
+      "sourceLabel": "Sensor telemetry",
+      "recordId": "RD-1044-40",
+      "timestamp": "2026-10-26T10:40:00Z",
+      "sourceUpdatedAt": "2026-10-26T10:40:30Z",
+      "summary": "SNS-44A measured 5.1 C at 2026-10-26T10:40:00Z.",
+      "record": {
+        "row_id": "TEL-1044-40",
+        "reading_id": "RD-1044-40",
+        "shipment_id": "TH-1044",
+        "sensor_id": "SNS-44A",
+        "observed_at": "2026-10-26T10:40:00Z",
+        "temperature_c": 5.1,
+        "reading_quality": "reported",
+        "source_updated_at": "2026-10-26T10:40:30Z"
+      }
+    },
+    {
+      "id": "TEL-1044-50",
+      "source": "telemetry",
+      "sourceLabel": "Sensor telemetry",
+      "recordId": "RD-1044-50",
+      "timestamp": "2026-10-26T10:50:00Z",
+      "sourceUpdatedAt": "2026-10-26T10:50:30Z",
+      "summary": "SNS-44A measured 5 C at 2026-10-26T10:50:00Z.",
+      "record": {
+        "row_id": "TEL-1044-50",
+        "reading_id": "RD-1044-50",
+        "shipment_id": "TH-1044",
+        "sensor_id": "SNS-44A",
+        "observed_at": "2026-10-26T10:50:00Z",
+        "temperature_c": 5,
+        "reading_quality": "reported",
+        "source_updated_at": "2026-10-26T10:50:30Z"
+      }
+    },
+    {
+      "id": "TEL-1044-60",
+      "source": "telemetry",
+      "sourceLabel": "Sensor telemetry",
+      "recordId": "RD-1044-60",
+      "timestamp": "2026-10-26T11:00:00Z",
+      "sourceUpdatedAt": "2026-10-26T11:00:30Z",
+      "summary": "SNS-44A measured 4.9 C at 2026-10-26T11:00:00Z.",
+      "record": {
+        "row_id": "TEL-1044-60",
+        "reading_id": "RD-1044-60",
+        "shipment_id": "TH-1044",
+        "sensor_id": "SNS-44A",
+        "observed_at": "2026-10-26T11:00:00Z",
+        "temperature_c": 4.9,
+        "reading_quality": "reported",
+        "source_updated_at": "2026-10-26T11:00:30Z"
+      }
+    },
+    {
+      "id": "EVT-1044-01",
+      "source": "incidents",
+      "sourceLabel": "Carrier event log",
+      "recordId": "INC-1044-01",
+      "timestamp": "2026-10-26T10:00:00Z",
+      "sourceUpdatedAt": "2026-10-26T10:01:00Z",
+      "summary": "sealed_departure: Departure check recorded an intact seal and active logger. All statements describe synthetic demonstration records.",
+      "record": {
+        "row_id": "EVT-1044-01",
+        "incident_id": "INC-1044-01",
+        "shipment_id": "TH-1044",
+        "occurred_at": "2026-10-26T10:00:00Z",
+        "event_type": "sealed_departure",
+        "reported_status": "sealed",
+        "details": "Departure check recorded an intact seal and active logger. All statements describe synthetic demonstration records.",
+        "source_updated_at": "2026-10-26T10:01:00Z"
+      }
+    },
+    {
+      "id": "EVT-1044-02",
+      "source": "incidents",
+      "sourceLabel": "Carrier event log",
+      "recordId": "INC-1044-02",
+      "timestamp": "2026-10-26T11:00:00Z",
+      "sourceUpdatedAt": "2026-10-26T11:01:00Z",
+      "summary": "scheduled_check: Scheduled observation received. No additional operational event is recorded within the investigation window.",
+      "record": {
+        "row_id": "EVT-1044-02",
+        "incident_id": "INC-1044-02",
+        "shipment_id": "TH-1044",
+        "occurred_at": "2026-10-26T11:00:00Z",
+        "event_type": "scheduled_check",
+        "reported_status": "in_range",
+        "details": "Scheduled observation received. No additional operational event is recorded within the investigation window.",
+        "source_updated_at": "2026-10-26T11:01:00Z"
+      }
+    },
+    {
+      "id": "CALROW-44",
+      "source": "calibration",
+      "sourceLabel": "Calibration register",
+      "recordId": "CAL-44-CURRENT",
+      "timestamp": "2026-10-26T09:40:00Z",
+      "sourceUpdatedAt": "2026-10-26T09:41:00Z",
+      "summary": "SNS-44A: confirmed offset 0.3 C; valid 2026-10-26T09:00:00Z to 2026-10-26T12:00:00Z.",
+      "record": {
+        "row_id": "CALROW-44",
+        "calibration_id": "CAL-44-CURRENT",
+        "sensor_id": "SNS-44A",
+        "valid_from": "2026-10-26T09:00:00Z",
+        "valid_to": "2026-10-26T12:00:00Z",
+        "offset_c": 0.3,
+        "status": "confirmed",
+        "reference_method": "Synthetic two-point comparison against REF-BENCH-02",
+        "confirmed_at": "2026-10-26T09:40:00Z",
+        "source_updated_at": "2026-10-26T09:41:00Z"
+      }
+    }
+  ],
+  "findings": [
+    {
+      "id": "coverage",
+      "title": "Observation schedule covered",
+      "detail": "7 of 7 scheduled primary observations are present; largest gap 10 minutes.",
+      "severity": "info",
+      "citationIds": [
+        "MAN-1044",
+        "TEL-1044-00",
+        "TEL-1044-10",
+        "TEL-1044-20",
+        "TEL-1044-30",
+        "TEL-1044-40",
+        "TEL-1044-50",
+        "TEL-1044-60"
+      ]
+    },
+    {
+      "id": "calibration",
+      "title": "Calibration validity checked",
+      "detail": "7 primary observations have exactly one confirmed certificate covering their timestamp; 7 use a non-zero offset.",
+      "severity": "info",
+      "citationIds": [
+        "CALROW-44"
+      ]
+    }
+  ],
+  "contradictions": [],
+  "missingSources": [],
+  "actions": [
+    {
+      "id": "retain-evidence",
+      "title": "Retain the bounded observation record",
+      "reason": "The result covers only the stated window and discrete observations.",
+      "priority": "low",
+      "citationIds": [
+        "MAN-1044",
+        "TEL-1044-00",
+        "TEL-1044-10",
+        "TEL-1044-20",
+        "TEL-1044-30",
+        "TEL-1044-40",
+        "TEL-1044-50",
+        "TEL-1044-60"
+      ]
+    }
+  ],
+  "rejectedRows": [],
+  "calibrationMatches": [
+    {
+      "readingId": "RD-1044-00",
+      "calibrationId": "CAL-44-CURRENT",
+      "calibrationRowId": "CALROW-44",
+      "offsetC": 0.3
+    },
+    {
+      "readingId": "RD-1044-10",
+      "calibrationId": "CAL-44-CURRENT",
+      "calibrationRowId": "CALROW-44",
+      "offsetC": 0.3
+    },
+    {
+      "readingId": "RD-1044-20",
+      "calibrationId": "CAL-44-CURRENT",
+      "calibrationRowId": "CALROW-44",
+      "offsetC": 0.3
+    },
+    {
+      "readingId": "RD-1044-30",
+      "calibrationId": "CAL-44-CURRENT",
+      "calibrationRowId": "CALROW-44",
+      "offsetC": 0.3
+    },
+    {
+      "readingId": "RD-1044-40",
+      "calibrationId": "CAL-44-CURRENT",
+      "calibrationRowId": "CALROW-44",
+      "offsetC": 0.3
+    },
+    {
+      "readingId": "RD-1044-50",
+      "calibrationId": "CAL-44-CURRENT",
+      "calibrationRowId": "CALROW-44",
+      "offsetC": 0.3
+    },
+    {
+      "readingId": "RD-1044-60",
+      "calibrationId": "CAL-44-CURRENT",
+      "calibrationRowId": "CALROW-44",
+      "offsetC": 0.3
+    }
+  ],
+  "unresolvedCalibration": [],
+  "excludedRowIds": [],
+  "trace": [
+    {
+      "agent": "Planner",
+      "action": "scope",
+      "status": "complete",
+      "detail": "Bounded investigation of TH-1044 from 2026-10-26T10:00:00Z to 2026-10-26T11:00:00Z.",
+      "citationIds": [
+        "MAN-1044"
+      ]
+    },
+    {
+      "agent": "Data steward",
+      "action": "validate",
+      "status": "complete",
+      "detail": "7 observations inspected; 0 rejected before analysis.",
+      "citationIds": [
+        "TEL-1044-00",
+        "TEL-1044-10",
+        "TEL-1044-20",
+        "TEL-1044-30",
+        "TEL-1044-40",
+        "TEL-1044-50",
+        "TEL-1044-60"
+      ]
+    },
+    {
+      "agent": "Analyst",
+      "action": "reconcile",
+      "status": "complete",
+      "detail": "Applied 7 confirmed calibration matches and checked 7 scheduled positions.",
+      "citationIds": [
+        "TEL-1044-00",
+        "TEL-1044-10",
+        "TEL-1044-20",
+        "TEL-1044-30",
+        "TEL-1044-40",
+        "TEL-1044-50",
+        "TEL-1044-60",
+        "CALROW-44"
+      ]
+    },
+    {
+      "agent": "Critic",
+      "action": "verify",
+      "status": "complete",
+      "detail": "Verified every citation, rejected unsupported clear-status claims, and checked coverage/calibration conditions. 0 source conflicts retained.",
+      "citationIds": []
+    },
+    {
+      "agent": "Dossier writer",
+      "action": "report",
+      "status": "complete",
+      "detail": "No excursion observed in this window. These are deterministic computation stages; live model use is separately disclosed.",
+      "citationIds": [
+        "MAN-1044",
+        "TEL-1044-00",
+        "TEL-1044-10",
+        "TEL-1044-20",
+        "TEL-1044-30",
+        "TEL-1044-40",
+        "TEL-1044-50",
+        "TEL-1044-60",
+        "CALROW-44"
+      ]
+    }
+  ],
+  "limitations": [
+    "Synthetic demonstration records; no measured commercial impact or production deployment is implied.",
+    "Operations support only: no product release, disposal, food safety, or pharmaceutical certification.",
+    "Discrete observations cannot prove continuous temperature or exact excursion duration.",
+    "Incident text is untrusted evidence; reported statuses do not override missing measurements."
+  ],
+  "exportedAt": "2026-10-27T21:15:29.318Z",
+  "runtimeMode": "sample"
+}

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 600" fill="none">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0v40" stroke="#77B7C2" stroke-opacity=".14" stroke-width=".75"/></pattern>
+    <linearGradient id="fade" x2="0" y2="1"><stop stop-color="white" stop-opacity="0"/><stop offset=".5" stop-color="white" stop-opacity=".5"/><stop offset="1" stop-color="white"/></linearGradient>
+    <mask id="mask"><rect width="300" height="600" fill="url(#fade)"/></mask>
+  </defs>
+  <g mask="url(#mask)">
+    <rect width="300" height="600" fill="url(#grid)"/>
+    <g stroke="#60E0D0" stroke-opacity=".16">
+      <path d="M-60 567c78-104 66-179 151-220 85-42 157 11 236-68"/>
+      <path d="M-53 589c93-105 74-188 159-225 91-39 156 9 234-64"/>
+      <path d="M-45 610c108-110 81-198 166-229 97-36 155 6 232-61"/>
+      <circle cx="218" cy="446" r="67"/><circle cx="218" cy="446" r="93"/>
+      <path d="M218 336v220M108 446h220" stroke-dasharray="2 6"/>
+    </g>
+    <path d="m30 502 45-78 50-4 56-57 41-5 52-97" stroke="#60E0D0" stroke-opacity=".27" stroke-width="1.5" stroke-dasharray="3 7"/>
+    <g fill="#60E0D0" fill-opacity=".5"><circle cx="75" cy="424" r="3"/><circle cx="181" cy="363" r="3"/><circle cx="274" cy="261" r="3"/></g>
+  </g>
+</svg>

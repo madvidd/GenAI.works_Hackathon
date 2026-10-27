@@ -9,8 +9,8 @@ const option = name => { const i=args.indexOf(name); return i<0 ? undefined : ar
 const context = await readArtifactContext(repo, option('--manifest'));
 const scenes = JSON.parse(await fs.readFile(path.join(repo,'submission/demo-scenes.json'),'utf8'));
 const evaluation = scenes.scenes.find(scene => scene.id === '08-control');
-evaluation.narration = `The fourth case is a normal control: the available observations remain within the fixture's stated range. Different records produce different conclusions. ${context.tests} local tests pass, including a critic that retrieves missing calibration and changes an unresolved result into a supported explanation. Automated orchestration tests use mocked network transports; actual execution has separate receipts.`;
-evaluation.callout = `The control stays in range.\n${context.tests} local tests pass.\nTest transports are mocked.\nLive receipts are separate.`;
+evaluation.narration = `The fourth case is a normal control: the available observations remain within the fixture's stated range. Different records produce different conclusions. The regression suite passes, including a critic that retrieves missing calibration and changes an unresolved result into a supported explanation. Automated orchestration tests use mocked network transports; actual execution has separate receipts.`;
+evaluation.callout = `The control stays in range.\nThe regression suite passes.\nTest transports are mocked.\nLive receipts are separate.`;
 const status = scenes.scenes.find(scene => scene.id === '09-status');
 if (context.liveVerified) {
   scenes.mode='sample-cases-and-verified-live-execution';

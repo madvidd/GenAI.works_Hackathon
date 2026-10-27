@@ -47,6 +47,11 @@ import {
 } from "../core/investigator.mjs";
 import "./styles.css";
 import TemperatureChart from "./TemperatureChart.jsx";
+import {
+  validateWorkspaceDataset,
+  changeWorkspaceReading,
+  displaySourceValue,
+} from "./workspace.mjs";
 
 const statusMeta = {
   excursion: {
@@ -89,6 +94,12 @@ const time = (value) =>
     timeZone: "UTC",
   });
 const cls = (...s) => s.filter(Boolean).join(" ");
+const temperature = (value) =>
+  Number.isFinite(value)
+    ? new Intl.NumberFormat("en-GB", { maximumFractionDigits: 12 }).format(
+        value,
+      )
+    : "—";
 const download = (filename, value, type = "application/json") => {
   const u = URL.createObjectURL(
     new Blob(
@@ -114,7 +125,7 @@ function Tag({ outcome, children }) {
 function App() {
   const [feeds, setFeeds] = useState(null),
     [loadError, setLoadError] = useState(""),
-    [selected, setSelected] = useState("TH-1041"),
+    [selected, setSelected] = useState("TH-1042"),
     [view, setView] = useState("Investigations"),
     [tab, setTab] = useState("Overview"),
     [query, setQuery] = useState(""),
@@ -124,6 +135,7 @@ function App() {
     [evidenceId, setEvidenceId] = useState(null),
     [busy, setBusy] = useState(false),
     [runningShipment, setRunningShipment] = useState(null),
+    [elapsedSeconds, setElapsedSeconds] = useState(0),
     [runTime, setRunTime] = useState(null),
     [toast, setToast] = useState(""),
     [mobileNav, setMobileNav] = useState(false),
@@ -132,10 +144,58 @@ function App() {
     [liveResult, setLiveResult] = useState(null),
     [liveError, setLiveError] = useState(""),
     [editRow, setEditRow] = useState(""),
-    [editValue, setEditValue] = useState("");
+    [editValue, setEditValue] = useState(""),
+    [datasetLabel, setDatasetLabel] = useState(""),
+    [datasetChanged, setDatasetChanged] = useState(false);
   const upload = useRef();
+  const search = useRef();
+  const originalFeeds = useRef();
+  const baselineFeeds = useRef();
+  const runStartedAt = useRef(0);
   const currentContext = useRef();
-  currentContext.current = { selected, mode, feeds, ignoreCalibration, excluded };
+  currentContext.current = {
+    selected,
+    mode,
+    feeds,
+    ignoreCalibration,
+    excluded,
+  };
+  useEffect(() => {
+    if (!busy) return;
+    const id = setInterval(
+      () =>
+        setElapsedSeconds(
+          Math.floor((Date.now() - runStartedAt.current) / 1000),
+        ),
+      1000,
+    );
+    return () => clearInterval(id);
+  }, [busy]);
+  useEffect(() => {
+    const shortcut = (event) => {
+      if (event.key === "Escape") setMobileNav(false);
+      if (
+        event.key !== "/" ||
+        event.ctrlKey ||
+        event.metaKey ||
+        event.altKey ||
+        evidenceId ||
+        showSettings
+      )
+        return;
+      if (
+        event.target?.closest?.(
+          'input,textarea,select,[contenteditable="true"]',
+        )
+      )
+        return;
+      event.preventDefault();
+      setView("Investigations");
+      requestAnimationFrame(() => search.current?.focus());
+    };
+    document.addEventListener("keydown", shortcut);
+    return () => document.removeEventListener("keydown", shortcut);
+  }, [evidenceId, showSettings]);
   useEffect(() => {
     if (!evidenceId && !showSettings) return;
     const previous = document.activeElement;
@@ -178,7 +238,12 @@ function App() {
         return [n, await r.json()];
       }),
     )
-      .then((x) => setFeeds(Object.fromEntries(x)))
+      .then((x) => {
+        const initial = validateWorkspaceDataset(Object.fromEntries(x));
+        originalFeeds.current = initial;
+        baselineFeeds.current = initial;
+        setFeeds(initial);
+      })
       .catch((e) => setLoadError(e.message));
   }, []);
   useEffect(() => {
@@ -202,6 +267,15 @@ function App() {
     [feeds],
   );
   const base = all.find((x) => x.shipment.shipment_id === selected) || all[0];
+  const comparisonBase = useMemo(() => {
+    try {
+      return baselineFeeds.current
+        ? investigateShipment(baselineFeeds.current, selected)
+        : base;
+    } catch {
+      return base;
+    }
+  }, [feeds, selected, base]);
   const analysis = useMemo(() => {
     if (!feeds || !base) return null;
     try {
@@ -215,6 +289,12 @@ function App() {
   }, [feeds, base, ignoreCalibration, excluded]);
   const result = mode === "live" && liveResult ? liveResult : analysis;
   const effectiveMode = mode === "live" && liveResult ? "live" : "sample";
+  const correctedValues =
+    result?.chart.map((point) => point.correctedC).filter(Number.isFinite) ||
+    [];
+  const displayedCorrectedPeak = correctedValues.length
+    ? Math.max(...correctedValues)
+    : null;
   const evidence = result?.evidence.find((x) => x.id === evidenceId);
   const filtered = all.filter(
     (r) =>
@@ -223,7 +303,7 @@ function App() {
         .toLowerCase()
         .includes(query.toLowerCase()),
   );
-  const notify = (s) => setToast(s);
+  const notify = (message, error = false) => setToast({ message, error });
   function select(id) {
     setSelected(id);
     setIgnoreCalibration(false);
@@ -234,12 +314,40 @@ function App() {
     setLiveError("");
     setRunTime(null);
     setView("Investigations");
+    setEditRow("");
+    setEditValue("");
+    setMobileNav(false);
+  }
+  function restoreDataset() {
+    if (!originalFeeds.current) return;
+    setFeeds(originalFeeds.current);
+    baselineFeeds.current = originalFeeds.current;
+    setDatasetLabel("");
+    setDatasetChanged(false);
+    setQuery("");
+    setFilter("all");
+    setMode("sample");
+    select(
+      originalFeeds.current.manifest.records.some(
+        (row) => row.shipment_id === selected,
+      )
+        ? selected
+        : "TH-1042",
+    );
+    notify(
+      "Original sample restored. Browser edits and evidence experiments were cleared.",
+    );
   }
   async function run() {
+    runStartedAt.current = Date.now();
+    setElapsedSeconds(0);
+    setRunTime(null);
+    if (mode === "live") setLiveResult(null);
     const requestContext = currentContext.current;
-    const isCurrent = () => Object.entries(requestContext).every(
-      ([key, value]) => currentContext.current[key] === value,
-    );
+    const isCurrent = () =>
+      Object.entries(requestContext).every(
+        ([key, value]) => currentContext.current[key] === value,
+      );
     setBusy(true);
     setRunningShipment(selected);
     setLiveError("");
@@ -255,7 +363,8 @@ function App() {
         const body = await r.json().catch(() => null);
         if (!r.ok)
           throw Error(
-            body?.error || `Live service unavailable (${r.status}). Check the local server and configured sponsor services.`,
+            body?.error ||
+              `Live service unavailable (${r.status}). Check the local server and configured sponsor services.`,
           );
         if (!body?.result?.evidence)
           throw Error(
@@ -290,46 +399,36 @@ function App() {
       if (!file) return;
       if (file.size > 2_000_000)
         throw Error("Use a dataset smaller than 2 MB.");
-      const next = JSON.parse(await file.text());
-      for (const n of FEED_NAMES)
-        if (!Array.isArray(next[n]?.records))
-          throw Error(`Missing ${n}.records`);
-      if (
-        next.manifest.records.length > 50 ||
-        FEED_NAMES.some((n) => next[n].records.length > 5000)
-      )
-        throw Error(
-          "Keep inputs to 50 shipments and 5,000 records per source.",
-        );
-      const first = next.manifest.records[0]?.shipment_id;
-      for (const shipment of next.manifest.records)
-        investigateShipment(next, shipment.shipment_id);
+      const next = validateWorkspaceDataset(JSON.parse(await file.text()));
+      const first = next.manifest.records[0].shipment_id;
       setMode("sample");
       setFeeds(next);
+      baselineFeeds.current = next;
+      setDatasetLabel(file.name);
+      setDatasetChanged(false);
+      setQuery("");
+      setFilter("all");
       select(first);
       notify("Your dataset is loaded. Conclusions are recomputed locally.");
     } catch (e) {
-      notify(e.message);
+      notify(e.message, true);
     }
     event.target.value = "";
   }
   function applyReading() {
     try {
-      const n = Number(editValue);
-      if (!editRow || !Number.isFinite(n) || editValue.trim() === "")
-        throw Error("Choose a reading and enter a temperature.");
-      const next = structuredClone(feeds);
-      next.telemetry.records = next.telemetry.records.map((r) =>
-        r.row_id === editRow ? { ...r, temperature_c: n } : r,
-      );
+      const next = changeWorkspaceReading(feeds, selected, editRow, editValue);
       setFeeds(next);
+      setDatasetChanged(true);
       setMode("sample");
       setLiveResult(null);
+      setLiveError("");
+      setRunTime(null);
       notify(
         "Reading changed. All findings have been recomputed in sample mode.",
       );
     } catch (e) {
-      notify(e.message);
+      notify(e.message, true);
     }
   }
   if (!feeds)
@@ -338,7 +437,15 @@ function App() {
         <Anchor size={40} />
         <h1>TraceHarbor</h1>
         {loadError ? (
-          <p role="alert">{loadError}</p>
+          <>
+            <p role="alert">{loadError}</p>
+            <button
+              className="button primary"
+              onClick={() => location.reload()}
+            >
+              Retry loading
+            </button>
+          </>
         ) : (
           <>
             <LoaderCircle className="spin" />
@@ -351,6 +458,16 @@ function App() {
     return <main className="loading">No valid shipments in this dataset.</main>;
   return (
     <div className="shell">
+      <a className="skip-link" href="#main-content">
+        Skip to investigation workspace
+      </a>
+      {mobileNav && (
+        <button
+          className="nav-scrim"
+          aria-label="Close navigation"
+          onClick={() => setMobileNav(false)}
+        />
+      )}
       <aside className={cls("sidebar", mobileNav && "open")}>
         <a
           className="brand"
@@ -358,6 +475,7 @@ function App() {
           onClick={(e) => {
             e.preventDefault();
             setView("Investigations");
+            setMobileNav(false);
           }}
         >
           <span className="brand-mark">
@@ -383,6 +501,7 @@ function App() {
             <button
               key={label}
               className={cls("nav-item", view === label && "active")}
+              aria-current={view === label ? "page" : undefined}
               onClick={() => {
                 setView(label);
                 setMobileNav(false);
@@ -409,7 +528,13 @@ function App() {
             </div>
             <small>Connected data. Checkable reasoning.</small>
           </div>
-          <button className="nav-item" onClick={() => setShowSettings(true)}>
+          <button
+            className="nav-item"
+            onClick={() => {
+              setShowSettings(true);
+              setMobileNav(false);
+            }}
+          >
             <Settings2 size={18} />
             Runtime & disclosure
             <ArrowUpRight size={14} />
@@ -441,6 +566,7 @@ function App() {
               className="icon-button menu-toggle"
               onClick={() => setMobileNav(!mobileNav)}
               aria-label="Toggle navigation"
+              aria-expanded={mobileNav}
             >
               <Menu size={20} />
             </button>
@@ -461,7 +587,7 @@ function App() {
             <span className="avatar">V</span>
           </div>
         </header>
-        <main>
+        <main id="main-content" tabIndex={-1}>
           {view === "Investigations" && (
             <>
               <div className="page-heading">
@@ -476,13 +602,15 @@ function App() {
                     next step.
                   </p>
                 </div>
-                <button
-                  className="button secondary"
-                  onClick={() => upload.current.click()}
-                >
-                  <Upload size={16} />
-                  Import dataset
-                </button>
+                <div className="page-actions">
+                  <button
+                    className="button secondary"
+                    onClick={() => upload.current.click()}
+                  >
+                    <Upload size={16} />
+                    Import dataset
+                  </button>
+                </div>
                 <input
                   type="file"
                   accept="application/json,.json"
@@ -491,6 +619,23 @@ function App() {
                   hidden
                 />
               </div>
+              {(datasetLabel || datasetChanged) && (
+                <div className="dataset-note" role="status">
+                  <FileJson size={17} />
+                  <span>
+                    {datasetLabel
+                      ? `Imported: ${datasetLabel}`
+                      : "Sample dataset"}
+                    {datasetChanged
+                      ? " · modified in this browser"
+                      : " · processed in this browser"}
+                    . Changes are not saved to a server.
+                  </span>
+                  <button className="text-button" onClick={restoreDataset}>
+                    <RotateCcw size={14} /> Restore original sample
+                  </button>
+                </div>
+              )}
               <div className="summary-strip">
                 <div className="summary-intro">
                   <span className="status-dot" />
@@ -543,6 +688,8 @@ function App() {
                     <button
                       className="icon-button"
                       aria-label="Filter investigations"
+                      aria-pressed={filter !== "all"}
+                      title="Toggle evidence gaps filter"
                       onClick={() =>
                         setFilter(
                           filter === "all" ? "insufficient_evidence" : "all",
@@ -556,6 +703,7 @@ function App() {
                     <Search size={16} />
                     <input
                       value={query}
+                      ref={search}
                       onChange={(e) => setQuery(e.target.value)}
                       placeholder="Find a shipment…"
                       aria-label="Find a shipment"
@@ -565,12 +713,14 @@ function App() {
                   <div className="queue-filter">
                     <button
                       className={filter === "all" ? "selected" : ""}
+                      aria-pressed={filter === "all"}
                       onClick={() => setFilter("all")}
                     >
                       All shipments
                     </button>
                     <button
                       className={filter !== "all" ? "selected" : ""}
+                      aria-pressed={filter !== "all"}
                       onClick={() => setFilter("insufficient_evidence")}
                     >
                       Evidence gaps
@@ -584,6 +734,7 @@ function App() {
                           selected === r.shipment.shipment_id && "selected",
                         )}
                         key={r.shipment.shipment_id}
+                        aria-pressed={selected === r.shipment.shipment_id}
                         onClick={() => select(r.shipment.shipment_id)}
                       >
                         <div className="shipment-card-top">
@@ -683,13 +834,17 @@ function App() {
                       <ArrowDownToLine size={19} />
                     </button>
                   </div>
-                  <div className="dossier-tabs">
+                  <div
+                    className="dossier-tabs"
+                    aria-label="Investigation sections"
+                  >
                     {["Overview", "Evidence", "Reasoning", "What if"].map(
                       (t) => (
                         <button
                           key={t}
                           onClick={() => setTab(t)}
                           className={tab === t ? "active" : ""}
+                          aria-pressed={tab === t}
                         >
                           {t}
                           {t === "Evidence" && (
@@ -704,6 +859,27 @@ function App() {
                       Citations checked
                     </span>
                   </div>
+                  {mode === "live" && !liveResult && (
+                    <div className="dataset-note">
+                      <Network size={17} />
+                      <span>
+                        Live mode queries the configured Zetaris records for{" "}
+                        {selected}. Browser edits and evidence experiments are
+                        not sent. Run the investigation to replace this sample
+                        preview.
+                      </span>
+                    </div>
+                  )}
+                  {busy && mode === "live" && selected === runningShipment && (
+                    <div className="dataset-note" role="status">
+                      <LoaderCircle className="spin" size={17} />
+                      <span>
+                        Local investigation in progress · {elapsedSeconds}s
+                        elapsed. Keep this case selected to receive the result.
+                        The run is bounded to five minutes.
+                      </span>
+                    </div>
+                  )}
                   {(ignoreCalibration || excluded.length > 0) && (
                     <div className="experiment-banner">
                       <SlidersHorizontal size={16} />
@@ -765,7 +941,7 @@ function App() {
                           <Metric
                             icon={Thermometer}
                             label="Corrected peak"
-                            value={`${result.metrics.correctedPeakC ?? "—"}°C`}
+                            value={`${temperature(displayedCorrectedPeak)}°C`}
                             detail={`Raw sensor peak ${result.metrics.rawPeakC ?? "—"}°C`}
                           />
                           <Metric
@@ -895,6 +1071,8 @@ function App() {
                         setExcluded={(next) => {
                           setMode("sample");
                           setLiveResult(null);
+                          setLiveError("");
+                          setRunTime(null);
                           setExcluded(next);
                         }}
                       />
@@ -971,6 +1149,8 @@ function App() {
                             onClick={() => {
                               setMode("sample");
                               setLiveResult(null);
+                              setLiveError("");
+                              setRunTime(null);
                               setIgnoreCalibration(!ignoreCalibration);
                             }}
                           >
@@ -980,9 +1160,10 @@ function App() {
                         <div className="comparison">
                           <div>
                             <span>BASELINE</span>
-                            <strong>{base.title}</strong>
+                            <strong>{comparisonBase.title}</strong>
                             <small>
-                              {base.metrics.correctedPeakC}°C corrected peak
+                              {comparisonBase.metrics.correctedPeakC ?? "—"}°C
+                              corrected peak
                             </small>
                           </div>
                           <ArrowRight size={22} />
@@ -990,11 +1171,11 @@ function App() {
                             <span>CURRENT EXPERIMENT</span>
                             <strong>{result.title}</strong>
                             <small>
-                              {result.metrics.correctedPeakC ?? "—"}°C corrected
+                              {temperature(displayedCorrectedPeak)}°C corrected
                               peak ·{" "}
                               {ignoreCalibration
                                 ? "calibration withheld"
-                                : "calibration applied"}
+                                : "calibration considered"}
                               {excluded.length > 0 &&
                                 ` · ${excluded.length} additional records withheld`}
                             </small>
@@ -1030,8 +1211,9 @@ function App() {
                                   .filter((r) => r.shipment_id === selected)
                                   .map((r) => (
                                     <option key={r.row_id} value={r.row_id}>
-                                      {r.reading_id} · {time(r.observed_at)} ·{" "}
-                                      {r.temperature_c}°C
+                                      {displaySourceValue(r.reading_id)} ·{" "}
+                                      {time(r.observed_at)} ·{" "}
+                                      {displaySourceValue(r.temperature_c)}°C
                                     </option>
                                   ))}
                               </select>
@@ -1047,6 +1229,11 @@ function App() {
                             </label>
                             <button
                               className="button primary"
+                              disabled={
+                                !editRow ||
+                                editValue.trim() === "" ||
+                                !Number.isFinite(Number(editValue))
+                              }
                               onClick={applyReading}
                             >
                               Apply & recompute
@@ -1059,8 +1246,8 @@ function App() {
                           <p>
                             Experiments test the dependence of the conclusion on
                             evidence. They do not establish causality or predict
-                            physical outcomes. Refresh the page to restore the
-                            original synthetic dataset.
+                            physical outcomes. Use “Restore original sample” to
+                            undo dataset changes.
                           </p>
                         </div>
                       </>
@@ -1077,6 +1264,7 @@ function App() {
                     <button
                       className="button primary"
                       disabled={busy}
+                      aria-busy={busy}
                       onClick={run}
                     >
                       {busy ? (
@@ -1084,7 +1272,9 @@ function App() {
                       ) : (
                         <Play size={14} />
                       )}{" "}
-                      {busy ? `Investigating ${runningShipment}…` : "Run investigation"}
+                      {busy
+                        ? `Investigating ${runningShipment}…`
+                        : "Run investigation"}
                     </button>
                   </div>
                 </section>
@@ -1140,7 +1330,7 @@ function App() {
                       <p>{feeds[name].source_system}</p>
                       <div className="source-stat">
                         <strong>{feeds[name].records.length}</strong>
-                        <span>original records</span>
+                        <span>records in workspace</span>
                       </div>
                       <dl>
                         <div>
@@ -1216,7 +1406,18 @@ function App() {
               <Database size={23} />
             </span>
             <h2>{evidence.id}</h2>
-            <Tag outcome="within_range">Original record</Tag>
+            <Tag outcome="within_range">
+              {evidence.record.browser_edit
+                ? "Modified scenario record"
+                : "Source record"}
+            </Tag>
+            {evidence.record.browser_edit && (
+              <div className="dataset-note">
+                This reading was changed in the browser for a what-if
+                experiment. Its original value is retained in browser_edit
+                below.
+              </div>
+            )}
             <p className="evidence-summary">{evidence.summary}</p>
             <dl className="evidence-details">
               <div>
@@ -1225,15 +1426,15 @@ function App() {
               </div>
               <div>
                 <dt>Record ID</dt>
-                <dd>{evidence.recordId}</dd>
+                <dd>{displaySourceValue(evidence.recordId)}</dd>
               </div>
               <div>
                 <dt>Event time</dt>
-                <dd>{evidence.timestamp}</dd>
+                <dd>{displaySourceValue(evidence.timestamp)}</dd>
               </div>
               <div>
                 <dt>Source updated</dt>
-                <dd>{evidence.sourceUpdatedAt}</dd>
+                <dd>{displaySourceValue(evidence.sourceUpdatedAt)}</dd>
               </div>
             </dl>
             <h3>Exact source record</h3>
@@ -1248,8 +1449,9 @@ function App() {
             <div className="boundary-note">
               <Link2 size={17} />
               <p>
-                This citation resolves to the original source row, including its
-                timestamps and provenance.
+                This citation resolves to the workspace source row, including
+                its timestamps, provenance, and any declared browser
+                modification.
               </p>
             </div>
           </aside>
@@ -1281,9 +1483,12 @@ function App() {
             </p>
             <button
               className={cls("mode-option", mode === "sample" && "selected")}
+              aria-pressed={mode === "sample"}
               onClick={() => {
                 setMode("sample");
                 setLiveResult(null);
+                setLiveError("");
+                setRunTime(null);
               }}
             >
               <Layers3 size={24} />
@@ -1298,8 +1503,15 @@ function App() {
             </button>
             <button
               className={cls("mode-option", mode === "live" && "selected")}
+              aria-pressed={mode === "live"}
               disabled={!["localhost", "127.0.0.1"].includes(location.hostname)}
-              onClick={() => setMode("live")}
+              onClick={() => {
+                setMode("live");
+                setIgnoreCalibration(false);
+                setExcluded([]);
+                setLiveError("");
+                setRunTime(null);
+              }}
             >
               <Network size={24} />
               <div>
@@ -1316,7 +1528,12 @@ function App() {
             </button>
             <div className="disclosure-grid">
               <span>
-                Records<strong>Synthetic, openly inspectable</strong>
+                Records
+                <strong>
+                  {datasetLabel
+                    ? "Browser-imported dataset"
+                    : "Synthetic, openly inspectable"}
+                </strong>
               </span>
               <span>
                 Decision scope<strong>Investigation support</strong>
@@ -1338,18 +1555,41 @@ function App() {
               <ArrowUpRight size={16} />
             </a>
             <nav className="artifact-links" aria-label="Project presentation">
-              <a href="/submission/traceharbor-demo.mp4" target="_blank" rel="noreferrer">Watch the demo</a>
-              <a href="/submission/traceharbor.pdf" target="_blank" rel="noreferrer">View the deck</a>
-              <a href="/submission/traceharbor.pptx" download>Editable slides</a>
-              <a href="/submission/traceharbor-demo.srt" download>Captions</a>
+              <a
+                href="/submission/traceharbor-demo.mp4"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Watch the demo
+              </a>
+              <a
+                href="/submission/traceharbor.pdf"
+                target="_blank"
+                rel="noreferrer"
+              >
+                View the deck
+              </a>
+              <a href="/submission/traceharbor.pptx" download>
+                Editable slides
+              </a>
+              <a href="/submission/traceharbor-demo.srt" download>
+                Captions
+              </a>
             </nav>
           </section>
         </div>
       )}
       {toast && (
-        <div role="status" className="toast">
-          <CheckCircle2 size={18} />
-          {toast}
+        <div
+          role={toast.error ? "alert" : "status"}
+          className={cls("toast", toast.error && "error")}
+        >
+          {toast.error ? (
+            <AlertTriangle size={18} />
+          ) : (
+            <CheckCircle2 size={18} />
+          )}
+          {toast.message}
         </div>
       )}
     </div>
@@ -1368,9 +1608,10 @@ function Metric({ icon: Icon, label, value, detail }) {
   );
 }
 function Citations({ ids, open }) {
+  const [expanded, setExpanded] = useState(false);
   return (
     <div className="citations">
-      {ids.slice(0, 3).map((id) => (
+      {(expanded ? ids : ids.slice(0, 3)).map((id) => (
         <button
           key={id}
           onClick={() => open(id)}
@@ -1382,10 +1623,14 @@ function Citations({ ids, open }) {
       ))}
       {ids.length > 3 && (
         <button
-          onClick={() => open(ids[3])}
-          title="Inspect another cited record"
+          onClick={() => setExpanded(!expanded)}
+          aria-expanded={expanded}
+          aria-label={
+            expanded ? "Collapse citations" : `Show all ${ids.length} citations`
+          }
+          title={expanded ? "Show fewer citations" : "Show every cited record"}
         >
-          +{ids.length - 3}
+          {expanded ? "Show fewer" : `+${ids.length - 3}`}
         </button>
       )}
     </div>
@@ -1410,6 +1655,7 @@ function EvidenceView({ result, open, excluded, setExcluded }) {
           <button
             key={s}
             className={source === s ? "active" : ""}
+            aria-pressed={source === s}
             onClick={() => setSource(s)}
           >
             {s === "all" ? "All sources" : sourceNames[s]}
@@ -1441,6 +1687,7 @@ function EvidenceView({ result, open, excluded, setExcluded }) {
               {e.source !== "manifest" && (
                 <button
                   className="withhold"
+                  aria-label={`Withhold ${e.id}`}
                   onClick={() => setExcluded([...excluded, e.id])}
                 >
                   Withhold
@@ -1453,7 +1700,10 @@ function EvidenceView({ result, open, excluded, setExcluded }) {
         <div className="boundary-note">
           <Info size={18} />
           <div>
-            <strong>{excluded.length} records withheld</strong>
+            <strong>
+              {excluded.length} {excluded.length === 1 ? "record" : "records"}{" "}
+              withheld
+            </strong>
             <p>{excluded.join(", ")}</p>
             <button className="text-button" onClick={() => setExcluded([])}>
               Restore all withheld records
@@ -1473,6 +1723,7 @@ function SourceTable({ feeds }) {
         {FEED_NAMES.map((s) => (
           <button
             className={source === s ? "active" : ""}
+            aria-pressed={source === s}
             key={s}
             onClick={() => setSource(s)}
           >
@@ -1481,6 +1732,9 @@ function SourceTable({ feeds }) {
         ))}
       </div>
       <div className="table-scroll">
+        {!feeds[source].records.length && (
+          <p className="empty">No records in this source.</p>
+        )}
         <table>
           <thead>
             <tr>
@@ -1493,7 +1747,11 @@ function SourceTable({ feeds }) {
             {feeds[source].records.map((r, i) => (
               <tr key={r.row_id || i}>
                 {fields.map((f) => (
-                  <td key={f}>{String(r[f] ?? "—")}</td>
+                  <td key={f}>
+                    {r[f] && typeof r[f] === "object"
+                      ? JSON.stringify(r[f])
+                      : String(r[f] ?? "—")}
+                  </td>
                 ))}
               </tr>
             ))}

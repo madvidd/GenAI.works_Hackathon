@@ -108,3 +108,54 @@ test('setup has four sources, twelve exploration queries, one intact USL compile
   assert.match(plan.find(item => item.label === 'execute-telemetry-integrity').sql, /RUN DQ telemetry_integrity TABLE/);
   assert.equal(plan.filter(item => item.label.startsWith('usl-')).length, 3);
 });
+
+test('empty primary telemetry receives a bounded evidence-availability review and abstains', async () => {
+  const fixtures = await loadFixtureFeeds();
+  fixtures.telemetry.records = fixtures.telemetry.records.filter(row => row.shipment_id !== 'TH-1044');
+  const phases = [];
+  const nightshift = {
+    preflight: async () => ({ testTransport: true }),
+    generateJson: async ({ phase, schema }) => {
+      phases.push(phase);
+      if (phase === 'critic') assert.deepEqual(schema.schema.properties.recheck.enum, ['evidence_gap']);
+      return { value: {
+        planner: { sources: ['manifest', 'telemetry', 'calibration'], focus: 'Check whether observation gaps prevent a supported conclusion.' },
+        critic: { retrieve_sources: ['incidents'], recheck: 'evidence_gap', citation_ids: ['MAN-1044'] },
+        synthesis: { finding_ids: ['coverage'], action_ids: ['recover-evidence'], citation_ids: ['MAN-1044'] },
+      }[phase], receipt: { testTransport: true, phase } };
+    },
+  };
+  const zetaris = { run: async sql => { const name = sql.split('.').at(-1); return { rows: fixtures[name].records.map(row => FEED_COLUMNS[name].map(key => row[key])), queryId: `test-${name}`, sql, durationMs: 0 }; } };
+  const result = await runInvestigation({ mode: 'live', shipmentId: 'TH-1044', nightshift, zetaris, persist: false });
+  assert.deepEqual(phases, ['planner', 'critic', 'synthesis']);
+  assert.equal(result.dossier.outcome, 'insufficient_evidence');
+  assert.equal(result.dossier.coverage.observedCount, 0);
+  assert.deepEqual(result.dossier.counterfactual.intervention, {});
+  assert.equal(result.dossier.counterfactual.changed, false);
+  assert.match(result.dossier.counterfactual.interpretation, /^Evidence-availability review only/);
+});
+
+test('runtime enforces unique and bounded selections even if a model ignores its schema', async () => {
+  const fixtures = await loadFixtureFeeds();
+  const cases = [
+    ['critic', { citation_ids: ['MAN-1042', 'MAN-1042'] }, /repeated.*source evidence/],
+    ['synthesis', { finding_ids: ['coverage', 'calibration', 'bias'] }, /excessive finding/],
+    ['synthesis', { action_ids: ['sensor-service', 'sensor-service'] }, /repeated.*finding/],
+    ['synthesis', { citation_ids: ['MAN-1042', 'TEL-1042-00', 'TEL-1042-10', 'TEL-1042-20'] }, /excessive source evidence/],
+  ];
+  for (const [invalidPhase, override, expectedError] of cases) {
+    const nightshift = {
+      preflight: async () => ({ testTransport: true }),
+      generateJson: async ({ phase }) => ({ value: {
+        ...{
+          planner: { sources: ['manifest', 'telemetry', 'incidents'], focus: 'Check whether valid calibration changes a temperature alarm.' },
+          critic: { retrieve_sources: ['calibration'], recheck: 'calibration', citation_ids: ['MAN-1042'] },
+          synthesis: { finding_ids: ['bias'], action_ids: ['sensor-service'], citation_ids: ['CALROW-42'] },
+        }[phase],
+        ...(phase === invalidPhase ? override : {}),
+      }, receipt: { testTransport: true, phase } }),
+    };
+    const zetaris = { run: async sql => { const name = sql.split('.').at(-1); return { rows: fixtures[name].records.map(row => FEED_COLUMNS[name].map(key => row[key])), queryId: `test-${name}`, sql, durationMs: 0 }; } };
+    await assert.rejects(runInvestigation({ mode: 'live', shipmentId: 'TH-1042', nightshift, zetaris, persist: false }), expectedError);
+  }
+});

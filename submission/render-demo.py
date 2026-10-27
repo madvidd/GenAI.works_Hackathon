@@ -72,16 +72,16 @@ def main():
             y_expr=f'{cy}+({end_y}-{cy})*min(t/{duration:.3f},1)'
             framing=f"crop={cw}:{ch}:{cx}:'{y_expr}',"
         vf=(framing+"scale=1080:840:force_original_aspect_ratio=decrease,"
-            "pad=1080:840:(ow-iw)/2:(oh-ih)/2:color=0x193442,"
-            "pad=1920:1080:760:140:color=0x193442,"
-            "drawbox=x=80:y=190:w=80:h=5:color=0xc8eb9c:t=fill,"
-            "drawtext=fontfile=arial.ttf:text='TRACEHARBOR / VENGERS':fontsize=26:fontcolor=0xc8eb9c:x=80:y=64,"
-            f"drawtext=fontfile=arial.ttf:textfile={label.name}:fontsize=21:fontcolor=0xc8eb9c:x=80:y=230,"
+            "pad=1080:840:(ow-iw)/2:(oh-ih)/2:color=0x0B1F2A,"
+            "pad=1920:1080:760:140:color=0x0B1F2A,"
+            "drawbox=x=80:y=190:w=80:h=5:color=0x60E0D0:t=fill,"
+            "drawtext=fontfile=arial.ttf:text='TRACEHARBOR / VENGERS':fontsize=26:fontcolor=0x60E0D0:x=80:y=64,"
+            f"drawtext=fontfile=arial.ttf:textfile={label.name}:fontsize=21:fontcolor=0x60E0D0:x=80:y=230,"
             +draw_lines(build,f'headline-{i}',scene.get('headline',scene['title']),54,'white',80,286,74)
-            +draw_lines(build,f'callout-{i}',scene.get('callout','Actual application capture'),29,'0xc5d2d7',80,555,48)
+            +draw_lines(build,f'callout-{i}',scene.get('callout','Actual application capture'),29,'0xD5E4E7',80,555,48)
             +
-            "drawtext=fontfile=arial.ttf:text='traceharbor.web.app':fontsize=25:fontcolor=0xc8eb9c:x=80:y=920,"
-            f"drawtext=fontfile=arial.ttf:textfile=disclosure.txt:fontsize=21:fontcolor=0xc5d2d7:x=80:y=1034,"
+            "drawtext=fontfile=arial.ttf:text='traceharbor.web.app':fontsize=25:fontcolor=0x60E0D0:x=80:y=920,"
+            f"drawtext=fontfile=arial.ttf:textfile=disclosure.txt:fontsize=21:fontcolor=0xD5E4E7:x=80:y=1034,"
             f"drawtext=fontfile=arial.ttf:textfile={number.name}:fontsize=22:fontcolor=white:x=w-tw-80:y=1034,"
             f"fade=t=in:st=0:d=0.22,fade=t=out:st={duration-0.22:.3f}:d=0.22")
         if args.frames_only:
@@ -101,7 +101,7 @@ def main():
         print(json.dumps({'preview_frames':len(scenes),'directory':str(build)}))
         return
     srt='\n\n'.join(f'{i+1}\n{stamp(a)} --> {stamp(b)}\n{t}' for i,(a,b,t) in enumerate(all_subs))+'\n'
-    (build/'captions.srt').write_text(srt,encoding='utf-8')
+    utf8_lf(build/'captions.srt',srt)
     (build/'concat.txt').write_text(''.join(f"file '{x.name}'\n" for x in clips),encoding='utf-8')
     candidate=build/('smoke-demo.mp4' if args.smoke else 'traceharbor-demo-candidate.mp4')
     run([args.ffmpeg,'-hide_banner','-loglevel','warning','-y','-f','concat','-safe','0','-i','concat.txt','-i','captions.srt','-map','0:v','-map','0:a','-map','1:0','-c:v','copy','-c:a','aac','-af','aresample=async=1:first_pts=0','-b:a','160k','-c:s','mov_text','-metadata:s:s:0','language=eng','-metadata','title='+spec['title'],'-metadata','comment=Edited screen demonstration using actual captures, synthetic data and disclosed synthetic TTS narration.','-movflags','+faststart',candidate.name],cwd=build)

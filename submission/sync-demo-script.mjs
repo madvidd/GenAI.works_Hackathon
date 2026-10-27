@@ -7,6 +7,8 @@ const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const scenes=JSON.parse(await fs.readFile(path.join(repo,'submission/demo-scenes.json'),'utf8'));
 const receipt=JSON.parse(await fs.readFile(path.join(repo,'submission/demo-validation.json'),'utf8'));
 const context=await readArtifactContext(repo,scenes.verification_snapshot?.live_manifest);
+const liveImage=scenes.scenes.find(scene=>scene.id==='09-status')?.image;
+const reasoningImage=scenes.scenes.find(scene=>scene.id==='07-reasoning')?.image;
 if(!context.liveVerified||receipt.scenes.length!==scenes.scenes.length
   ||receipt.scenes.some((scene,i)=>scene.narration!==scenes.scenes[i].narration)) {
   throw new Error('Narration source, actual export receipt and live evidence must agree.');
@@ -33,7 +35,7 @@ ${rows.join('\n')}
 
 ## Reproduction and review
 
-Run \`node submission/prepare-final-artifacts.mjs --manifest ${context.manifestReference} --live-image docs/images/live-investigation.png --live-reasoning-image docs/images/live-reasoning.png\` to prepare a private evidence-checked draft. Review its narration and actual-image crops before replacing the canonical scene source. A sample manifest or mismatched dossier is rejected. Rebuild narration/video with \`submission/build-demo.ps1\`, inspect the actual output, then run \`node submission/sync-demo-script.mjs\` to synchronize this document with its export receipt.
+Run \`node submission/prepare-final-artifacts.mjs --manifest ${context.manifestReference} --live-image ${liveImage} --live-reasoning-image ${reasoningImage}\` to prepare a private evidence-checked draft. Review its narration and actual-image crops before replacing the canonical scene source. A sample manifest or mismatched dossier is rejected. Rebuild narration/video with \`submission/build-demo.ps1\`, inspect the actual output, then run \`node submission/sync-demo-script.mjs\` to synchronize this document with its export receipt.
 
 All nine layouts and nine end-of-scene encoded frames were visually inspected. All video and audio decoded without errors, all nine narration segments contain non-silent audio, and the English caption stream is present. Uninterrupted human audiovisual playback remains pending and is not implied by automated decoding.
 

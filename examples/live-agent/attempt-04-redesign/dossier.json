@@ -1,0 +1,1029 @@
+{
+  "analysisVersion": "1.0.1",
+  "mode": "live",
+  "shipment": {
+    "row_id": "MAN-1042",
+    "shipment_id": "TH-1042",
+    "consignee": "Northbank Distribution Demo",
+    "route": "Bristol to Oxford",
+    "origin": "Bristol",
+    "destination": "Oxford",
+    "cargo_label": "Synthetic chilled sample B",
+    "primary_sensor_id": "SNS-42A",
+    "min_temp_c": 2,
+    "max_temp_c": 8,
+    "investigation_window_start": "2026-10-26T10:00:00Z",
+    "investigation_window_end": "2026-10-26T11:00:00Z",
+    "expected_interval_minutes": 10,
+    "promised_at": "2026-10-26T13:00:00Z",
+    "reported_status": "temperature_alert",
+    "reported_status_at": "2026-10-26T10:10:00Z",
+    "source_updated_at": "2026-10-26T10:11:00Z"
+  },
+  "outcome": "sensor_bias",
+  "title": "Sensor bias explains the alarm",
+  "summary": "The confirmed offset resolves 7 raw alerts within a complete observation window; independent reference readings agree.",
+  "recommendation": "Route the sensor for maintenance and reconcile the raw alarm with its calibration evidence. This does not authorize cargo release.",
+  "synthetic": true,
+  "confidence": {
+    "score": 0.94,
+    "label": "Strong observed evidence",
+    "basis": "100% scheduled coverage; 7 confirmed calibration matches; 2 corroborating reference points.",
+    "method": "Transparent heuristic evidence strength; not a calibrated probability."
+  },
+  "coverage": {
+    "expectedCount": 7,
+    "observedCount": 7,
+    "percent": 100,
+    "maxGapMinutes": 10,
+    "missingTimestamps": [],
+    "complete": true
+  },
+  "metrics": {
+    "rawPeakC": 10.1,
+    "correctedPeakC": 5.6,
+    "excursionReadings": 0,
+    "rawExcursionReadings": 7,
+    "rejectedReadings": 0,
+    "correctionAppliedCount": 7,
+    "corroboratingReferenceReadings": 2,
+    "referenceDisagreements": 0
+  },
+  "chart": [
+    {
+      "timestamp": "2026-10-26T10:00:00Z",
+      "rawC": 9.6,
+      "correctedC": 5.1,
+      "referenceC": null,
+      "referenceValuesC": [],
+      "valid": true,
+      "readingId": "RD-1042-00",
+      "rowId": "TEL-1042-00",
+      "calibrationId": "CAL-42-CURRENT",
+      "calibrationRowId": "CALROW-42",
+      "referenceRowIds": [],
+      "referenceCalibrationRowIds": []
+    },
+    {
+      "timestamp": "2026-10-26T10:10:00Z",
+      "rawC": 9.8,
+      "correctedC": 5.300000000000001,
+      "referenceC": null,
+      "referenceValuesC": [],
+      "valid": true,
+      "readingId": "RD-1042-10",
+      "rowId": "TEL-1042-10",
+      "calibrationId": "CAL-42-CURRENT",
+      "calibrationRowId": "CALROW-42",
+      "referenceRowIds": [],
+      "referenceCalibrationRowIds": []
+    },
+    {
+      "timestamp": "2026-10-26T10:20:00Z",
+      "rawC": 10,
+      "correctedC": 5.5,
+      "referenceC": 5.5,
+      "referenceValuesC": [
+        5.5
+      ],
+      "valid": true,
+      "readingId": "RD-1042-20",
+      "rowId": "TEL-1042-20",
+      "calibrationId": "CAL-42-CURRENT",
+      "calibrationRowId": "CALROW-42",
+      "referenceRowIds": [
+        "TEL-1042-20R"
+      ],
+      "referenceCalibrationRowIds": [
+        "CALROW-42-REF"
+      ]
+    },
+    {
+      "timestamp": "2026-10-26T10:30:00Z",
+      "rawC": 10.1,
+      "correctedC": 5.6,
+      "referenceC": null,
+      "referenceValuesC": [],
+      "valid": true,
+      "readingId": "RD-1042-30",
+      "rowId": "TEL-1042-30",
+      "calibrationId": "CAL-42-CURRENT",
+      "calibrationRowId": "CALROW-42",
+      "referenceRowIds": [],
+      "referenceCalibrationRowIds": []
+    },
+    {
+      "timestamp": "2026-10-26T10:40:00Z",
+      "rawC": 9.8,
+      "correctedC": 5.300000000000001,
+      "referenceC": 5.3,
+      "referenceValuesC": [
+        5.3
+      ],
+      "valid": true,
+      "readingId": "RD-1042-40",
+      "rowId": "TEL-1042-40",
+      "calibrationId": "CAL-42-CURRENT",
+      "calibrationRowId": "CALROW-42",
+      "referenceRowIds": [
+        "TEL-1042-40R"
+      ],
+      "referenceCalibrationRowIds": [
+        "CALROW-42-REF"
+      ]
+    },
+    {
+      "timestamp": "2026-10-26T10:50:00Z",
+      "rawC": 9.7,
+      "correctedC": 5.199999999999999,
+      "referenceC": null,
+      "referenceValuesC": [],
+      "valid": true,
+      "readingId": "RD-1042-50",
+      "rowId": "TEL-1042-50",
+      "calibrationId": "CAL-42-CURRENT",
+      "calibrationRowId": "CALROW-42",
+      "referenceRowIds": [],
+      "referenceCalibrationRowIds": []
+    },
+    {
+      "timestamp": "2026-10-26T11:00:00Z",
+      "rawC": 9.6,
+      "correctedC": 5.1,
+      "referenceC": null,
+      "referenceValuesC": [],
+      "valid": true,
+      "readingId": "RD-1042-60",
+      "rowId": "TEL-1042-60",
+      "calibrationId": "CAL-42-CURRENT",
+      "calibrationRowId": "CALROW-42",
+      "referenceRowIds": [],
+      "referenceCalibrationRowIds": []
+    }
+  ],
+  "evidence": [
+    {
+      "id": "MAN-1042",
+      "source": "manifest",
+      "sourceLabel": "Shipment manifest",
+      "recordId": "TH-1042",
+      "timestamp": "2026-10-26T10:10:00Z",
+      "sourceUpdatedAt": "2026-10-26T10:11:00Z",
+      "summary": "Bristol to Oxford: stated range 2–8 C; reported temperature_alert.",
+      "record": {
+        "row_id": "MAN-1042",
+        "shipment_id": "TH-1042",
+        "consignee": "Northbank Distribution Demo",
+        "route": "Bristol to Oxford",
+        "origin": "Bristol",
+        "destination": "Oxford",
+        "cargo_label": "Synthetic chilled sample B",
+        "primary_sensor_id": "SNS-42A",
+        "min_temp_c": 2,
+        "max_temp_c": 8,
+        "investigation_window_start": "2026-10-26T10:00:00Z",
+        "investigation_window_end": "2026-10-26T11:00:00Z",
+        "expected_interval_minutes": 10,
+        "promised_at": "2026-10-26T13:00:00Z",
+        "reported_status": "temperature_alert",
+        "reported_status_at": "2026-10-26T10:10:00Z",
+        "source_updated_at": "2026-10-26T10:11:00Z"
+      }
+    },
+    {
+      "id": "TEL-1042-00",
+      "source": "telemetry",
+      "sourceLabel": "Sensor telemetry",
+      "recordId": "RD-1042-00",
+      "timestamp": "2026-10-26T10:00:00Z",
+      "sourceUpdatedAt": "2026-10-26T10:00:30Z",
+      "summary": "SNS-42A measured 9.6 C at 2026-10-26T10:00:00Z.",
+      "record": {
+        "row_id": "TEL-1042-00",
+        "reading_id": "RD-1042-00",
+        "shipment_id": "TH-1042",
+        "sensor_id": "SNS-42A",
+        "observed_at": "2026-10-26T10:00:00Z",
+        "temperature_c": 9.6,
+        "reading_quality": "reported",
+        "source_updated_at": "2026-10-26T10:00:30Z"
+      }
+    },
+    {
+      "id": "TEL-1042-10",
+      "source": "telemetry",
+      "sourceLabel": "Sensor telemetry",
+      "recordId": "RD-1042-10",
+      "timestamp": "2026-10-26T10:10:00Z",
+      "sourceUpdatedAt": "2026-10-26T10:10:30Z",
+      "summary": "SNS-42A measured 9.8 C at 2026-10-26T10:10:00Z.",
+      "record": {
+        "row_id": "TEL-1042-10",
+        "reading_id": "RD-1042-10",
+        "shipment_id": "TH-1042",
+        "sensor_id": "SNS-42A",
+        "observed_at": "2026-10-26T10:10:00Z",
+        "temperature_c": 9.8,
+        "reading_quality": "reported",
+        "source_updated_at": "2026-10-26T10:10:30Z"
+      }
+    },
+    {
+      "id": "TEL-1042-20",
+      "source": "telemetry",
+      "sourceLabel": "Sensor telemetry",
+      "recordId": "RD-1042-20",
+      "timestamp": "2026-10-26T10:20:00Z",
+      "sourceUpdatedAt": "2026-10-26T10:20:30Z",
+      "summary": "SNS-42A measured 10 C at 2026-10-26T10:20:00Z.",
+      "record": {
+        "row_id": "TEL-1042-20",
+        "reading_id": "RD-1042-20",
+        "shipment_id": "TH-1042",
+        "sensor_id": "SNS-42A",
+        "observed_at": "2026-10-26T10:20:00Z",
+        "temperature_c": 10,
+        "reading_quality": "reported",
+        "source_updated_at": "2026-10-26T10:20:30Z"
+      }
+    },
+    {
+      "id": "TEL-1042-20R",
+      "source": "telemetry",
+      "sourceLabel": "Sensor telemetry",
+      "recordId": "RD-1042-20R",
+      "timestamp": "2026-10-26T10:20:00Z",
+      "sourceUpdatedAt": "2026-10-26T10:21:00Z",
+      "summary": "REF-42B measured 5.5 C at 2026-10-26T10:20:00Z.",
+      "record": {
+        "row_id": "TEL-1042-20R",
+        "reading_id": "RD-1042-20R",
+        "shipment_id": "TH-1042",
+        "sensor_id": "REF-42B",
+        "observed_at": "2026-10-26T10:20:00Z",
+        "temperature_c": 5.5,
+        "reading_quality": "reference",
+        "source_updated_at": "2026-10-26T10:21:00Z"
+      }
+    },
+    {
+      "id": "TEL-1042-30",
+      "source": "telemetry",
+      "sourceLabel": "Sensor telemetry",
+      "recordId": "RD-1042-30",
+      "timestamp": "2026-10-26T10:30:00Z",
+      "sourceUpdatedAt": "2026-10-26T10:30:30Z",
+      "summary": "SNS-42A measured 10.1 C at 2026-10-26T10:30:00Z.",
+      "record": {
+        "row_id": "TEL-1042-30",
+        "reading_id": "RD-1042-30",
+        "shipment_id": "TH-1042",
+        "sensor_id": "SNS-42A",
+        "observed_at": "2026-10-26T10:30:00Z",
+        "temperature_c": 10.1,
+        "reading_quality": "reported",
+        "source_updated_at": "2026-10-26T10:30:30Z"
+      }
+    },
+    {
+      "id": "TEL-1042-40",
+      "source": "telemetry",
+      "sourceLabel": "Sensor telemetry",
+      "recordId": "RD-1042-40",
+      "timestamp": "2026-10-26T10:40:00Z",
+      "sourceUpdatedAt": "2026-10-26T10:40:30Z",
+      "summary": "SNS-42A measured 9.8 C at 2026-10-26T10:40:00Z.",
+      "record": {
+        "row_id": "TEL-1042-40",
+        "reading_id": "RD-1042-40",
+        "shipment_id": "TH-1042",
+        "sensor_id": "SNS-42A",
+        "observed_at": "2026-10-26T10:40:00Z",
+        "temperature_c": 9.8,
+        "reading_quality": "reported",
+        "source_updated_at": "2026-10-26T10:40:30Z"
+      }
+    },
+    {
+      "id": "TEL-1042-40R",
+      "source": "telemetry",
+      "sourceLabel": "Sensor telemetry",
+      "recordId": "RD-1042-40R",
+      "timestamp": "2026-10-26T10:40:00Z",
+      "sourceUpdatedAt": "2026-10-26T10:41:00Z",
+      "summary": "REF-42B measured 5.3 C at 2026-10-26T10:40:00Z.",
+      "record": {
+        "row_id": "TEL-1042-40R",
+        "reading_id": "RD-1042-40R",
+        "shipment_id": "TH-1042",
+        "sensor_id": "REF-42B",
+        "observed_at": "2026-10-26T10:40:00Z",
+        "temperature_c": 5.3,
+        "reading_quality": "reference",
+        "source_updated_at": "2026-10-26T10:41:00Z"
+      }
+    },
+    {
+      "id": "TEL-1042-50",
+      "source": "telemetry",
+      "sourceLabel": "Sensor telemetry",
+      "recordId": "RD-1042-50",
+      "timestamp": "2026-10-26T10:50:00Z",
+      "sourceUpdatedAt": "2026-10-26T10:50:30Z",
+      "summary": "SNS-42A measured 9.7 C at 2026-10-26T10:50:00Z.",
+      "record": {
+        "row_id": "TEL-1042-50",
+        "reading_id": "RD-1042-50",
+        "shipment_id": "TH-1042",
+        "sensor_id": "SNS-42A",
+        "observed_at": "2026-10-26T10:50:00Z",
+        "temperature_c": 9.7,
+        "reading_quality": "reported",
+        "source_updated_at": "2026-10-26T10:50:30Z"
+      }
+    },
+    {
+      "id": "TEL-1042-60",
+      "source": "telemetry",
+      "sourceLabel": "Sensor telemetry",
+      "recordId": "RD-1042-60",
+      "timestamp": "2026-10-26T11:00:00Z",
+      "sourceUpdatedAt": "2026-10-26T11:00:30Z",
+      "summary": "SNS-42A measured 9.6 C at 2026-10-26T11:00:00Z.",
+      "record": {
+        "row_id": "TEL-1042-60",
+        "reading_id": "RD-1042-60",
+        "shipment_id": "TH-1042",
+        "sensor_id": "SNS-42A",
+        "observed_at": "2026-10-26T11:00:00Z",
+        "temperature_c": 9.6,
+        "reading_quality": "reported",
+        "source_updated_at": "2026-10-26T11:00:30Z"
+      }
+    },
+    {
+      "id": "EVT-1042-01",
+      "source": "incidents",
+      "sourceLabel": "Carrier event log",
+      "recordId": "INC-1042-01",
+      "timestamp": "2026-10-26T09:45:00Z",
+      "sourceUpdatedAt": "2026-10-26T09:46:00Z",
+      "summary": "calibration_confirmed: Bench check confirmed SNS-42A reads 4.5 C above the reference probe. Certificate CAL-42-CURRENT covers this observation window.",
+      "record": {
+        "row_id": "EVT-1042-01",
+        "incident_id": "INC-1042-01",
+        "shipment_id": "TH-1042",
+        "occurred_at": "2026-10-26T09:45:00Z",
+        "event_type": "calibration_confirmed",
+        "reported_status": "calibration_confirmed",
+        "details": "Bench check confirmed SNS-42A reads 4.5 C above the reference probe. Certificate CAL-42-CURRENT covers this observation window.",
+        "source_updated_at": "2026-10-26T09:46:00Z"
+      }
+    },
+    {
+      "id": "EVT-1042-02",
+      "source": "incidents",
+      "sourceLabel": "Carrier event log",
+      "recordId": "INC-1042-02",
+      "timestamp": "2026-10-26T10:10:00Z",
+      "sourceUpdatedAt": "2026-10-26T10:10:30Z",
+      "summary": "temperature_alert: Raw SNS-42A temperature exceeded the manifest upper limit. The alerting system does not apply calibration offsets.",
+      "record": {
+        "row_id": "EVT-1042-02",
+        "incident_id": "INC-1042-02",
+        "shipment_id": "TH-1042",
+        "occurred_at": "2026-10-26T10:10:00Z",
+        "event_type": "temperature_alert",
+        "reported_status": "temperature_alert",
+        "details": "Raw SNS-42A temperature exceeded the manifest upper limit. The alerting system does not apply calibration offsets.",
+        "source_updated_at": "2026-10-26T10:10:30Z"
+      }
+    },
+    {
+      "id": "EVT-1042-03",
+      "source": "incidents",
+      "sourceLabel": "Carrier event log",
+      "recordId": "INC-1042-03",
+      "timestamp": "2026-10-26T10:40:00Z",
+      "sourceUpdatedAt": "2026-10-26T10:41:00Z",
+      "summary": "reference_check: Independent reference probe REF-42B recorded 5.3 C. Compare with the primary sensor and applicable certificate; this is not cargo release authority.",
+      "record": {
+        "row_id": "EVT-1042-03",
+        "incident_id": "INC-1042-03",
+        "shipment_id": "TH-1042",
+        "occurred_at": "2026-10-26T10:40:00Z",
+        "event_type": "reference_check",
+        "reported_status": "reference_in_range",
+        "details": "Independent reference probe REF-42B recorded 5.3 C. Compare with the primary sensor and applicable certificate; this is not cargo release authority.",
+        "source_updated_at": "2026-10-26T10:41:00Z"
+      }
+    },
+    {
+      "id": "CALROW-42-OLD",
+      "source": "calibration",
+      "sourceLabel": "Calibration register",
+      "recordId": "CAL-42-EXPIRED",
+      "timestamp": "2026-10-25T09:30:00Z",
+      "sourceUpdatedAt": "2026-10-25T09:31:00Z",
+      "summary": "SNS-42A: confirmed offset 1 C; valid 2026-10-25T09:00:00Z to 2026-10-25T12:00:00Z.",
+      "record": {
+        "row_id": "CALROW-42-OLD",
+        "calibration_id": "CAL-42-EXPIRED",
+        "sensor_id": "SNS-42A",
+        "valid_from": "2026-10-25T09:00:00Z",
+        "valid_to": "2026-10-25T12:00:00Z",
+        "offset_c": 1,
+        "status": "confirmed",
+        "reference_method": "Synthetic previous-day bench comparison; expired before this investigation",
+        "confirmed_at": "2026-10-25T09:30:00Z",
+        "source_updated_at": "2026-10-25T09:31:00Z"
+      }
+    },
+    {
+      "id": "CALROW-42",
+      "source": "calibration",
+      "sourceLabel": "Calibration register",
+      "recordId": "CAL-42-CURRENT",
+      "timestamp": "2026-10-26T09:45:00Z",
+      "sourceUpdatedAt": "2026-10-26T09:46:00Z",
+      "summary": "SNS-42A: confirmed offset 4.5 C; valid 2026-10-26T09:00:00Z to 2026-10-26T12:00:00Z.",
+      "record": {
+        "row_id": "CALROW-42",
+        "calibration_id": "CAL-42-CURRENT",
+        "sensor_id": "SNS-42A",
+        "valid_from": "2026-10-26T09:00:00Z",
+        "valid_to": "2026-10-26T12:00:00Z",
+        "offset_c": 4.5,
+        "status": "confirmed",
+        "reference_method": "Synthetic two-point comparison against REF-BENCH-01; observed minus reference",
+        "confirmed_at": "2026-10-26T09:45:00Z",
+        "source_updated_at": "2026-10-26T09:46:00Z"
+      }
+    },
+    {
+      "id": "CALROW-42-REF",
+      "source": "calibration",
+      "sourceLabel": "Calibration register",
+      "recordId": "CAL-42-REFERENCE",
+      "timestamp": "2026-10-26T09:35:00Z",
+      "sourceUpdatedAt": "2026-10-26T09:36:00Z",
+      "summary": "REF-42B: confirmed offset 0 C; valid 2026-10-26T09:00:00Z to 2026-10-26T12:00:00Z.",
+      "record": {
+        "row_id": "CALROW-42-REF",
+        "calibration_id": "CAL-42-REFERENCE",
+        "sensor_id": "REF-42B",
+        "valid_from": "2026-10-26T09:00:00Z",
+        "valid_to": "2026-10-26T12:00:00Z",
+        "offset_c": 0,
+        "status": "confirmed",
+        "reference_method": "Synthetic independent reference-probe check",
+        "confirmed_at": "2026-10-26T09:35:00Z",
+        "source_updated_at": "2026-10-26T09:36:00Z"
+      }
+    }
+  ],
+  "findings": [
+    {
+      "id": "coverage",
+      "title": "Observation schedule covered",
+      "detail": "7 of 7 scheduled primary observations are present; largest gap 10 minutes.",
+      "severity": "info",
+      "citationIds": [
+        "MAN-1042",
+        "TEL-1042-00",
+        "TEL-1042-10",
+        "TEL-1042-20",
+        "TEL-1042-30",
+        "TEL-1042-40",
+        "TEL-1042-50",
+        "TEL-1042-60"
+      ]
+    },
+    {
+      "id": "calibration",
+      "title": "Calibration validity checked",
+      "detail": "7 primary observations have exactly one confirmed certificate covering their timestamp; 7 use a non-zero offset.",
+      "severity": "info",
+      "citationIds": [
+        "CALROW-42"
+      ]
+    },
+    {
+      "id": "bias",
+      "title": "Confirmed offset explains the raw alarm",
+      "detail": "7 raw out-of-range readings become in-range after the documented correction. 2 independently calibrated reference observations agree within 0.5 C.",
+      "severity": "info",
+      "citationIds": [
+        "TEL-1042-00",
+        "TEL-1042-10",
+        "TEL-1042-20",
+        "TEL-1042-30",
+        "TEL-1042-40",
+        "TEL-1042-50",
+        "TEL-1042-60",
+        "CALROW-42",
+        "TEL-1042-20R",
+        "CALROW-42-REF",
+        "TEL-1042-40R"
+      ]
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "conflict-MAN-1042",
+      "claim": "MAN-1042 reports temperature_alert.",
+      "counterEvidence": "An applicable confirmed offset explains the raw sensor alert.",
+      "resolution": "Preserve both records; prefer timestamped measurement and calibration evidence for this window.",
+      "citationIds": [
+        "MAN-1042",
+        "TEL-1042-00",
+        "TEL-1042-10",
+        "TEL-1042-20",
+        "TEL-1042-30",
+        "TEL-1042-40",
+        "TEL-1042-50",
+        "TEL-1042-60",
+        "CALROW-42"
+      ]
+    },
+    {
+      "id": "conflict-EVT-1042-02",
+      "claim": "EVT-1042-02 reports temperature_alert.",
+      "counterEvidence": "An applicable confirmed offset explains the raw sensor alert.",
+      "resolution": "Preserve both records; prefer timestamped measurement and calibration evidence for this window.",
+      "citationIds": [
+        "EVT-1042-02",
+        "MAN-1042",
+        "TEL-1042-00",
+        "TEL-1042-10",
+        "TEL-1042-20",
+        "TEL-1042-30",
+        "TEL-1042-40",
+        "TEL-1042-50",
+        "TEL-1042-60",
+        "CALROW-42"
+      ]
+    }
+  ],
+  "missingSources": [],
+  "actions": [
+    {
+      "id": "sensor-service",
+      "title": "Request sensor maintenance",
+      "reason": "The raw alarm is explained by a confirmed non-zero calibration offset; preserve the certificate and reference checks.",
+      "priority": "medium",
+      "citationIds": [
+        "CALROW-42",
+        "TEL-1042-20R",
+        "TEL-1042-40R"
+      ]
+    },
+    {
+      "id": "reconcile-status",
+      "title": "Reconcile conflicting status records",
+      "reason": "Attach the evidence without deleting the original claim or silently overwriting its provenance.",
+      "priority": "medium",
+      "citationIds": [
+        "MAN-1042",
+        "TEL-1042-00",
+        "TEL-1042-10",
+        "TEL-1042-20",
+        "TEL-1042-30",
+        "TEL-1042-40",
+        "TEL-1042-50",
+        "TEL-1042-60",
+        "CALROW-42",
+        "EVT-1042-02"
+      ]
+    }
+  ],
+  "rejectedRows": [],
+  "calibrationMatches": [
+    {
+      "readingId": "RD-1042-00",
+      "calibrationId": "CAL-42-CURRENT",
+      "calibrationRowId": "CALROW-42",
+      "offsetC": 4.5
+    },
+    {
+      "readingId": "RD-1042-10",
+      "calibrationId": "CAL-42-CURRENT",
+      "calibrationRowId": "CALROW-42",
+      "offsetC": 4.5
+    },
+    {
+      "readingId": "RD-1042-20",
+      "calibrationId": "CAL-42-CURRENT",
+      "calibrationRowId": "CALROW-42",
+      "offsetC": 4.5
+    },
+    {
+      "readingId": "RD-1042-30",
+      "calibrationId": "CAL-42-CURRENT",
+      "calibrationRowId": "CALROW-42",
+      "offsetC": 4.5
+    },
+    {
+      "readingId": "RD-1042-40",
+      "calibrationId": "CAL-42-CURRENT",
+      "calibrationRowId": "CALROW-42",
+      "offsetC": 4.5
+    },
+    {
+      "readingId": "RD-1042-50",
+      "calibrationId": "CAL-42-CURRENT",
+      "calibrationRowId": "CALROW-42",
+      "offsetC": 4.5
+    },
+    {
+      "readingId": "RD-1042-60",
+      "calibrationId": "CAL-42-CURRENT",
+      "calibrationRowId": "CALROW-42",
+      "offsetC": 4.5
+    }
+  ],
+  "unresolvedCalibration": [],
+  "excludedRowIds": [],
+  "trace": [
+    {
+      "agent": "Planner",
+      "action": "scope",
+      "status": "complete",
+      "detail": "Bounded investigation of TH-1042 from 2026-10-26T10:00:00Z to 2026-10-26T11:00:00Z.",
+      "citationIds": [
+        "MAN-1042"
+      ]
+    },
+    {
+      "agent": "Data steward",
+      "action": "validate",
+      "status": "complete",
+      "detail": "9 observations inspected; 0 rejected before analysis.",
+      "citationIds": [
+        "TEL-1042-00",
+        "TEL-1042-10",
+        "TEL-1042-20",
+        "TEL-1042-20R",
+        "TEL-1042-30",
+        "TEL-1042-40",
+        "TEL-1042-40R",
+        "TEL-1042-50",
+        "TEL-1042-60"
+      ]
+    },
+    {
+      "agent": "Analyst",
+      "action": "reconcile",
+      "status": "complete",
+      "detail": "Applied 7 confirmed calibration matches and checked 7 scheduled positions.",
+      "citationIds": [
+        "TEL-1042-00",
+        "TEL-1042-10",
+        "TEL-1042-20",
+        "TEL-1042-30",
+        "TEL-1042-40",
+        "TEL-1042-50",
+        "TEL-1042-60",
+        "CALROW-42"
+      ]
+    },
+    {
+      "agent": "Critic",
+      "action": "verify",
+      "status": "complete",
+      "detail": "Verified every citation, rejected unsupported clear-status claims, and checked coverage/calibration conditions. 2 source conflicts retained.",
+      "citationIds": [
+        "MAN-1042",
+        "TEL-1042-00",
+        "TEL-1042-10",
+        "TEL-1042-20",
+        "TEL-1042-30",
+        "TEL-1042-40",
+        "TEL-1042-50",
+        "TEL-1042-60",
+        "CALROW-42",
+        "EVT-1042-02"
+      ]
+    },
+    {
+      "agent": "Dossier writer",
+      "action": "report",
+      "status": "complete",
+      "detail": "Sensor bias explains the alarm. These are deterministic computation stages; live model use is separately disclosed.",
+      "citationIds": [
+        "MAN-1042",
+        "TEL-1042-00",
+        "TEL-1042-10",
+        "TEL-1042-20",
+        "TEL-1042-30",
+        "TEL-1042-40",
+        "TEL-1042-50",
+        "TEL-1042-60",
+        "CALROW-42",
+        "TEL-1042-20R",
+        "CALROW-42-REF",
+        "TEL-1042-40R"
+      ]
+    }
+  ],
+  "limitations": [
+    "Synthetic demonstration records; no measured commercial impact or production deployment is implied.",
+    "Operations support only: no product release, disposal, food safety, or pharmaceutical certification.",
+    "Discrete observations cannot prove continuous temperature or exact excursion duration.",
+    "Incident text is untrusted evidence; reported statuses do not override missing measurements."
+  ],
+  "analysisMode": "deterministic",
+  "runId": "traceharbor-13e63993-6bac-44c9-a3db-6b63456badff",
+  "execution": {
+    "runId": "traceharbor-13e63993-6bac-44c9-a3db-6b63456badff",
+    "mode": "live",
+    "liveExecuted": true,
+    "shipmentId": "TH-1042",
+    "createdAt": "2026-10-27T20:59:50.926Z",
+    "syntheticData": true,
+    "sponsorRuntime": {
+      "zetaris": true,
+      "nightshift": true,
+      "meterlessWorldModel": true,
+      "nvidiaProviderVerified": false
+    },
+    "dataSha256": "a9927976f1294302cf6f892dd6787204fc176aa8718dda7c69fb62181666b874",
+    "budget": {
+      "modelCalls": 3,
+      "maxModelCalls": 3,
+      "sqlQueries": 4,
+      "maxSqlQueries": 4,
+      "maxSqlRequestMs": 120000,
+      "maxModelRequestMs": 180000,
+      "maxRunMs": 300000
+    },
+    "wiredHelpers": [
+      "official WorldModel.ingest",
+      "official graph.entity context retrieval",
+      "source-priority assertFact",
+      "deterministic investigator",
+      "citation critic",
+      "counterfactual rerun"
+    ],
+    "dormantHelpers": [
+      "H-MEM",
+      "Markovian",
+      "vision",
+      "automatic cargo disposition"
+    ],
+    "contextTrace": {
+      "strategy": "canonical-evidence-graph",
+      "shipmentId": "TH-1042",
+      "selectedEntityIds": [
+        "evidence:ingest:manifest:MAN-1041",
+        "evidence:ingest:manifest:MAN-1042",
+        "evidence:ingest:manifest:MAN-1043",
+        "evidence:ingest:manifest:MAN-1044",
+        "evidence:ingest:telemetry:TEL-1041-00",
+        "evidence:ingest:telemetry:TEL-1041-10",
+        "evidence:ingest:telemetry:TEL-1041-20",
+        "evidence:ingest:telemetry:TEL-1041-X",
+        "evidence:ingest:telemetry:TEL-1041-30",
+        "evidence:ingest:telemetry:TEL-1041-40",
+        "evidence:ingest:telemetry:TEL-1041-50",
+        "evidence:ingest:telemetry:TEL-1041-60",
+        "evidence:ingest:telemetry:TEL-1042-00",
+        "evidence:ingest:telemetry:TEL-1042-10",
+        "evidence:ingest:telemetry:TEL-1042-20",
+        "evidence:ingest:telemetry:TEL-1042-20R",
+        "evidence:ingest:telemetry:TEL-1042-30",
+        "evidence:ingest:telemetry:TEL-1042-40",
+        "evidence:ingest:telemetry:TEL-1042-40R",
+        "evidence:ingest:telemetry:TEL-1042-50",
+        "evidence:ingest:telemetry:TEL-1042-60",
+        "evidence:ingest:telemetry:TEL-1043-00",
+        "evidence:ingest:telemetry:TEL-1043-50",
+        "evidence:ingest:telemetry:TEL-1044-00",
+        "evidence:ingest:telemetry:TEL-1044-10",
+        "evidence:ingest:telemetry:TEL-1044-20",
+        "evidence:ingest:telemetry:TEL-1044-30",
+        "evidence:ingest:telemetry:TEL-1044-40",
+        "evidence:ingest:telemetry:TEL-1044-50",
+        "evidence:ingest:telemetry:TEL-1044-60",
+        "evidence:ingest:incidents:EVT-1041-01",
+        "evidence:ingest:incidents:EVT-1041-02",
+        "evidence:ingest:incidents:EVT-1041-03",
+        "evidence:ingest:incidents:EVT-1042-01",
+        "evidence:ingest:incidents:EVT-1042-02",
+        "evidence:ingest:incidents:EVT-1042-03",
+        "evidence:ingest:incidents:EVT-1043-01",
+        "evidence:ingest:incidents:EVT-1043-02",
+        "evidence:ingest:incidents:EVT-1044-01",
+        "evidence:ingest:incidents:EVT-1044-02",
+        "evidence:ingest:calibration:CALROW-41",
+        "evidence:ingest:calibration:CALROW-42-OLD",
+        "evidence:ingest:calibration:CALROW-42",
+        "evidence:ingest:calibration:CALROW-42-REF",
+        "evidence:ingest:calibration:CALROW-43",
+        "evidence:ingest:calibration:CALROW-44"
+      ],
+      "source": "Meterless World Model graph view",
+      "storedAndConsumed": true,
+      "selectedCount": 46
+    },
+    "modelReceipts": [
+      {
+        "phase": "planner",
+        "provider": "Nightshift Runtime",
+        "requestedModel": "local-runtime/llama-3.2-1b-instruct",
+        "returnedModel": "local-runtime/llama-3.2-1b-instruct",
+        "usage": {
+          "prompt_tokens": 256,
+          "completion_tokens": 28,
+          "total_tokens": 284
+        },
+        "durationMs": 16918,
+        "completionId": "chatcmpl-bff09b98-e955-4217-a0eb-875c4513d4c6",
+        "responseFormat": "json_schema",
+        "schemaName": "traceharbor_planner",
+        "finishReason": "stop",
+        "nvidiaProviderVerified": false
+      },
+      {
+        "phase": "critic",
+        "provider": "Nightshift Runtime",
+        "requestedModel": "local-runtime/llama-3.2-1b-instruct",
+        "returnedModel": "local-runtime/llama-3.2-1b-instruct",
+        "usage": {
+          "prompt_tokens": 899,
+          "completion_tokens": 52,
+          "total_tokens": 951
+        },
+        "durationMs": 68602,
+        "completionId": "chatcmpl-6cd43ecc-a448-4c6c-a4d9-9b36baac4ce4",
+        "responseFormat": "json_schema",
+        "schemaName": "traceharbor_critic",
+        "finishReason": "stop",
+        "nvidiaProviderVerified": false
+      },
+      {
+        "phase": "synthesis",
+        "provider": "Nightshift Runtime",
+        "requestedModel": "local-runtime/llama-3.2-1b-instruct",
+        "returnedModel": "local-runtime/llama-3.2-1b-instruct",
+        "usage": {
+          "prompt_tokens": 765,
+          "completion_tokens": 53,
+          "total_tokens": 818
+        },
+        "durationMs": 55606,
+        "completionId": "chatcmpl-61874c59-93c2-416f-b4b9-1f7620f8723a",
+        "responseFormat": "json_schema",
+        "schemaName": "traceharbor_synthesis",
+        "finishReason": "stop",
+        "nvidiaProviderVerified": false
+      }
+    ],
+    "retrievalPlan": {
+      "initialSources": [
+        "manifest",
+        "telemetry"
+      ],
+      "criticSources": [
+        "incidents",
+        "calibration"
+      ],
+      "provisionalOutcome": "insufficient_evidence",
+      "finalOutcome": "sensor_bias",
+      "remainingMissingSources": []
+    }
+  },
+  "counterfactual": {
+    "challenge": {
+      "retrieve_sources": [
+        "incidents",
+        "calibration"
+      ],
+      "recheck": "calibration",
+      "citation_ids": [
+        "MAN-1042",
+        "TEL-1042-00",
+        "TEL-1042-10"
+      ],
+      "challenge": "Would the conclusion remain supported if calibration certificates were withheld?"
+    },
+    "intervention": {
+      "ignoreCalibration": true
+    },
+    "provisionalOutcome": "insufficient_evidence",
+    "factualOutcome": "sensor_bias",
+    "rerunOutcome": "insufficient_evidence",
+    "rerunCoverage": {
+      "expectedCount": 7,
+      "observedCount": 7,
+      "percent": 100,
+      "maxGapMinutes": 10,
+      "missingTimestamps": [],
+      "complete": true
+    },
+    "changed": true,
+    "interpretation": "Evidence-withholding sensitivity check, not a prediction of a different physical shipment."
+  },
+  "modelSynthesis": {
+    "finding_ids": [
+      "coverage",
+      "bias"
+    ],
+    "action_ids": [
+      "sensor-service",
+      "reconcile-status"
+    ],
+    "citation_ids": [
+      "MAN-1042",
+      "TEL-1042-00",
+      "TEL-1042-10"
+    ]
+  },
+  "canonicalVerdict": {
+    "entityId": "shipment:traceharbor:TH-1042",
+    "canonical": {
+      "type": "shipment",
+      "id": "shipment:traceharbor:TH-1042",
+      "attrs": {
+        "route": "Bristol to Oxford",
+        "primarySensorId": "SNS-42A",
+        "investigation_status": "sensor_bias"
+      },
+      "schemaVersion": 1,
+      "source": {
+        "kind": "manifest",
+        "by": "manifest-system",
+        "at": "2026-10-26T10:11:00Z",
+        "runId": "traceharbor-13e63993-6bac-44c9-a3db-6b63456badff"
+      },
+      "createdAt": "2026-10-26T10:11:00Z",
+      "updatedAt": "2026-10-27T20:59:50.906Z",
+      "name": "TH-1042",
+      "aliases": [
+        "TH-1042"
+      ],
+      "state": "active"
+    },
+    "facts": [
+      {
+        "id": "fact_9ac4f3a7ead3fbc6",
+        "about": "shipment:traceharbor:TH-1042",
+        "predicate": "investigation_status",
+        "value": "temperature_alert",
+        "confidence": 0.4,
+        "source": {
+          "kind": "manifest",
+          "by": "manifest-system",
+          "at": "2026-10-26T10:11:00Z",
+          "runId": "traceharbor-c91461bd-d4ee-4d0a-b17f-346868ee5d6e"
+        },
+        "assertedAt": "2026-10-26T10:11:00Z",
+        "supersededBy": "fact_2916168e5c019bc9"
+      },
+      {
+        "id": "fact_030f9453c7d089fe",
+        "about": "shipment:traceharbor:TH-1042",
+        "predicate": "investigation_status",
+        "value": "sensor_bias",
+        "confidence": 0.94,
+        "source": {
+          "kind": "deterministic-analysis",
+          "by": "traceharbor-critic",
+          "at": "2026-10-27T17:45:51.620Z",
+          "runId": "traceharbor-c91461bd-d4ee-4d0a-b17f-346868ee5d6e"
+        },
+        "assertedAt": "2026-10-27T17:45:51.620Z",
+        "supersededBy": "fact_2916168e5c019bc9"
+      },
+      {
+        "id": "fact_285c6d02a37887b4",
+        "about": "shipment:traceharbor:TH-1042",
+        "predicate": "investigation_status",
+        "value": "sensor_bias",
+        "confidence": 0.94,
+        "source": {
+          "kind": "deterministic-analysis",
+          "by": "traceharbor-critic",
+          "at": "2026-10-27T19:51:30.729Z",
+          "runId": "traceharbor-f819006a-6108-4019-a59f-3e90326edbeb"
+        },
+        "assertedAt": "2026-10-27T19:51:30.729Z",
+        "supersededBy": "fact_2916168e5c019bc9"
+      },
+      {
+        "id": "fact_2916168e5c019bc9",
+        "about": "shipment:traceharbor:TH-1042",
+        "predicate": "investigation_status",
+        "value": "sensor_bias",
+        "confidence": 0.94,
+        "source": {
+          "kind": "deterministic-analysis",
+          "by": "traceharbor-critic",
+          "at": "2026-10-27T20:59:50.906Z",
+          "runId": "traceharbor-13e63993-6bac-44c9-a3db-6b63456badff"
+        },
+        "assertedAt": "2026-10-27T20:59:50.906Z"
+      }
+    ]
+  }
+}

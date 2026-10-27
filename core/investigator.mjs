@@ -1,5 +1,5 @@
 /** Browser-safe, input-dependent evidence analysis. No network or model calls. */
-export const ANALYSIS_VERSION = '1.0.0';
+export const ANALYSIS_VERSION = '1.0.2';
 export const FEED_NAMES = ['manifest', 'telemetry', 'incidents', 'calibration'];
 const labels = {
   manifest: 'Shipment manifest', telemetry: 'Sensor telemetry',
@@ -12,6 +12,22 @@ const ids = rows => [...new Set(rows.map(row => row.row_id).filter(Boolean))];
 const rowsOf = (feeds, name) => Array.isArray(feeds?.[name]?.records) ? feeds[name].records : [];
 const inside = (value, start, end) => value >= start && value <= end;
 const unique = values => [...new Set(values)];
+
+// Treat finite input numbers as the decimal measurements their canonical
+// strings represent. Align integer coefficients before subtracting, then round
+// only once to the nearest representable Number. This avoids binary subtraction
+// noise at exact boundaries without imposing a fixed number of decimal places.
+const decimalDifference = (left, right) => {
+  const parts = value => {
+    const [coefficient, exponent = '0'] = String(value).split('e');
+    const fractionDigits = coefficient.includes('.') ? coefficient.length - coefficient.indexOf('.') - 1 : 0;
+    return { coefficient: BigInt(coefficient.replace('.', '')), exponent: Number(exponent) - fractionDigits };
+  };
+  const a = parts(left), b = parts(right);
+  const exponent = Math.min(a.exponent, b.exponent);
+  const difference = a.coefficient * 10n ** BigInt(a.exponent - exponent) - b.coefficient * 10n ** BigInt(b.exponent - exponent);
+  return Number(`${difference}e${exponent}`);
+};
 
 export function listShipments(feeds) {
   return rowsOf(feeds, 'manifest').map(row => ({ ...row }));
@@ -55,7 +71,9 @@ export function investigateShipment(feeds, shipmentId, options = {}) {
   const start = time(shipment.investigation_window_start);
   const end = time(shipment.investigation_window_end);
   const intervalMs = shipment.expected_interval_minutes * 60_000;
-  if (![start, end, intervalMs].every(Number.isFinite) || end < start || intervalMs <= 0 || (end - start) / intervalMs > 5000) throw new Error('Invalid or unbounded investigation window.');
+  // Source timestamps have millisecond resolution. A smaller step can fail to
+  // advance an epoch timestamp, so reject it before constructing the schedule.
+  if (![start, end, intervalMs].every(Number.isFinite) || end < start || intervalMs < 1 || (end - start) / intervalMs > 5000) throw new Error('Invalid or unbounded investigation window.');
   if (!finite(shipment.min_temp_c) || !finite(shipment.max_temp_c) || shipment.min_temp_c >= shipment.max_temp_c) throw new Error('Invalid manifest temperature limits.');
 
   const telemetry = rowsOf(feeds, 'telemetry').filter(row => row.shipment_id === shipmentId && !excluded.has(row.row_id));
@@ -71,18 +89,27 @@ export function investigateShipment(feeds, shipmentId, options = {}) {
   }
 
   const rejectedRows = [];
-  const seenReadingIds = new Set();
+  const readingCounts = new Map();
+  for (const row of telemetry) readingCounts.set(row.reading_id, (readingCounts.get(row.reading_id) || 0) + 1);
+  const ambiguousReadingRows = telemetry.filter(row => readingCounts.get(row.reading_id) > 1 && inside(time(row.observed_at), start, end));
   const valid = [];
   for (const row of telemetry) {
     let reason = telemetryRejection(row);
-    if (seenReadingIds.has(row.reading_id)) reason = 'Duplicate reading_id';
-    seenReadingIds.add(row.reading_id);
+    // Do not choose an authoritative reading by input order. Every row sharing
+    // the identity is quarantined, including the first apparently valid row.
+    if (readingCounts.get(row.reading_id) > 1) reason = 'Duplicate reading_id; all conflicting observations quarantined';
     if (reason) rejectedRows.push({ row: { ...row }, reason });
     else if (inside(time(row.observed_at), start, end)) valid.push(row);
   }
   valid.sort((a, b) => time(a.observed_at) - time(b.observed_at));
   const primary = valid.filter(row => row.sensor_id === shipment.primary_sensor_id);
-  const duplicateTimes = primary.filter((row, index) => primary.findIndex(other => other.observed_at === row.observed_at) !== index);
+  const seenTimes = new Set();
+  const duplicateTimes = primary.filter(row => {
+    const instant = time(row.observed_at);
+    if (seenTimes.has(instant)) return true;
+    seenTimes.add(instant);
+    return false;
+  });
   const calibrationMatches = [];
   const unresolvedCalibration = [];
   const points = primary.map(row => {
@@ -93,18 +120,20 @@ export function investigateShipment(feeds, shipmentId, options = {}) {
     const calibration = matches.length === 1 ? matches[0] : null;
     if (!calibration) unresolvedCalibration.push({ readingId: row.reading_id, rowId: row.row_id, reason: matches.length > 1 ? 'Overlapping confirmed calibration certificates' : 'No applicable confirmed calibration certificate' });
     else calibrationMatches.push({ readingId: row.reading_id, calibrationId: calibration.calibration_id, calibrationRowId: calibration.row_id, offsetC: calibration.offset_c });
-    const references = valid.filter(other => other.sensor_id !== shipment.primary_sensor_id && other.reading_quality === 'reference' && other.observed_at === row.observed_at);
+    const references = valid.filter(other => other.sensor_id !== shipment.primary_sensor_id && other.reading_quality === 'reference' && time(other.observed_at) === time(row.observed_at));
     // A reference point is corroboration only when its own certificate is unambiguous.
     const referenceEvaluations = references.map(reference => {
       const certificates = calibrations.filter(cal => cal.sensor_id === reference.sensor_id && cal.status === 'confirmed' && Number.isFinite(time(cal.confirmed_at)) && finite(cal.offset_c) && time(cal.valid_from) <= time(reference.observed_at) && time(reference.observed_at) < time(cal.valid_to));
-      return certificates.length === 1 ? { value: reference.temperature_c - certificates[0].offset_c, calibrationRowId: certificates[0].row_id, rowId: reference.row_id } : null;
+      return certificates.length === 1 ? { value: decimalDifference(reference.temperature_c, certificates[0].offset_c), calibrationRowId: certificates[0].row_id, rowId: reference.row_id } : null;
     }).filter(Boolean);
     const referenceValues = referenceEvaluations.map(item => item.value);
     return {
       timestamp: row.observed_at, rawC: row.temperature_c,
-      correctedC: calibration ? round(row.temperature_c - calibration.offset_c, 3) : null,
+      // Retain precision for thresholds and reference checks; round display
+      // summaries only, so an actual boundary crossing cannot disappear.
+      correctedC: calibration ? decimalDifference(row.temperature_c, calibration.offset_c) : null,
       referenceC: referenceValues.length ? round(referenceValues.reduce((sum, value) => sum + value, 0) / referenceValues.length, 3) : null,
-      referenceValuesC: referenceValues.map(value => round(value, 3)),
+      referenceValuesC: referenceValues,
       valid: true, readingId: row.reading_id, rowId: row.row_id,
       calibrationId: calibration?.calibration_id || null,
       calibrationRowId: calibration?.row_id || null,
@@ -113,8 +142,7 @@ export function investigateShipment(feeds, shipmentId, options = {}) {
     };
   });
 
-  const schedule = [];
-  for (let at = start; at <= end; at += intervalMs) schedule.push(at);
+  const schedule = Array.from({ length: Math.floor((end - start) / intervalMs) + 1 }, (_, index) => start + index * intervalMs);
   const observedTimes = unique(primary.map(row => time(row.observed_at))).sort((a, b) => a - b);
   const tolerance = Math.min(intervalMs * 0.2, 120_000);
   const missingTimestamps = schedule.filter(expected => !observedTimes.some(actual => Math.abs(actual - expected) <= tolerance)).map(at => new Date(at).toISOString());
@@ -130,9 +158,9 @@ export function investigateShipment(feeds, shipmentId, options = {}) {
   const outOfRange = temperature => finite(temperature) && (temperature < shipment.min_temp_c || temperature > shipment.max_temp_c);
   const rawExcursions = points.filter(point => outOfRange(point.rawC));
   const excursions = points.filter(point => outOfRange(point.correctedC));
-  const referenceDisagreements = points.filter(point => finite(point.correctedC) && point.referenceValuesC.some(value => Math.abs(value - point.correctedC) > 0.5));
-  const ambiguous = unresolvedCalibration.length > 0 || duplicateTimes.length > 0 || referenceDisagreements.length > 0 || missingSources.length > 0;
-  const corroboration = points.filter(point => point.referenceValuesC.length && finite(point.correctedC) && point.referenceValuesC.every(value => Math.abs(value - point.correctedC) <= 0.5));
+  const referenceDisagreements = points.filter(point => finite(point.correctedC) && point.referenceValuesC.some(value => Math.abs(decimalDifference(value, point.correctedC)) > 0.5));
+  const ambiguous = unresolvedCalibration.length > 0 || duplicateTimes.length > 0 || ambiguousReadingRows.length > 0 || referenceDisagreements.length > 0 || missingSources.length > 0;
+  const corroboration = points.filter(point => point.referenceValuesC.length && finite(point.correctedC) && point.referenceValuesC.every(value => Math.abs(decimalDifference(value, point.correctedC)) <= 0.5));
   const correctionApplied = calibrationMatches.filter(match => match.offsetC !== 0);
   let outcome;
   if (excursions.length) outcome = 'excursion';
@@ -150,6 +178,7 @@ export function investigateShipment(feeds, shipmentId, options = {}) {
   findings.push({ id: 'coverage', title: coverage.complete ? 'Observation schedule covered' : 'Observation gaps remain', detail: `${matchedCount} of ${coverage.expectedCount} scheduled primary observations are present; largest gap ${coverage.maxGapMinutes} minutes.`, severity: coverage.complete ? 'info' : 'warning', citationIds: [shipment.row_id, ...primaryIds] });
   if (missingSources.length) findings.push({ id: 'source-gap', title: 'Required source evidence has not been retrieved', detail: `Unfetched sources: ${missingSources.join(', ')}. Missing retrieval is not evidence that no record exists.`, severity: 'warning', citationIds: [shipment.row_id] });
   if (rejectedRows.length) findings.push({ id: 'quality', title: 'Invalid sensor data excluded', detail: `${rejectedRows.length} observation(s) failed integrity checks before peaks, coverage, or verdict were calculated.`, severity: 'warning', citationIds: ids(rejectedRows.map(item => item.row)) });
+  if (ambiguousReadingRows.length) findings.push({ id: 'reading-identity', title: 'Reading identity remains ambiguous', detail: 'Multiple source rows share a reading identity inside the investigation window. All versions are excluded; request authoritative records before clearing the status.', severity: 'warning', citationIds: ids(ambiguousReadingRows) });
   if (applicableCalIds.length) findings.push({ id: 'calibration', title: 'Calibration validity checked', detail: `${calibrationMatches.length} primary observations have exactly one confirmed certificate covering their timestamp; ${correctionApplied.length} use a non-zero offset.`, severity: 'info', citationIds: applicableCalIds });
   if (unresolvedCalibration.length) findings.push({ id: 'calibration-gap', title: 'Calibration cannot be assumed', detail: `${unresolvedCalibration.length} observations lack one unambiguous confirmed certificate. Pending and expired records do not authorize correction.`, severity: 'warning', citationIds: unique([...unresolvedCalibration.map(item => item.rowId), ...ids(calibrations)]) });
   if (duplicateTimes.length) findings.push({ id: 'duplicate-times', title: 'Conflicting sampling identity', detail: 'More than one primary observation occupies the same timestamp; request authoritative records.', severity: 'warning', citationIds: ids(duplicateTimes) });

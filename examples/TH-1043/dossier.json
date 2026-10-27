@@ -1,5 +1,5 @@
 {
-  "analysisVersion": "1.0.0",
+  "analysisVersion": "1.0.2",
   "mode": "sample",
   "shipment": {
     "row_id": "MAN-1043",
@@ -365,13 +365,13 @@
     "Incident text is untrusted evidence; reported statuses do not override missing measurements."
   ],
   "analysisMode": "deterministic",
-  "runId": "traceharbor-bad41a7b-68af-40ee-b09e-e58be9611a4e",
+  "runId": "traceharbor-6e924258-50c7-410e-b0fd-3b6e97b6d310",
   "execution": {
-    "runId": "traceharbor-bad41a7b-68af-40ee-b09e-e58be9611a4e",
+    "runId": "traceharbor-6e924258-50c7-410e-b0fd-3b6e97b6d310",
     "mode": "sample",
     "liveExecuted": false,
     "shipmentId": "TH-1043",
-    "createdAt": "2026-10-27T18:07:52.125Z",
+    "createdAt": "2026-10-27T21:14:41.859Z",
     "syntheticData": true,
     "sponsorRuntime": {
       "zetaris": false,
@@ -385,6 +385,8 @@
       "maxModelCalls": 3,
       "sqlQueries": 0,
       "maxSqlQueries": 4,
+      "maxSqlRequestMs": 120000,
+      "maxModelRequestMs": 180000,
       "maxRunMs": 300000
     },
     "wiredHelpers": [
@@ -472,7 +474,7 @@
   },
   "counterfactual": {
     "challenge": {
-      "challenge": "Would the conclusion remain supported if the latest primary observation were missing?",
+      "challenge": "Would the conclusion remain supported if the latest valid primary observation were missing?",
       "recheck": "coverage",
       "citation_ids": [
         "MAN-1043"
@@ -520,10 +522,10 @@
         "kind": "manifest",
         "by": "manifest-system",
         "at": "2026-10-26T10:56:00Z",
-        "runId": "traceharbor-bad41a7b-68af-40ee-b09e-e58be9611a4e"
+        "runId": "traceharbor-6e924258-50c7-410e-b0fd-3b6e97b6d310"
       },
       "createdAt": "2026-10-26T10:56:00Z",
-      "updatedAt": "2026-10-27T18:07:52.116Z",
+      "updatedAt": "2026-10-27T21:14:41.830Z",
       "name": "TH-1043",
       "aliases": [
         "TH-1043"
@@ -541,13 +543,13 @@
           "kind": "manifest",
           "by": "manifest-system",
           "at": "2026-10-26T10:56:00Z",
-          "runId": "traceharbor-bad41a7b-68af-40ee-b09e-e58be9611a4e"
+          "runId": "traceharbor-6e924258-50c7-410e-b0fd-3b6e97b6d310"
         },
         "assertedAt": "2026-10-26T10:56:00Z",
-        "supersededBy": "fact_85a9c60328ab9ee9"
+        "supersededBy": "fact_f9660197329f1cb5"
       },
       {
-        "id": "fact_85a9c60328ab9ee9",
+        "id": "fact_f9660197329f1cb5",
         "about": "shipment:traceharbor:TH-1043",
         "predicate": "investigation_status",
         "value": "insufficient_evidence",
@@ -555,10 +557,10 @@
         "source": {
           "kind": "deterministic-analysis",
           "by": "traceharbor-critic",
-          "at": "2026-10-27T18:07:52.116Z",
-          "runId": "traceharbor-bad41a7b-68af-40ee-b09e-e58be9611a4e"
+          "at": "2026-10-27T21:14:41.830Z",
+          "runId": "traceharbor-6e924258-50c7-410e-b0fd-3b6e97b6d310"
         },
-        "assertedAt": "2026-10-27T18:07:52.116Z"
+        "assertedAt": "2026-10-27T21:14:41.830Z"
       }
     ]
   }

@@ -1,0 +1,192 @@
+{
+  "schemaVersion": "1.0",
+  "verifiedAt": "2026-10-27T21:25:42.624Z",
+  "analysisVersion": "1.0.2",
+  "localTests": {
+    "passed": 33,
+    "total": 33,
+    "transportTestsUseMocks": true,
+    "runtimeMajorVersion": 24,
+    "scope": "Full suite after final browser import guards. The release coordinator confirmed this run at approximately 21:33 UTC on 27 October 2026; live attempt receipts retain their original timestamps and asset names."
+  },
+  "mode": "actual-local-services-with-synthetic-data",
+  "currentRevision": {
+    "attempts": 2,
+    "completed": 2,
+    "cases": [
+      "TH-1042",
+      "TH-1043"
+    ],
+    "runs": [
+      {
+        "archive": "examples/live-agent/attempt-06-final-decimal",
+        "runId": "traceharbor-a0fd421e-42e5-4b78-b45f-19ae2e9530f5",
+        "analysisVersion": "1.0.2",
+        "shipmentId": "TH-1042",
+        "outcome": "sensor_bias",
+        "uiElapsedMs": 153028,
+        "traceElapsedMs": 152799,
+        "modelCalls": 3,
+        "sqlQueries": 4,
+        "sourceRowsConsumed": 46,
+        "exportMatchesServer": true,
+        "citationsResolve": true,
+        "retrievalPlan": {
+          "initialSources": [
+            "manifest",
+            "telemetry"
+          ],
+          "criticSources": [
+            "incidents",
+            "calibration"
+          ],
+          "provisionalOutcome": "insufficient_evidence",
+          "finalOutcome": "sensor_bias",
+          "remainingMissingSources": []
+        },
+        "counterfactual": {
+          "recheck": "calibration",
+          "factualOutcome": "sensor_bias",
+          "rerunOutcome": "insufficient_evidence",
+          "changed": true
+        },
+        "validation": "examples/live-agent/attempt-06-final-decimal/validation.json",
+        "returnedModels": [
+          "local-runtime/llama-3.2-1b-instruct"
+        ],
+        "browserBuild": {
+          "script": "index-BItQxwUl.js",
+          "stylesheet": "index-CG4W20OW.css",
+          "evidenceScope": "Asset filenames observed by the browser operator during this run. Commit identity and loaded-bundle hash verification are recorded separately."
+        }
+      },
+      {
+        "archive": "examples/live-agent/attempt-07-final-abstention",
+        "runId": "traceharbor-563db021-fdad-41a7-a463-63b8f2d4ccc8",
+        "analysisVersion": "1.0.2",
+        "shipmentId": "TH-1043",
+        "outcome": "insufficient_evidence",
+        "uiElapsedMs": 153347,
+        "traceElapsedMs": 153091,
+        "modelCalls": 3,
+        "sqlQueries": 4,
+        "sourceRowsConsumed": 46,
+        "exportMatchesServer": true,
+        "citationsResolve": true,
+        "retrievalPlan": {
+          "initialSources": [
+            "manifest",
+            "telemetry"
+          ],
+          "criticSources": [
+            "incidents",
+            "calibration"
+          ],
+          "provisionalOutcome": "insufficient_evidence",
+          "finalOutcome": "insufficient_evidence",
+          "remainingMissingSources": []
+        },
+        "counterfactual": {
+          "recheck": "calibration",
+          "factualOutcome": "insufficient_evidence",
+          "rerunOutcome": "insufficient_evidence",
+          "changed": false
+        },
+        "validation": "examples/live-agent/attempt-07-final-abstention/validation.json",
+        "returnedModels": [
+          "local-runtime/llama-3.2-1b-instruct"
+        ],
+        "browserBuild": {
+          "script": "index-BItQxwUl.js",
+          "stylesheet": "index-CG4W20OW.css",
+          "evidenceScope": "Asset filenames observed by the browser operator during this run. Commit identity and loaded-bundle hash verification are recorded separately."
+        }
+      }
+    ]
+  },
+  "allRecordedFullRuns": {
+    "attempts": 7,
+    "completed": 6,
+    "failed": 1,
+    "failureArchive": "examples/live-agent/attempt-01",
+    "runs": [
+      {
+        "archive": "examples/live-agent/attempt-01",
+        "runId": "traceharbor-0c826523-7dde-409d-8ead-e3d3297dfa27",
+        "analysisVersion": null,
+        "shipmentId": "TH-1042",
+        "status": "failed"
+      },
+      {
+        "archive": "examples/live-agent/attempt-02",
+        "runId": "traceharbor-e0867ddf-6ce5-4d36-b196-9377ec7c052d",
+        "analysisVersion": "1.0.0",
+        "shipmentId": "TH-1042",
+        "status": "completed"
+      },
+      {
+        "archive": "examples/live-agent/attempt-03-browser",
+        "runId": "traceharbor-f819006a-6108-4019-a59f-3e90326edbeb",
+        "analysisVersion": "1.0.0",
+        "shipmentId": "TH-1042",
+        "status": "completed"
+      },
+      {
+        "archive": "examples/live-agent/attempt-04-redesign",
+        "runId": "traceharbor-13e63993-6bac-44c9-a3db-6b63456badff",
+        "analysisVersion": "1.0.1",
+        "shipmentId": "TH-1042",
+        "status": "completed"
+      },
+      {
+        "archive": "examples/live-agent/attempt-05-abstention",
+        "runId": "traceharbor-d6e7942b-7cef-4337-8478-85a75a468f0d",
+        "analysisVersion": "1.0.1",
+        "shipmentId": "TH-1043",
+        "status": "completed"
+      },
+      {
+        "archive": "examples/live-agent/attempt-06-final-decimal",
+        "runId": "traceharbor-a0fd421e-42e5-4b78-b45f-19ae2e9530f5",
+        "analysisVersion": "1.0.2",
+        "shipmentId": "TH-1042",
+        "status": "completed"
+      },
+      {
+        "archive": "examples/live-agent/attempt-07-final-abstention",
+        "runId": "traceharbor-563db021-fdad-41a7-a463-63b8f2d4ccc8",
+        "analysisVersion": "1.0.2",
+        "shipmentId": "TH-1043",
+        "status": "completed"
+      }
+    ],
+    "note": "Counts cover archived full live investigations. They exclude standalone provider probes, sample runs, API validation rejections, and connection-failure UI checks. The first full attempt timed out; it remains in the archive."
+  },
+  "browserDecimalBoundary": {
+    "artifact": "submission/browser-qa/TH-1044-decimal-boundary.json",
+    "sha256": "b83c4f39399f46e19376b9ee2c7983877bbac9b282e93ad32fcbcb07ad066738",
+    "analysisVersion": "1.0.2",
+    "runtimeMode": "sample",
+    "shipmentId": "TH-1044",
+    "rawC": 2.3,
+    "offsetC": 0.3,
+    "correctedC": 2,
+    "minimumC": 2,
+    "outcome": "within_range",
+    "excursionReadings": 0,
+    "scope": "Actual downloaded browser sample export; not a sponsor execution claim."
+  },
+  "publication": {
+    "status": "pending_current_revision_publication_and_clean_clone",
+    "publishedCommit": null,
+    "currentRevisionCleanCloneVerified": false,
+    "currentRevisionDeploymentVerified": false,
+    "note": "Current local live runs are verified. Prior clean-clone/deployment receipts retain their historical scope until the release workflow records the new published commit."
+  },
+  "limits": [
+    "Two current synthetic cases do not establish universal reliability or measured real-world impact.",
+    "The public website runs deterministic sample mode; the local companion runs the sponsor integrations.",
+    "No NVIDIA or Nemotron contribution is claimed.",
+    "UI elapsed time and trace elapsed time cover different intervals; the trace begins after provider preflight."
+  ]
+}

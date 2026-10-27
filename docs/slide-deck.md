@@ -1,92 +1,57 @@
-# TraceHarbor: eight-slide source
+# TraceHarbor: eight-slide presentation source
 
-This is the editorial source for the final eight-slide [PowerPoint](../submission/traceharbor.pptx) and [PDF](../submission/traceharbor.pdf). The reproducible authoring source is [submission/build-deck.mjs](../submission/build-deck.mjs). The exports include 16 passing local tests and the verified browser investigation from `examples/live-agent/attempt-03-browser/manifest.json`. The authoring source requires this validated manifest through `TRACEHARBOR_LIVE_MANIFEST` before claiming complete live execution. All eight slide renders and all eight exported PDF pages were visually inspected; structural, layout and first-party import checks passed. See the [validation receipt](../submission/validation.json). Keep secrets out of every slide and speaker note.
+[Documentation](README.md) · [Presentation assets](../submission/README.md)
 
-## 1. The problem and user
+The [PowerPoint](../submission/traceharbor.pptx) and [PDF](../submission/traceharbor.pdf) use the redesigned interface and its ink, teal and cyan palette. [The authoring source](../submission/build-deck.mjs) creates native editable text and two tables; screenshots are actual application captures. The matching live evidence is `examples/live-agent/attempt-06-final-decimal/manifest.json`. [The validation receipt](../submission/validation.json) records the exact tested revision, test count, hashes and export limitations. The visible slides say “Regression suite passes”; exact counts belong to the versioned receipt.
 
-**Title:** One shipment. Four conflicting stories.
+All eight slide renders and all eight exported PDF pages were visually inspected, and package, layout and first-party import checks passed. Native Microsoft PowerPoint rendering has not been verified. The PDF preserves the actual reviewed slide pixels. Publication is a separate check from local export validation, and neither constitutes an official hackathon submission.
 
-**On-slide copy:**
+## 1. TraceHarbor
 
-- User: an operations analyst investigating a disputed temperature exception.
-- Manifest, telemetry, carrier notes, and calibration must be reconciled.
-- A confident status is not enough when observations are missing or contradictory.
+**Problem:** One shipment. Four conflicting stories.
 
-**Visual:** Four source cards feeding one investigation question.
+An operations analyst needs a defensible explanation for a disputed cold-chain temperature exception. Manifest, telemetry, incidents and calibration must be reconciled. The opening is typographic: the user and task are stated before the architecture.
 
-**Speaker note:** This is a focused operational hypothesis supported by synthetic scenarios. We have not conducted a customer study or measured commercial savings.
+**Speaker boundary:** The supplied records are synthetic. Practical usefulness is a product hypothesis; no customer study or measured savings is claimed.
 
-## 2. The solution
+## 2. A dossier the operator can inspect
 
-**Title:** A dossier that shows why, and when to stop.
+Findings cite records, conflicts stay visible, and missing evidence stays missing. The screenshot shows the actual TH-1042 dossier, corrected peak and coverage in the redesigned workspace. The next operational action belongs to a human.
 
-**On-slide copy:** Supported findings. Source-level citations. Preserved contradictions. Evidence-withholding tests. Explicit abstention. Proposed next actions for a human operator.
+**Speaker boundary:** Browser sample computation does not itself establish sponsor-service execution. The application does not approve cargo release.
 
-**Visual:** Actual dossier screenshot with one finding expanded to its source rows.
+## 3. The critic has a concrete job
 
-**Speaker note:** TraceHarbor investigates the observed record. It does not approve cargo release or certify product safety.
+The planner first selects manifest and telemetry. Those sources leave the case unresolved. Governed rows enter official World Model context; the critic requests incidents and calibration, which are actually retrieved. Recomputing supports sensor bias. Withholding calibration restores insufficient evidence.
 
-## 3. Agent workflow
+The slide records three actual model calls, four SQL reads and 46 source records. These are distinct planner, critic and synthesis responsibilities using the same selected local Llama model; separate underlying models are not implied. The core owns temperature arithmetic and verdicts. A failed live request remains an explicit failure.
 
-**Title:** The critic can change the answer.
+## 4. Two ways to run the same evidence core
 
-**On-slide copy:** Planner → governed retrieval → World Model context → numerical analysis → critic-selected evidence test → rerun → supported synthesis.
+The public sample uses React, Vite, Firebase Hosting, synthetic records and local deterministic computation. The local live companion uses Node.js, Zetaris REST/USL, the official Meterless World Model and Nightshift model requests.
 
-**Visual:** Workflow with the executed critic branch highlighted, plus a short actual trace excerpt.
+**Speaker boundary:** The static public site cannot reach services on the builder's computer. Private service credentials stay server-side. The separate sample CLI runs World Model without model or SQL network requests.
 
-**Speaker note:** Model decisions are bounded. The planner chooses two or three initial sources. The critic can retrieve omitted evidence, recompute the factual result and select a permitted evidence-withholding challenge. Synthesis selects supported findings/actions. The numerical core owns measurements and the bounded outcome. The archived complete live run retrieved incidents and calibration after an initial manifest-and-telemetry pass, changing insufficient evidence to sensor bias. Withholding calibration returned to insufficient evidence.
+## 5. Receipts determine what we claim
 
-## 4. Technical stack
+The native technology table names each role and its verified scope: World Model feature checks and 8/8 upstream conformance; actual Zetaris queries and data quality; three live Nightshift model phases. The optional NVIDIA contribution is explicitly not used on the selected local Llama path.
 
-**Title:** Inspectable from the browser to the evidence row.
+**Speaker boundary:** Codex assisted implementation; Cursor use is not claimed. The official engine's upstream revision and Apache-2.0 license are retained. Earlier failed probes and the timed-out full attempt remain archived.
 
-**On-slide copy:** React/Vite interface; Node.js programmatic runner; deterministic evidence core; Zetaris REST and USL; official Meterless World Model; Nightshift model route; Firebase static hosting.
+## 6. Withhold evidence. Test the answer.
 
-**Visual:** Deployment diagram separating public static assets from the local live companion and its private service configuration.
+The actual What if screenshot compares the supported sensor-bias conclusion with the abstention produced by withholding calibration. The valid +4.5°C offset and independently calibrated reference observations support the original explanation.
 
-**Speaker note:** Public sample computation is explicitly labeled. A static website does not imply access to the builder's local services. Tokens never enter the frontend bundle.
+**Speaker boundary:** This demonstrates evidence sensitivity. It is not a prediction of a physical intervention or proof that a nearby door event caused an excursion.
 
-## 5. Sponsor technology
+## 7. Different records produce different conclusions
 
-**Title:** Every claimed integration needs a receipt.
+The native scenario table compares observed excursion, sensor bias, insufficient evidence and the normal control. The regression suite passes; 8/8 upstream engine checks are separately recorded.
 
-**On-slide copy:**
+**Speaker boundary:** Functional scenarios and mocked orchestration tests are distinct from actual service runs. Neither four fixtures nor a few successful integrations establishes field reliability, production scale or a commercial benchmark.
 
-- Zetaris: source registrations, exploration, relationship-preserving USL, executed data-quality rule.
-- Meterless World Model: evidence ingestion, graph-context retrieval, source-priority facts, event/audit artifacts.
-- Nightshift: three actual structured-output calls for planner, critic and synthesis, using local Llama 3.2 1B.
-- NVIDIA: no current contribution claimed; the selected model path is local Llama.
+## 8. Make the explanation useful in real operations
 
-**Visual:** Actual query, engine and model receipts, with their verified scope. The complete run used four actual Zetaris reads and 46 World Model records in 142.323 seconds. All three Nightshift phases returned the selected local model. The failed earlier simple preflight and initial timeout remain archived; this completed synthetic case is not a general model-quality benchmark.
+The next work is to validate more unseen cases, work with an operations analyst, and time a fair manual-versus-assisted study. The slide links the public sample and source repository.
 
-**Speaker note:** Codex is the coding assistant. Cursor use is not claimed. Upstream engine code is attributed under Apache-2.0.
-
-## 6. What is distinctive
-
-**Title:** Withhold evidence. Test the answer.
-
-**On-slide copy:** A raw alarm can be explained by valid calibration. Withhold that evidence and recompute. A missing sample stays missing. A source contradiction stays visible.
-
-**Visual:** Actual before/after evidence-withholding result with the affected citations.
-
-**Speaker note:** This is record sensitivity, not experimental causality. Temporal alignment with a door event supports investigation; it does not prove the event caused the excursion.
-
-## 7. Product and evaluation
-
-**Title:** Three difficult cases, plus a normal control.
-
-**On-slide copy:** Observed excursion; sensor bias; insufficient evidence; bounded in-range control. Every case is synthetic and input-dependent.
-
-**Visual:** Product screenshots of the chart, evidence drawer, abstention state and trace. Use the latest verified metadata test count and add clean-run evidence only after it exists.
-
-**Speaker note:** The final test set should include changed inputs, invalid observations, expired/overlapping calibration, missing data, citation rejection, service failure, and no-credential sample mode. No test result is claimed from the presence of a test file.
-
-## 8. Next steps and limits
-
-**Title:** From a reproducible prototype to a validated workflow.
-
-**On-slide copy:** Validate with one real operations user. Connect permitted real sources. Measure manual and assisted investigation time fairly. Expand schema/permission coverage. Keep high-impact decisions human-owned.
-
-**Visual:** Three-step roadmap: verified integration → user study → operational pilot, plus repository and verified demo links.
-
-**Speaker note:** Current limits include synthetic evidence, small datasets, heuristic confidence, no proof of causation, and no product-safety authority. Any time-saving figures are estimates until a timed comparator is performed.
+**Speaker boundary:** Evidence remains synthetic; no measured savings, causal proof, release approval or safety certification is claimed. Compare equal-scope cases, report errors as well as time, and separate setup, system waiting and active analyst effort.

@@ -1,6 +1,24 @@
 # TraceHarbor architecture
 
-Status: 27 October 2026. The 16-test suite, actual Zetaris setup and full local Nightshift/World Model investigation are verified. Transport unit tests use mocks; separate [actual service receipts](../examples/live-agent/attempt-02/) show three model calls and four governed reads completing in 142.3 seconds. The [final clean-clone check](clean-clone-validation.json) also passed at published commit ca1f6b7: fresh offline install, 16 tests, production build and three sample CLI cases without credentials or sponsor calls.
+[Documentation](README.md) · [Getting started](getting-started.md) · [Evidence guide](evidence-guide.md)
+
+The verified baseline is dated 27 October 2026. Its [clean-clone check](clean-clone-validation.json) covers published commit `ca1f6b7`: fresh dependency installation, 16 tests, production build and three sample CLI cases without credentials or sponsor calls. Separate [actual service receipts](../examples/live-agent/attempt-02/) show three model calls and four governed reads completing in 142.323 seconds. New source changes require new validation; transport unit tests and actual service receipts remain distinct.
+
+The current 1.0.2 revision has 33 passing local tests. It also has [two actual browser-driven investigations](live-revision-validation.json): TH-1042 supports sensor bias, while TH-1043 retains insufficient evidence. Each used three actual Nightshift calls, four Zetaris reads and official World Model context. The [current UI checks](ui-validation.json) cover the redesigned interactions. Final publication and exact-revision clean-clone verification remain distinct from these local runs.
+
+## Implementation map
+
+| Component | Responsibility | Source |
+| --- | --- | --- |
+| React workspace | Case selection, evidence views, imports, experiments and dossier export | [`src/main.jsx`](../src/main.jsx), [`src/workspace.mjs`](../src/workspace.mjs) |
+| Numerical evidence core | Identity, calibration, coverage, measured outcomes and source-backed findings | [`core/investigator.mjs`](../core/investigator.mjs) |
+| Agent coordinator | Bounded planner/retrieval/critic/synthesis workflow and run artifacts | [`server/agent.mjs`](../server/agent.mjs) |
+| Graph context | Official World Model ingestion, evidence reconstruction and source-priority facts | [`server/world-context.mjs`](../server/world-context.mjs) |
+| Model boundary | Nightshift requests, output contracts, token budgets and returned-model receipts | [`server/nightshift.mjs`](../server/nightshift.mjs), [`server/output-schemas.mjs`](../server/output-schemas.mjs) |
+| Database boundary | Actual Zetaris REST requests and deterministic row decoding | [`scripts/zetaris-client.mjs`](../scripts/zetaris-client.mjs), [`scripts/zetaris-schema.mjs`](../scripts/zetaris-schema.mjs) |
+| Local HTTP companion | Same-origin built UI and bounded loopback investigation endpoint | [`server/http.mjs`](../server/http.mjs) |
+
+The public browser imports the browser-safe evidence core. It does not run the Node.js agent, access private service tokens or claim World Model/model/database execution. The sample CLI and live runner consume the official World Model through the server-side wrapper.
 
 ## Problem boundary
 
@@ -57,9 +75,13 @@ The planner chooses two or three initial sources, with manifest and telemetry re
 
 ## Deterministic evidence contract
 
+The current core reports `analysisVersion: 1.0.2`. Its regression suite quarantines all versions of repeated reading IDs, normalizes equivalent timestamp representations when detecting duplicates, compares unrounded measurements with limits, and rejects a cadence that cannot advance time. Duplicate reference evidence cannot silently validate a disputed correction. Calibration subtraction and reference-distance checks align finite numbers' decimal coefficients and exponents with integer arithmetic before converting the result back to a number. This removes binary subtraction noise at exact boundaries without introducing a fixed rounding step or arbitrary epsilon. These changes preserve the four supplied case outcomes while tightening ambiguous-input behavior; see the [current readiness review](readiness-review.md).
+
 `core/investigator.mjs` exports `investigateShipment(feeds, shipmentId, options)`. `excludeRowIds` withholds evidence; `ignoreCalibration` withholds correction. These are sensitivity checks on the available record, not predictions of an intervention in the real world.
 
 The core requires one manifest and unique evidence IDs, bounds the window, rejects malformed or impossible observations, and applies exactly one confirmed calibration in `[valid_from, valid_to)`. Pending, expired, and overlapping certificates stay unresolved. It counts primary-sensor schedule coverage and checks gaps. Reference probes corroborate observations but cannot fill primary-sensor gaps.
+
+A live case with no primary observations receives an explicitly labeled evidence-availability review and abstention. Runtime output validation rejects duplicated or oversized model selections. An empty evidence set is not presented as a completed measurement-based withholding test.
 
 Original reported statuses remain visible when contradicted. Every citation must resolve to a retained row. Results are an observed excursion, sensor-bias explanation, insufficient evidence, or a bounded in-range finding. Confidence is a disclosed heuristic, not model accuracy, a safety probability, or a causal likelihood.
 

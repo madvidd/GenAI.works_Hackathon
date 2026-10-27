@@ -16,7 +16,7 @@ const font = resolvePresentationFont({ fontFamily: 'Arial' });
 const build = path.resolve(process.env.DECK_BUILD_DIR || path.join(repo, '..', 'tmp', 'traceharbor-deck'));
 await fs.mkdir(build, { recursive: true });
 const pres = Presentation.create({ slideSize: { width: 1280, height: 720 } });
-const c = { navy:'#193442', ink:'#193442', gray:'#64747c', light:'#f5f7f8', white:'#ffffff', lime:'#c8eb9c', green:'#3b6c5c', line:'#dbe2e5', amber:'#8b623e' };
+const c = { navy:'#0B1F2A', ink:'#0B1F2A', gray:'#536B73', light:'#EFF5F6', white:'#ffffff', lime:'#60E0D0', green:'#087F85', line:'#D7E5E8', amber:'#A44F3D' };
 const artifactContext = await readArtifactContext(repo);
 const metadata = artifactContext.metadata;
 const verified = metadata.verification;
@@ -26,6 +26,7 @@ function text(s, value, x, y, w, h, size=26, color=c.ink, bold=false) {
 }
 function slide(kicker,title,dark=false) {
   const s=pres.slides.add(); s.background.fill=dark?c.navy:c.white;
+  s.shapes.add({geometry:'rect',position:{left:64,top:83,width:70,height:4},fill:dark?c.lime:c.green,line:{fill:'none',width:0}});
   const ink=dark?c.white:c.ink;
   text(s,kicker.toUpperCase(),64,40,1110,30,18,dark?c.lime:c.green,true);
   text(s,title,64,95,1136,105,44,ink,true);
@@ -61,8 +62,8 @@ async function screenshot(s,name,position,crop,alt) {const blob=new Uint8Array(a
   const s=slide('Solution','A dossier the operator can inspect');
   text(s,'Findings cite the records.\nConflicts stay visible.\nMissing evidence stays missing.',64,238,350,180,29,c.ink,true);
   text(s,'The next action belongs\nto the human operator.',64,466,340,90,26,c.gray);
-  await screenshot(s,'video/01-overview.png',{left:445,top:215,width:770,height:410},{left:550/1440,top:340/1100,right:50/1440,bottom:313/1100},'Actual deployed TraceHarbor sample investigation interface, cropped to the dossier.');
-  note(s,'The screenshot is a real capture from the deployed website. The public site computes synthetic sample results locally. It is not evidence that local Zetaris or Nightshift services executed. The interface presents source-backed findings and preserves contradictory operational claims. It never approves cargo release.', ['https://traceharbor.web.app','docs/images/video/01-overview.png','core/investigator.mjs']);
+  await screenshot(s,'traceharbor-redesign-desktop.png',{left:470,top:215,width:745,height:425},{left:554/1424,top:374/2210,right:34/1424,bottom:1300/2210},'Actual TraceHarbor sample workspace, cropped to the route, sensor-bias conclusion, corrected peak and observation coverage.');
+  note(s,'The screenshot is a real browser capture of the redesigned application. The public site computes synthetic sample results locally. It is not evidence that local Zetaris or Nightshift services executed. The interface presents source-backed findings and preserves contradictory operational claims. It never approves cargo release.', ['https://traceharbor.web.app','docs/images/traceharbor-redesign-desktop.png','core/investigator.mjs']);
 }
 // 3. Agent architecture: deliberately clear about implementation versus execution.
 {
@@ -103,14 +104,14 @@ async function screenshot(s,name,position,crop,alt) {const blob=new Uint8Array(a
   text(s,'Sensor bias explains\nthe alarm.',64,345,385,90,30,c.green);
   text(s,'Calibration withheld',64,465,390,45,29,c.ink,true);
   text(s,'Abstain: evidence\nis incomplete.',64,520,385,90,30,c.amber);
-  await screenshot(s,'video/05-calibration-withheld.png',{left:485,top:220,width:730,height:405},{left:550/1440,top:470/1100,right:50/1440,bottom:164/1100},'Actual deployed What if experiment: withholding calibration changes TH-1042 from sensor bias to abstention.');
-  note(s,'The actual browser experiment was verified after deployment. This is evidence sensitivity, not proof of experimental causality. The original full source record remains available. In the synthetic dataset a valid +4.5 degree sensor offset and independently calibrated reference readings support the bias explanation. Removing calibration prevents that explanation from being accepted.', ['https://traceharbor.web.app','docs/images/video/05-calibration-withheld.png','core/investigator.mjs','data/calibration.json','tests/investigator.test.mjs']);
+  await screenshot(s,'redesign-counterfactual.png',{left:485,top:245,width:730,height:345},{left:570/1424,top:610/1502,right:49/1424,bottom:512/1502},'Actual What if experiment: withholding calibration changes TH-1042 from sensor bias to abstention.');
+  note(s,'The actual browser experiment was verified against the redesigned interface. This is evidence sensitivity, not proof of experimental causality. The original full source record remains available. In the synthetic dataset a valid +4.5 degree sensor offset and independently calibrated reference readings support the bias explanation. Removing calibration prevents that explanation from being accepted.', ['https://traceharbor.web.app','docs/images/redesign-counterfactual.png','core/investigator.mjs','data/calibration.json','tests/investigator.test.mjs']);
 }
 // 7. Native editable table, with functional outcomes rather than invented KPIs.
 {
   const s=slide('Product and evaluation','Different records produce different conclusions');
   table(s,[['Synthetic case','What the evidence tests','Computed result'],['TH-1041','Calibrated peaks + conflicting claims','Observed excursion'],['TH-1042','Valid offset + agreeing reference','Sensor bias'],['TH-1043','Missing observations + uncertain calibration','Insufficient evidence'],['TH-1044','Complete bounded observations','Within observed range']],215,[235,570,347],72);
-  text(s,`${verified.local_test_count_passed} local tests passed`,64,602,475,42,29,c.green,true);
+  text(s,'Regression suite passes',64,602,475,42,29,c.green,true);
   text(s,'8 / 8 upstream engine checks passed',565,602,650,42,29,c.green,true);
   note(s,'These are synthetic functional scenarios, not a clinical or commercial benchmark. Tests cover changed inputs, invalid samples, expired or conflicting calibration, source provenance and abstention. Official World Model conformance covers identity, merge boundaries, provenance rejection, change detection, bitemporal relationships and audit behavior. Orchestration transports in automated tests are mocked. The public website and local sample runs were separately exercised.', ['tests/investigator.test.mjs','tests/runtime.test.mjs','logs/runs','metadata.json']);
 }

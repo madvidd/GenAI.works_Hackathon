@@ -47,7 +47,7 @@ export function createTraceHarborServer({ shipments, run = runInvestigation, dis
             action: event.phase, status: event.status,
             detail: event.detail || (event.phase === 'query-tool' ? `Read ${event.rows} real USL rows from ${event.source}.`
               : event.phase === 'world-ingest' ? `Ingested ${event.report.processed} changed observations; skipped ${event.report.skippedUnchanged} unchanged observations. Queried ${event.contextTrace.selectedCount} canonical graph records for agent context.`
-              : event.phase === 'critic-rerun' ? `${event.counterfactual.challenge.challenge} Withholding test: ${event.counterfactual.factualOutcome} → ${event.counterfactual.rerunOutcome}. This is an evidence sensitivity check.`
+              : event.phase === 'critic-rerun' ? `${event.counterfactual.challenge.challenge} Result: ${event.counterfactual.factualOutcome} → ${event.counterfactual.rerunOutcome}. ${event.counterfactual.interpretation}`
               : JSON.stringify(event.result || event.challenge || event.plan || event.selection || { outcome: event.outcome }).slice(0, 800)),
             citationIds: event.challenge?.citation_ids || event.counterfactual?.challenge?.citation_ids || [],
           }));

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="460" viewBox="0 0 1600 460" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">TraceHarbor — evidence-led shipment intelligence</title>
+  <desc id="desc">A maritime-inspired TraceHarbor banner with a sensor trace and cited investigation card. The illustrated TH-1042 shipment is a synthetic example: a confirmed positive 4.5-degree sensor offset changes a 10.1-degree reading to 5.6 degrees Celsius.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1600" y2="460" gradientUnits="userSpaceOnUse"><stop stop-color="#0B1F2A"/><stop offset="1" stop-color="#153C49"/></linearGradient>
+    <linearGradient id="wash" x1="1050" y1="80" x2="1450" y2="460" gradientUnits="userSpaceOnUse"><stop stop-color="#60E0D0" stop-opacity=".15"/><stop offset="1" stop-color="#60E0D0" stop-opacity="0"/></linearGradient>
+    <pattern id="coordinates" width="56" height="56" patternUnits="userSpaceOnUse"><path d="M56 0H0v56" stroke="#8BC2CB" stroke-opacity=".07"/></pattern>
+    <filter id="shadow" x="-.2" y="-.2" width="1.4" height="1.5"><feDropShadow dx="0" dy="20" stdDeviation="24" flood-color="#020D15" flood-opacity=".3"/></filter>
+  </defs>
+  <rect width="1600" height="460" rx="24" fill="url(#background)"/>
+  <rect width="1600" height="460" rx="24" fill="url(#coordinates)"/>
+  <g stroke="#60E0D0" stroke-opacity=".12">
+    <circle cx="1390" cy="238" r="185"/><circle cx="1390" cy="238" r="230"/><circle cx="1390" cy="238" r="278"/>
+    <path d="M1390 0v460M1080 238h520" stroke-dasharray="3 9"/>
+    <path d="M530 460c80-140 159-79 217-181S867 88 1010 0M560 460c85-126 150-63 215-169S895 101 1044 0M590 460c91-111 143-48 213-158S921 116 1080 0"/>
+  </g>
+  <rect x="72" y="63" width="58" height="58" rx="17" fill="#153D49" stroke="#60E0D0" stroke-opacity=".35"/>
+  <circle cx="101" cy="77" r="3.5" stroke="#60E0D0" stroke-width="2.5"/>
+  <path d="M101 82v26M88 88h26M87 96v4c0 8 6 13 14 13s14-5 14-13v-4" stroke="#60E0D0" stroke-width="3" stroke-linecap="round"/>
+  <text x="150" y="88" fill="#B4D4DD" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" letter-spacing="3">SHIPMENT INTELLIGENCE</text>
+  <text x="150" y="111" fill="#749FAB" font-family="Arial,Helvetica,sans-serif" font-size="13">A clearer course through uncertainty.</text>
+  <text x="70" y="222" fill="#F5FBFC" font-family="Arial,Helvetica,sans-serif" font-size="76" font-weight="700" letter-spacing="-3">TraceHarbor<tspan fill="#60E0D0">.</tspan></text>
+  <text x="74" y="276" fill="#C4DDE3" font-family="Arial,Helvetica,sans-serif" font-size="27" letter-spacing="-.4">Follow the evidence.</text>
+  <text x="74" y="313" fill="#8CB1BD" font-family="Arial,Helvetica,sans-serif" font-size="18">Trace the signal. Challenge the conclusion.</text>
+  <g transform="translate(74 366)" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" letter-spacing="1.6">
+    <circle cx="5" cy="5" r="4" fill="#60E0D0"/><text x="22" y="10" fill="#A9D1D7">ROW-LEVEL EVIDENCE</text>
+    <path d="M229-2v15" stroke="#3D6571"/><text x="250" y="10" fill="#A9D1D7">EXPLICIT UNCERTAINTY</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="934" y="62" width="584" height="336" rx="19" fill="#173542" stroke="#41616C"/>
+    <rect x="935" y="63" width="582" height="334" rx="18" fill="url(#wash)"/>
+    <path d="M958 118h536" stroke="#365966"/>
+    <text x="961" y="96" fill="#D4E7EB" font-family="Consolas,monospace" font-size="16" font-weight="700">TH-1042</text>
+    <rect x="1341" y="80" width="148" height="24" rx="6" fill="#234956"/>
+    <text x="1353" y="96" fill="#B5D5DD" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" letter-spacing="1">SYNTHETIC EXAMPLE</text>
+    <g stroke="#365966" stroke-width="1"><path d="M963 159h527M963 195h527M963 231h527M963 267h527" stroke-dasharray="3 5"/></g>
+    <rect x="963" y="215" width="527" height="52" rx="4" fill="#60E0D0" fill-opacity=".07"/>
+    <path d="m965 194 52-7 51-16 52-21 51-9 52 7 53-6 52 12 52-8 55 5 53-7" stroke="#97ACB7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 6"/>
+    <path d="m965 264 52-7 51-16 52-21 51-9 52 7 53-6 52 12 52-8 55 5 53-7" stroke="#60E0D0" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="1223" cy="218" r="5" fill="#60E0D0" stroke="#173542" stroke-width="3"/>
+    <path d="M961 289h529" stroke="#365966"/>
+    <text x="963" y="321" fill="#9BBCC6" font-family="Arial,Helvetica,sans-serif" font-size="12">RAW READING</text>
+    <text x="963" y="358" fill="#E1ECEF" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="700">10.1<tspan font-size="16">°C</tspan></text>
+    <path d="M1094 343h36m-7-7 7 7-7 7" stroke="#729BA9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="1160" y="321" fill="#9BBCC6" font-family="Arial,Helvetica,sans-serif" font-size="12">CALIBRATED</text>
+    <text x="1160" y="358" fill="#60E0D0" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="700">5.6<tspan font-size="16">°C</tspan></text>
+    <rect x="1322" y="319" width="168" height="47" rx="9" fill="#26504F" stroke="#60E0D0" stroke-opacity=".25"/>
+    <circle cx="1338" cy="335" r="3" fill="#60E0D0"/>
+    <text x="1349" y="339" fill="#C9EAE4" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700">+4.5°C offset</text>
+    <text x="1336" y="355" fill="#9ECAC5" font-family="Arial,Helvetica,sans-serif" font-size="10">Calibration record cited</text>
+  </g>
+</svg>

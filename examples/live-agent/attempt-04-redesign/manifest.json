@@ -1,0 +1,159 @@
+{
+  "runId": "traceharbor-13e63993-6bac-44c9-a3db-6b63456badff",
+  "mode": "live",
+  "liveExecuted": true,
+  "shipmentId": "TH-1042",
+  "createdAt": "2026-10-27T20:59:50.926Z",
+  "syntheticData": true,
+  "sponsorRuntime": {
+    "zetaris": true,
+    "nightshift": true,
+    "meterlessWorldModel": true,
+    "nvidiaProviderVerified": false
+  },
+  "dataSha256": "a9927976f1294302cf6f892dd6787204fc176aa8718dda7c69fb62181666b874",
+  "budget": {
+    "modelCalls": 3,
+    "maxModelCalls": 3,
+    "sqlQueries": 4,
+    "maxSqlQueries": 4,
+    "maxSqlRequestMs": 120000,
+    "maxModelRequestMs": 180000,
+    "maxRunMs": 300000
+  },
+  "wiredHelpers": [
+    "official WorldModel.ingest",
+    "official graph.entity context retrieval",
+    "source-priority assertFact",
+    "deterministic investigator",
+    "citation critic",
+    "counterfactual rerun"
+  ],
+  "dormantHelpers": [
+    "H-MEM",
+    "Markovian",
+    "vision",
+    "automatic cargo disposition"
+  ],
+  "contextTrace": {
+    "strategy": "canonical-evidence-graph",
+    "shipmentId": "TH-1042",
+    "selectedEntityIds": [
+      "evidence:ingest:manifest:MAN-1041",
+      "evidence:ingest:manifest:MAN-1042",
+      "evidence:ingest:manifest:MAN-1043",
+      "evidence:ingest:manifest:MAN-1044",
+      "evidence:ingest:telemetry:TEL-1041-00",
+      "evidence:ingest:telemetry:TEL-1041-10",
+      "evidence:ingest:telemetry:TEL-1041-20",
+      "evidence:ingest:telemetry:TEL-1041-X",
+      "evidence:ingest:telemetry:TEL-1041-30",
+      "evidence:ingest:telemetry:TEL-1041-40",
+      "evidence:ingest:telemetry:TEL-1041-50",
+      "evidence:ingest:telemetry:TEL-1041-60",
+      "evidence:ingest:telemetry:TEL-1042-00",
+      "evidence:ingest:telemetry:TEL-1042-10",
+      "evidence:ingest:telemetry:TEL-1042-20",
+      "evidence:ingest:telemetry:TEL-1042-20R",
+      "evidence:ingest:telemetry:TEL-1042-30",
+      "evidence:ingest:telemetry:TEL-1042-40",
+      "evidence:ingest:telemetry:TEL-1042-40R",
+      "evidence:ingest:telemetry:TEL-1042-50",
+      "evidence:ingest:telemetry:TEL-1042-60",
+      "evidence:ingest:telemetry:TEL-1043-00",
+      "evidence:ingest:telemetry:TEL-1043-50",
+      "evidence:ingest:telemetry:TEL-1044-00",
+      "evidence:ingest:telemetry:TEL-1044-10",
+      "evidence:ingest:telemetry:TEL-1044-20",
+      "evidence:ingest:telemetry:TEL-1044-30",
+      "evidence:ingest:telemetry:TEL-1044-40",
+      "evidence:ingest:telemetry:TEL-1044-50",
+      "evidence:ingest:telemetry:TEL-1044-60",
+      "evidence:ingest:incidents:EVT-1041-01",
+      "evidence:ingest:incidents:EVT-1041-02",
+      "evidence:ingest:incidents:EVT-1041-03",
+      "evidence:ingest:incidents:EVT-1042-01",
+      "evidence:ingest:incidents:EVT-1042-02",
+      "evidence:ingest:incidents:EVT-1042-03",
+      "evidence:ingest:incidents:EVT-1043-01",
+      "evidence:ingest:incidents:EVT-1043-02",
+      "evidence:ingest:incidents:EVT-1044-01",
+      "evidence:ingest:incidents:EVT-1044-02",
+      "evidence:ingest:calibration:CALROW-41",
+      "evidence:ingest:calibration:CALROW-42-OLD",
+      "evidence:ingest:calibration:CALROW-42",
+      "evidence:ingest:calibration:CALROW-42-REF",
+      "evidence:ingest:calibration:CALROW-43",
+      "evidence:ingest:calibration:CALROW-44"
+    ],
+    "source": "Meterless World Model graph view",
+    "storedAndConsumed": true,
+    "selectedCount": 46
+  },
+  "modelReceipts": [
+    {
+      "phase": "planner",
+      "provider": "Nightshift Runtime",
+      "requestedModel": "local-runtime/llama-3.2-1b-instruct",
+      "returnedModel": "local-runtime/llama-3.2-1b-instruct",
+      "usage": {
+        "prompt_tokens": 256,
+        "completion_tokens": 28,
+        "total_tokens": 284
+      },
+      "durationMs": 16918,
+      "completionId": "chatcmpl-bff09b98-e955-4217-a0eb-875c4513d4c6",
+      "responseFormat": "json_schema",
+      "schemaName": "traceharbor_planner",
+      "finishReason": "stop",
+      "nvidiaProviderVerified": false
+    },
+    {
+      "phase": "critic",
+      "provider": "Nightshift Runtime",
+      "requestedModel": "local-runtime/llama-3.2-1b-instruct",
+      "returnedModel": "local-runtime/llama-3.2-1b-instruct",
+      "usage": {
+        "prompt_tokens": 899,
+        "completion_tokens": 52,
+        "total_tokens": 951
+      },
+      "durationMs": 68602,
+      "completionId": "chatcmpl-6cd43ecc-a448-4c6c-a4d9-9b36baac4ce4",
+      "responseFormat": "json_schema",
+      "schemaName": "traceharbor_critic",
+      "finishReason": "stop",
+      "nvidiaProviderVerified": false
+    },
+    {
+      "phase": "synthesis",
+      "provider": "Nightshift Runtime",
+      "requestedModel": "local-runtime/llama-3.2-1b-instruct",
+      "returnedModel": "local-runtime/llama-3.2-1b-instruct",
+      "usage": {
+        "prompt_tokens": 765,
+        "completion_tokens": 53,
+        "total_tokens": 818
+      },
+      "durationMs": 55606,
+      "completionId": "chatcmpl-61874c59-93c2-416f-b4b9-1f7620f8723a",
+      "responseFormat": "json_schema",
+      "schemaName": "traceharbor_synthesis",
+      "finishReason": "stop",
+      "nvidiaProviderVerified": false
+    }
+  ],
+  "retrievalPlan": {
+    "initialSources": [
+      "manifest",
+      "telemetry"
+    ],
+    "criticSources": [
+      "incidents",
+      "calibration"
+    ],
+    "provisionalOutcome": "insufficient_evidence",
+    "finalOutcome": "sensor_bias",
+    "remainingMissingSources": []
+  }
+}

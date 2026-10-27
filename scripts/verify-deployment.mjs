@@ -11,11 +11,22 @@ const html = await fs.readFile(path.join(root, 'dist/index.html'), 'utf8');
 const assets = [...html.matchAll(/(?:src|href)="(\/assets\/[^"?#]+)"/g)].map(match => match[1]);
 if (!assets.some(asset => asset.endsWith('.js')) || !assets.some(asset => asset.endsWith('.css')))
   throw new Error('Build the site before verifying its deployment.');
-const files = [
+const requiredFiles = [
   '/index.html', ...assets,
   ...['manifest', 'telemetry', 'incidents', 'calibration'].map(name => `/data/${name}.json`),
   ...['traceharbor-demo.mp4', 'traceharbor.pdf', 'traceharbor.pptx', 'traceharbor-demo.srt'].map(name => `/submission/${name}`),
 ];
+async function listBuiltFiles(directory, prefix = '') {
+  const files = [];
+  for (const entry of await fs.readdir(directory, { withFileTypes: true })) {
+    const relative = `${prefix}/${entry.name}`;
+    if (entry.isDirectory()) files.push(...await listBuiltFiles(path.join(directory, entry.name), relative));
+    else if (entry.isFile()) files.push(relative);
+  }
+  return files;
+}
+const files = (await listBuiltFiles(path.join(root, 'dist'))).sort();
+for (const required of requiredFiles) if (!files.includes(required)) throw new Error(`Required build output is missing: ${required}`);
 const checks = [];
 for (const file of files) {
   const local = await fs.readFile(path.join(root, 'dist', file.slice(1)));
@@ -34,7 +45,7 @@ for (const file of files) {
 const report = {
   verifiedAt: new Date().toISOString(), origin,
   sourceCommit: execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim(),
-  method: 'Unauthenticated HTTPS downloads compared byte-for-byte with the production build, including all four source feeds and four presentation artifacts.',
+  method: 'Unauthenticated HTTPS downloads of every production-build file compared byte-for-byte, including application assets, SVG branding, all four source feeds and four presentation artifacts.',
   checks,
 };
 await fs.mkdir(path.join(root, 'logs'), { recursive: true });

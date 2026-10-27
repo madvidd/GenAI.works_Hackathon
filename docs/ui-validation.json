@@ -1,0 +1,304 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-10-27T21:34:46.567Z",
+  "method": "Actual CUA browser interactions against the production build served at http://127.0.0.1:8787. DOM observations, real downloaded JSON and screenshots; not a claim of exhaustive testing.",
+  "analysisVersion": "1.0.2",
+  "applicationAssets": [
+    {
+      "name": "index-B2vfitBo.js",
+      "sha256": "16308be6b599bf4b72fbfd68f67b400cd84929109cf62cd2865515be41e02a01"
+    },
+    {
+      "name": "index-CG4W20OW.css",
+      "sha256": "8a6783e9e55a6b59b3fe77fb209fb8265868a5b021ae0e17e70d8726c7a79ea4"
+    }
+  ],
+  "automatedTests": {
+    "command": "npm.cmd run check",
+    "passed": 33,
+    "failed": 0,
+    "productionBuildPassed": true,
+    "scope": "Unit, regression, World Model feature and mock transport/API tests; actual service runs are separately archived."
+  },
+  "checks": [
+    {
+      "id": "four-scenario-navigation",
+      "passed": true,
+      "evidence": "All four selected cases render their expected outcomes: excursion, sensor bias, abstention (28.6% coverage), and in-range control.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "search-and-clear",
+      "passed": true,
+      "evidence": "Oxford returns TH-1042 only; a nonexistent query shows an empty state; Clear filters restores four cases.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "evidence-gap-filter",
+      "passed": true,
+      "evidence": "Evidence gaps returns TH-1043 only; All shipments restores the queue.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "all-citations-accessible",
+      "passed": true,
+      "evidence": "Show all 8 citations exposes all eight source buttons and a collapse action.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "keyboard-chart-and-drawer",
+      "passed": true,
+      "evidence": "Enter opens TEL-1042-20; Escape closes the drawer and restores focus to the chart point.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "keyboard-tooltip-source",
+      "passed": true,
+      "evidence": "Tab from the final chart point reaches Source; Enter opens TEL-1042-60. Formatted tooltip retains meaningful precision without floating-point artifacts.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "calibration-sensitivity",
+      "passed": true,
+      "evidence": "Withholding calibration changes TH-1042 from sensor_bias to insufficient_evidence; reset restores the baseline.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "source-filter-withhold-restore",
+      "passed": true,
+      "evidence": "Calibration filter shows three certificates; withholding CALROW-42 removes it from active evidence; restoring all records restores sensor_bias.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "reading-edit",
+      "passed": true,
+      "evidence": "Changing TH-1044 TEL-1044-00 from4.8 to9.2 changes the case and exported dossier to excursion.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "edit-provenance",
+      "passed": true,
+      "evidence": "Exported modified evidence contains browser_edit with original4.8, modified9.2 and user-supplied what-if attribution.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "case-switch-clears-editor",
+      "passed": true,
+      "evidence": "Switching from TH-1044 to TH-1042 clears the selected reading and temperature and disables Apply until a new value is chosen.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "baseline-preservation",
+      "passed": true,
+      "evidence": "After editing TH-1044, the comparison retains original in-range baseline5.2 and displays the current excursion separately.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "near-threshold-precision",
+      "passed": true,
+      "evidence": "8.0004 C remains an excursion above an8 C limit; the overview and comparison show8.0004 rather than8.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "invalid-import-atomicity",
+      "passed": true,
+      "evidence": "An empty manifest displays an error and retains the existing four cases and valid conclusion.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "valid-import-and-reset",
+      "passed": true,
+      "evidence": "A valid four-feed dataset loads with a filename disclosure; restoring the original clears imported/edited state.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "download-record",
+      "passed": true,
+      "evidence": "The actual CALROW-42.json download matches the confirmed+4.5 C certificate.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "download-dossier",
+      "passed": true,
+      "evidence": "Actual TH-1044 JSON download records analysis1.0.1, outcome excursion, runtimeMode sample and modified source provenance.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "download-dataset-and-source",
+      "passed": true,
+      "evidence": "Actual dataset export contains4manifest/26telemetry records; manifest source export contains4records.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "source-browser",
+      "passed": true,
+      "evidence": "Data sources shows4/26/10/6records; table switches from26telemetry rows to6calibration rows with correct fields.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "architecture-navigation",
+      "passed": true,
+      "evidence": "How it works renders the Zetaris, World Model and Nightshift path and opens the runtime disclosure.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "dialog-focus",
+      "passed": true,
+      "evidence": "Runtime dialog focuses Close; Shift+Tab wraps to Captions; Escape closes it.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "search-shortcut",
+      "passed": true,
+      "evidence": "Slash from How it works returns to Investigations and focuses Find a shipment.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "sample-run",
+      "passed": true,
+      "evidence": "Run investigation recomputes the sample, displays completion feedback and elapsed time, and remains in sample mode.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "responsive-widths",
+      "passed": true,
+      "evidence": "At390/320 CSS pixels document content is375/305pixels respectively, without horizontal page overflow; filters remain visible and chart viewBoxes adjust.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "mobile-navigation",
+      "passed": true,
+      "evidence": "Menu opens with a dismissible overlay; selecting Data sources closes it; the runtime dialog remains scrollable within the viewport.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "console",
+      "passed": true,
+      "evidence": "No browser errors or warnings were recorded during the local interaction checks.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "malformed-json-recovery",
+      "passed": true,
+      "evidence": "Malformed JSON produces an explicit parse error and retains all four working shipment cases.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "live-rejection-and-recovery",
+      "passed": true,
+      "evidence": "An imported QA-UNLISTED case receives the explicit allowlist error, never a fabricated live success. Restore original sample clears the error and returns four cases in sample mode.",
+      "analysisVersion": "1.0.1"
+    },
+    {
+      "id": "exact-decimal-boundary",
+      "analysisVersion": "1.0.2",
+      "passed": true,
+      "evidence": "Imported exact-boundary fixture: raw2.3 minus confirmed0.3 equals2. The browser tooltip shows Corrected2°C and the downloaded dossier is within_range with zero excursion readings.",
+      "artifact": "submission/browser-qa/TH-1044-decimal-boundary.json"
+    },
+    {
+      "id": "unresolved-chart-description",
+      "analysisVersion": "1.0.2",
+      "passed": true,
+      "evidence": "TH-1043 accessible chart description reports corrected peak unresolved and28.6percent coverage, never null degrees."
+    },
+    {
+      "id": "failed-rerun-clears-success",
+      "analysisVersion": "1.0.2",
+      "passed": true,
+      "evidence": "After a successful TH-1043 live investigation, the local companion was stopped and Run clicked again. Failed to fetch was explicit; Live result verified was absent; mode read Live selected · sample preview; old elapsed time was cleared; Run was enabled. The companion was then restarted. This connection rejection did not reach the agent and is not a full live attempt.",
+      "artifact": "docs/images/final-failed-rerun.png"
+    },
+    {
+      "id": "object-metadata-import-guard",
+      "analysisVersion": "1.0.2",
+      "asset": "index-B2vfitBo.js",
+      "passed": true,
+      "evidence": "Importing object-valued telemetry.source_system produced telemetry.source_system must be text when provided. Existing four cases and source cards4/26/10/6 remained usable."
+    },
+    {
+      "id": "malformed-record-safe-inspection",
+      "analysisVersion": "1.0.2",
+      "asset": "index-B2vfitBo.js",
+      "passed": true,
+      "evidence": "An imported invalid telemetry row retained object-valued reading ID, event timestamp and source-update timestamp. Its evidence drawer displayed all three as JSON text; What if remained usable; Restore original sample returned the original working case.",
+      "artifact": "docs/images/final-malformed-evidence.png"
+    }
+  ],
+  "liveChecks": [
+    {
+      "archive": "examples/live-agent/attempt-06-final-decimal",
+      "runId": "traceharbor-a0fd421e-42e5-4b78-b45f-19ae2e9530f5",
+      "analysisVersion": "1.0.2",
+      "shipmentId": "TH-1042",
+      "outcome": "sensor_bias",
+      "uiElapsedMs": 153028,
+      "traceElapsedMs": 152799,
+      "modelCalls": 3,
+      "sqlQueries": 4,
+      "exportMatchesServer": true
+    },
+    {
+      "archive": "examples/live-agent/attempt-07-final-abstention",
+      "runId": "traceharbor-563db021-fdad-41a7-a463-63b8f2d4ccc8",
+      "analysisVersion": "1.0.2",
+      "shipmentId": "TH-1043",
+      "outcome": "insufficient_evidence",
+      "uiElapsedMs": 153347,
+      "traceElapsedMs": 153091,
+      "modelCalls": 3,
+      "sqlQueries": 4,
+      "exportMatchesServer": true
+    }
+  ],
+  "publicDeployment": {
+    "status": "pending-revised-release",
+    "historicalReceipt": "docs/deployment-validation.json"
+  },
+  "screenshots": [
+    "docs/images/traceharbor-redesign-desktop.png",
+    "docs/images/redesign-counterfactual.png",
+    "docs/images/redesign-citation.png",
+    "docs/images/redesign-excursion.png",
+    "docs/images/redesign-abstention.png",
+    "docs/images/redesign-control.png",
+    "docs/images/redesign-mobile-320.png",
+    "docs/images/redesign-mobile-390.png",
+    "docs/images/traceharbor-overview.png",
+    "docs/images/final-live-investigation.png",
+    "docs/images/final-live-reasoning-detail.png",
+    "docs/images/final-live-abstention.png"
+  ],
+  "limitations": [
+    "Browser checks cover the documented workflows and selected edge cases, not every possible input or browser.",
+    "No independent assistive-technology audit or operations-user study.",
+    "The public website is sample mode; actual sponsor execution is local."
+  ],
+  "baseline": {
+    "analysisVersion": "1.0.1",
+    "checkedAt": "2026-10-27T21:08:14.452Z",
+    "applicationAssets": [
+      {
+        "name": "index-KqLeXhm5.js",
+        "sha256": "13b1d905d9829cf760325ed81fb18235d5705e47e1ab52eabacb83d43e56965a"
+      },
+      {
+        "name": "index-CG4W20OW.css",
+        "sha256": "8a6783e9e55a6b59b3fe77fb209fb8265868a5b021ae0e17e70d8726c7a79ea4"
+      }
+    ],
+    "checks": 28,
+    "receipt": "docs/verification-history/ui-1.0.1.json"
+  },
+  "scope": "Twenty-eight baseline interaction groups on1.0.1, three targeted1.0.2browser regressions and two actual live cases, followed by two import-safety groups on the final UI build. Each stage retains its actual asset/revision scope.",
+  "preImportGuardAssets": [
+    {
+      "name": "index-BItQxwUl.js",
+      "sha256": "4ec63fa29501e400edf976f1b3249670374a9f2d91861c7c4d2596eb4814bc4b"
+    },
+    {
+      "name": "index-CG4W20OW.css",
+      "sha256": "8a6783e9e55a6b59b3fe77fb209fb8265868a5b021ae0e17e70d8726c7a79ea4"
+    }
+  ]
+}

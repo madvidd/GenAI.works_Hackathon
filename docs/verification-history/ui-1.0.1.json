@@ -1,0 +1,205 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-10-27T21:08:14.452Z",
+  "method": "Actual CUA browser interactions against the production build served at http://127.0.0.1:8787. DOM observations, real downloaded JSON and screenshots; not a claim of exhaustive testing.",
+  "analysisVersion": "1.0.1",
+  "applicationAssets": [
+    {
+      "name": "index-KqLeXhm5.js",
+      "sha256": "13b1d905d9829cf760325ed81fb18235d5705e47e1ab52eabacb83d43e56965a"
+    },
+    {
+      "name": "index-CG4W20OW.css",
+      "sha256": "8a6783e9e55a6b59b3fe77fb209fb8265868a5b021ae0e17e70d8726c7a79ea4"
+    }
+  ],
+  "automatedTests": {
+    "command": "npm.cmd run check",
+    "passed": 28,
+    "failed": 0,
+    "scope": "Unit, regression, World Model feature and mock transport/API tests; separate from actual live runs."
+  },
+  "checks": [
+    {
+      "id": "four-scenario-navigation",
+      "passed": true,
+      "evidence": "All four selected cases render their expected outcomes: excursion, sensor bias, abstention (28.6% coverage), and in-range control."
+    },
+    {
+      "id": "search-and-clear",
+      "passed": true,
+      "evidence": "Oxford returns TH-1042 only; a nonexistent query shows an empty state; Clear filters restores four cases."
+    },
+    {
+      "id": "evidence-gap-filter",
+      "passed": true,
+      "evidence": "Evidence gaps returns TH-1043 only; All shipments restores the queue."
+    },
+    {
+      "id": "all-citations-accessible",
+      "passed": true,
+      "evidence": "Show all 8 citations exposes all eight source buttons and a collapse action."
+    },
+    {
+      "id": "keyboard-chart-and-drawer",
+      "passed": true,
+      "evidence": "Enter opens TEL-1042-20; Escape closes the drawer and restores focus to the chart point."
+    },
+    {
+      "id": "keyboard-tooltip-source",
+      "passed": true,
+      "evidence": "Tab from the final chart point reaches Source; Enter opens TEL-1042-60. Formatted tooltip retains meaningful precision without floating-point artifacts."
+    },
+    {
+      "id": "calibration-sensitivity",
+      "passed": true,
+      "evidence": "Withholding calibration changes TH-1042 from sensor_bias to insufficient_evidence; reset restores the baseline."
+    },
+    {
+      "id": "source-filter-withhold-restore",
+      "passed": true,
+      "evidence": "Calibration filter shows three certificates; withholding CALROW-42 removes it from active evidence; restoring all records restores sensor_bias."
+    },
+    {
+      "id": "reading-edit",
+      "passed": true,
+      "evidence": "Changing TH-1044 TEL-1044-00 from4.8 to9.2 changes the case and exported dossier to excursion."
+    },
+    {
+      "id": "edit-provenance",
+      "passed": true,
+      "evidence": "Exported modified evidence contains browser_edit with original4.8, modified9.2 and user-supplied what-if attribution."
+    },
+    {
+      "id": "case-switch-clears-editor",
+      "passed": true,
+      "evidence": "Switching from TH-1044 to TH-1042 clears the selected reading and temperature and disables Apply until a new value is chosen."
+    },
+    {
+      "id": "baseline-preservation",
+      "passed": true,
+      "evidence": "After editing TH-1044, the comparison retains original in-range baseline5.2 and displays the current excursion separately."
+    },
+    {
+      "id": "near-threshold-precision",
+      "passed": true,
+      "evidence": "8.0004 C remains an excursion above an8 C limit; the overview and comparison show8.0004 rather than8."
+    },
+    {
+      "id": "invalid-import-atomicity",
+      "passed": true,
+      "evidence": "An empty manifest displays an error and retains the existing four cases and valid conclusion."
+    },
+    {
+      "id": "valid-import-and-reset",
+      "passed": true,
+      "evidence": "A valid four-feed dataset loads with a filename disclosure; restoring the original clears imported/edited state."
+    },
+    {
+      "id": "download-record",
+      "passed": true,
+      "evidence": "The actual CALROW-42.json download matches the confirmed+4.5 C certificate."
+    },
+    {
+      "id": "download-dossier",
+      "passed": true,
+      "evidence": "Actual TH-1044 JSON download records analysis1.0.1, outcome excursion, runtimeMode sample and modified source provenance."
+    },
+    {
+      "id": "download-dataset-and-source",
+      "passed": true,
+      "evidence": "Actual dataset export contains4manifest/26telemetry records; manifest source export contains4records."
+    },
+    {
+      "id": "source-browser",
+      "passed": true,
+      "evidence": "Data sources shows4/26/10/6records; table switches from26telemetry rows to6calibration rows with correct fields."
+    },
+    {
+      "id": "architecture-navigation",
+      "passed": true,
+      "evidence": "How it works renders the Zetaris, World Model and Nightshift path and opens the runtime disclosure."
+    },
+    {
+      "id": "dialog-focus",
+      "passed": true,
+      "evidence": "Runtime dialog focuses Close; Shift+Tab wraps to Captions; Escape closes it."
+    },
+    {
+      "id": "search-shortcut",
+      "passed": true,
+      "evidence": "Slash from How it works returns to Investigations and focuses Find a shipment."
+    },
+    {
+      "id": "sample-run",
+      "passed": true,
+      "evidence": "Run investigation recomputes the sample, displays completion feedback and elapsed time, and remains in sample mode."
+    },
+    {
+      "id": "responsive-widths",
+      "passed": true,
+      "evidence": "At390/320 CSS pixels document content is375/305pixels respectively, without horizontal page overflow; filters remain visible and chart viewBoxes adjust."
+    },
+    {
+      "id": "mobile-navigation",
+      "passed": true,
+      "evidence": "Menu opens with a dismissible overlay; selecting Data sources closes it; the runtime dialog remains scrollable within the viewport."
+    },
+    {
+      "id": "console",
+      "passed": true,
+      "evidence": "No browser errors or warnings were recorded during the local interaction checks."
+    },
+    {
+      "id": "malformed-json-recovery",
+      "passed": true,
+      "evidence": "Malformed JSON produces an explicit parse error and retains all four working shipment cases."
+    },
+    {
+      "id": "live-rejection-and-recovery",
+      "passed": true,
+      "evidence": "An imported QA-UNLISTED case receives the explicit allowlist error, never a fabricated live success. Restore original sample clears the error and returns four cases in sample mode."
+    }
+  ],
+  "liveChecks": [
+    {
+      "archive": "examples/live-agent/attempt-04-redesign",
+      "runId": "traceharbor-13e63993-6bac-44c9-a3db-6b63456badff",
+      "shipmentId": "TH-1042",
+      "outcome": "sensor_bias",
+      "uiElapsedMs": 170490,
+      "modelCalls": 3,
+      "sqlQueries": 4,
+      "exportMatchesServer": true
+    },
+    {
+      "archive": "examples/live-agent/attempt-05-abstention",
+      "runId": "traceharbor-d6e7942b-7cef-4337-8478-85a75a468f0d",
+      "shipmentId": "TH-1043",
+      "outcome": "insufficient_evidence",
+      "uiElapsedMs": 160702,
+      "modelCalls": 3,
+      "sqlQueries": 4,
+      "exportMatchesServer": true
+    }
+  ],
+  "publicDeployment": {
+    "status": "pending-revised-release",
+    "historicalReceipt": "docs/deployment-validation.json"
+  },
+  "screenshots": [
+    "docs/images/traceharbor-redesign-desktop.png",
+    "docs/images/redesign-counterfactual.png",
+    "docs/images/redesign-citation.png",
+    "docs/images/redesign-excursion.png",
+    "docs/images/redesign-abstention.png",
+    "docs/images/redesign-control.png",
+    "docs/images/redesign-mobile-320.png",
+    "docs/images/redesign-mobile-390.png"
+  ],
+  "limitations": [
+    "Browser checks cover the documented workflows and selected edge cases, not every possible input or browser.",
+    "No independent assistive-technology audit or operations-user study.",
+    "The public website is sample mode; actual sponsor execution is local."
+  ]
+}

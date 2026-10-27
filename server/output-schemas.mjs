@@ -9,6 +9,7 @@ export const challengeText = recheck => ({
   calibration: 'Would the conclusion remain supported if calibration certificates were withheld?',
   coverage: 'Would the conclusion remain supported if the latest valid primary observation were missing?',
   source_conflict: 'Would the conclusion change if operator-note claims were withheld?',
+  evidence_gap: 'Does the available source evidence support a conclusion when no valid primary observation or applicable calibration match is present?',
 })[recheck];
 
 export function plannerSchema() {

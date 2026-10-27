@@ -74,7 +74,7 @@
     "engine_feature_test": true,
     "engine_upstream_conformance_passed": 8,
     "engine_upstream_conformance_total": 8,
-    "local_test_count_passed": 16,
+    "local_test_count_passed": 33,
     "orchestration_transport_tests_use_mocks": true,
     "live_nightshift_run": true,
     "verified_nemotron_run": false,
@@ -83,12 +83,12 @@
     "finished_slide_deck": true,
     "deployed_site_verified": true,
     "full_live_agent_run": true,
-    "full_live_agent_attempts": 3,
-    "full_live_agent_successes": 2,
-    "full_live_agent_elapsed_ms": 142323,
+    "full_live_agent_attempts": 7,
+    "full_live_agent_successes": 6,
+    "full_live_agent_elapsed_ms": 153028,
     "live_browser_run": true,
     "live_browser_export_matches_server": true,
-    "demo_duration_seconds": 188.714,
+    "demo_duration_seconds": 188.48,
     "demo_technical_validation_passed": true,
     "demo_human_full_playback_reviewed": false,
     "clean_clone_commit": "ca1f6b7723b86319d31f0a824c67d8ba1ea36daa",
@@ -97,7 +97,33 @@
     "code_and_artifacts_ready": true,
     "public_artifacts_verified": true,
     "public_video_playback_verified": true,
-    "platform_submission_status": "not_started"
+    "platform_submission_status": "not_started",
+    "full_live_agent_elapsed_scope": "Browser request wall time for final analysis 1.0.2 TH-1042 attempt 06",
+    "current_analysis_version": "1.0.2",
+    "current_revision_live_attempts": 2,
+    "current_revision_live_successes": 2,
+    "current_revision_live_cases": [
+      "TH-1042",
+      "TH-1043"
+    ],
+    "browser_function_checks_passed": 33,
+    "current_revision_live_verified_at": "2026-10-27T21:25:42.624Z",
+    "decimal_boundary_browser_check_passed": true,
+    "current_release": {
+      "analysis_version": "1.0.2",
+      "status": "pending_publication_clean_clone_and_deployment_verification",
+      "published_commit": null,
+      "clean_clone_verified": false,
+      "deployed_site_verified": false,
+      "public_artifacts_verified": false,
+      "note": "Existing clean_clone_run, deployed_site_verified, public_artifacts_verified and public_video_playback_verified fields describe the earlier published release. They do not certify this revised checkout until current_release is finalized.",
+      "pending_receipt_paths": {
+        "clean_clone": "docs/clean-clone-redesign-validation.json",
+        "deployment": "docs/deployment-redesign-validation.json"
+      },
+      "expected_clean_clone_tests": 33
+    },
+    "browser_function_checks_scope": "Twenty-eight baseline interaction groups on1.0.1, three targeted1.0.2browser regressions and two actual live cases, followed by two import-safety groups on the final UI build. Each stage retains its actual asset/revision scope."
   },
   "limitations": [
     "All demonstration records are synthetic.",
@@ -124,17 +150,20 @@
       "examples/inputs/TH-1044.json"
     ],
     "zetaris_evidence": "examples/live-zetaris",
-    "live_agent_evidence": "examples/live-agent/attempt-02",
-    "live_agent_validation": "docs/live-agent-validation.json",
-    "live_browser_evidence": "examples/live-agent/attempt-03-browser",
-    "live_browser_export": "submission/browser-qa/TH-1042-live.json",
+    "live_agent_evidence": "examples/live-agent/attempt-06-final-decimal",
+    "live_agent_validation": "docs/live-revision-validation.json",
+    "live_browser_evidence": "examples/live-agent/attempt-06-final-decimal",
+    "live_browser_export": "examples/live-agent/attempt-06-final-decimal/browser-export.json",
     "demo_video": "submission/traceharbor-demo.mp4",
     "demo_captions": "submission/traceharbor-demo.srt",
     "demo_scene_source": "submission/demo-scenes.json",
     "demo_validation": "submission/demo-validation.json",
     "slide_deck_validation": "submission/validation.json",
     "clean_clone_validation": "docs/clean-clone-validation.json",
-    "deployment_validation": "docs/deployment-validation.json"
+    "deployment_validation": "docs/deployment-validation.json",
+    "live_abstention_evidence": "examples/live-agent/attempt-07-final-abstention",
+    "ui_validation": "docs/ui-validation.json",
+    "decimal_boundary_browser_export": "submission/browser-qa/TH-1044-decimal-boundary.json"
   },
   "editable_slide_deck_url": "https://traceharbor.web.app/submission/traceharbor.pptx",
   "captions_url": "https://traceharbor.web.app/submission/traceharbor-demo.srt"

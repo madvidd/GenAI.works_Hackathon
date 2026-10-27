@@ -1,6 +1,8 @@
 # Sponsor technology explanation
 
-This explanation describes the implementation and its evidence. **Actual Zetaris setup, World Model integration and a complete local Nightshift agent run are verified.** The public demonstration uses synthetic data and deterministic calculations; it does not imply that a live model or database request occurred.
+[Documentation](README.md) · [Architecture](architecture.md) · [Actual receipts](evidence-guide.md)
+
+This explanation describes the implementation and its evidence. **Actual baseline Zetaris setup, World Model integration and complete local Nightshift runs are verified.** Their archived receipts retain their original scope; the [readiness review](readiness-review.md) tracks subsequent changes. The public demonstration uses synthetic data and deterministic calculations; it does not imply that a live model or database request occurred.
 
 ## Zetaris: the evidence data layer
 
@@ -20,7 +22,7 @@ The project integrates the official TypeScript World Model implementation from [
 
 The wrapper ingests the source evidence, reconstructs evidence from graph context, and passes it into the deterministic investigator, which selects the shipment and window. Source-priority facts and the final verdict are persisted through the engine. Run artifacts include its events and audit records. This is a feature integration, not a claim to have invented the upstream engine.
 
-The local feature test passed within the 16-test suite: 46 source rows ingested, all 46 unchanged rows skipped on warm reload, no new ingest events, and four separate shipment identities. External keys are used because fuzzy matching would otherwise merge similarly named operational IDs. The official upstream conformance runner also passed 8/8 against the vendored implementation. Preserve the project test and actual event/audit artifacts. H-MEM, Markovian, voice, and automated cargo disposition are not claimed as active features.
+The local feature test passed within the baseline 16-test suite: 46 source rows ingested, all 46 unchanged rows skipped on warm reload, no new ingest events, and four separate shipment identities. External keys are used because fuzzy matching would otherwise merge similarly named operational IDs. The official upstream conformance runner also passed 8/8 against the vendored implementation. Preserve the project test and actual event/audit artifacts. H-MEM, Markovian, voice, and automated cargo disposition are not claimed as active features.
 
 ## Meterless Nightshift: primary live model provider
 
@@ -44,6 +46,6 @@ React, Vite, and other package dependencies retain their licenses. Original synt
 
 ## Distinctive integration
 
-The intended demonstration is not a dashboard with sponsor logos. It is a contested claim: raw alarm, governed evidence, source-valid calibration, critic-selected evidence withholding, and an explanation whose scope changes when its support disappears. Zetaris supplies the governed rows; World Model supplies structured retrieved context; Nightshift supplies bounded planning and critique; deterministic checks prevent those model calls from inventing measurements or clearance authority.
+The distinctive behavior is a contested claim: raw alarm, governed evidence, source-valid calibration, critic-selected evidence withholding, and an explanation whose scope changes when its support disappears. Zetaris supplies the governed rows; World Model supplies structured retrieved context; Nightshift supplies bounded planning and critique; deterministic checks constrain measurements, citations and outcomes.
 
-That integration must be demonstrated with actual runs before being submitted as complete.
+The actual CLI and browser runs demonstrate this integration on synthetic TH-1042. Their receipts remain scoped to those attempts; changes to the integration need new execution evidence. The project has not been submitted to the official platform.

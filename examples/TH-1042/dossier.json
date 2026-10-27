@@ -1,5 +1,5 @@
 {
-  "analysisVersion": "1.0.0",
+  "analysisVersion": "1.0.2",
   "mode": "sample",
   "shipment": {
     "row_id": "MAN-1042",
@@ -733,13 +733,13 @@
     "Incident text is untrusted evidence; reported statuses do not override missing measurements."
   ],
   "analysisMode": "deterministic",
-  "runId": "traceharbor-e06135ad-800f-4672-8266-bb08ecfc712b",
+  "runId": "traceharbor-6561c6f2-8eca-4501-9927-c97723849867",
   "execution": {
-    "runId": "traceharbor-e06135ad-800f-4672-8266-bb08ecfc712b",
+    "runId": "traceharbor-6561c6f2-8eca-4501-9927-c97723849867",
     "mode": "sample",
     "liveExecuted": false,
     "shipmentId": "TH-1042",
-    "createdAt": "2026-10-27T18:07:52.045Z",
+    "createdAt": "2026-10-27T21:14:41.595Z",
     "syntheticData": true,
     "sponsorRuntime": {
       "zetaris": false,
@@ -753,6 +753,8 @@
       "maxModelCalls": 3,
       "sqlQueries": 0,
       "maxSqlQueries": 4,
+      "maxSqlRequestMs": 120000,
+      "maxModelRequestMs": 180000,
       "maxRunMs": 300000
     },
     "wiredHelpers": [
@@ -840,7 +842,7 @@
   },
   "counterfactual": {
     "challenge": {
-      "challenge": "Would the alarm remain explained if calibration evidence were withheld?",
+      "challenge": "Would the conclusion remain supported if calibration certificates were withheld?",
       "recheck": "calibration",
       "citation_ids": [
         "MAN-1042"
@@ -879,10 +881,10 @@
         "kind": "manifest",
         "by": "manifest-system",
         "at": "2026-10-26T10:11:00Z",
-        "runId": "traceharbor-e06135ad-800f-4672-8266-bb08ecfc712b"
+        "runId": "traceharbor-6561c6f2-8eca-4501-9927-c97723849867"
       },
       "createdAt": "2026-10-26T10:11:00Z",
-      "updatedAt": "2026-10-27T18:07:52.038Z",
+      "updatedAt": "2026-10-27T21:14:41.574Z",
       "name": "TH-1042",
       "aliases": [
         "TH-1042"
@@ -900,13 +902,13 @@
           "kind": "manifest",
           "by": "manifest-system",
           "at": "2026-10-26T10:11:00Z",
-          "runId": "traceharbor-e06135ad-800f-4672-8266-bb08ecfc712b"
+          "runId": "traceharbor-6561c6f2-8eca-4501-9927-c97723849867"
         },
         "assertedAt": "2026-10-26T10:11:00Z",
-        "supersededBy": "fact_8fa3e6e7bc9b3c77"
+        "supersededBy": "fact_825b87999bc33d9d"
       },
       {
-        "id": "fact_8fa3e6e7bc9b3c77",
+        "id": "fact_825b87999bc33d9d",
         "about": "shipment:traceharbor:TH-1042",
         "predicate": "investigation_status",
         "value": "sensor_bias",
@@ -914,10 +916,10 @@
         "source": {
           "kind": "deterministic-analysis",
           "by": "traceharbor-critic",
-          "at": "2026-10-27T18:07:52.038Z",
-          "runId": "traceharbor-e06135ad-800f-4672-8266-bb08ecfc712b"
+          "at": "2026-10-27T21:14:41.574Z",
+          "runId": "traceharbor-6561c6f2-8eca-4501-9927-c97723849867"
         },
-        "assertedAt": "2026-10-27T18:07:52.038Z"
+        "assertedAt": "2026-10-27T21:14:41.574Z"
       }
     ]
   }

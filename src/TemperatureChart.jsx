@@ -1,5 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { AlertTriangle, ArrowUpRight } from "lucide-react";
+const temperature = (value) =>
+  Number.isFinite(value)
+    ? new Intl.NumberFormat("en-GB", { maximumFractionDigits: 12 }).format(
+        value,
+      )
+    : "unresolved";
 const time = (value) =>
   new Date(value).toLocaleTimeString("en-GB", {
     hour: "2-digit",
@@ -11,6 +17,7 @@ export default function TemperatureChart({ result, onEvidence }) {
     points = result.chart;
   const container = useRef(null);
   const [chartWidth, setChartWidth] = useState(750);
+  useEffect(() => setHover(null), [result]);
   useEffect(() => {
     const observer = new ResizeObserver(([entry]) => {
       if (entry.contentRect.width > 0)
@@ -54,17 +61,42 @@ export default function TemperatureChart({ result, onEvidence }) {
       .join(" ");
   }
   const hasReferences = points.some((p) => Number.isFinite(p.referenceC));
+  const rawValues = points.map((point) => point.rawC).filter(Number.isFinite);
+  const correctedValues = points
+    .map((point) => point.correctedC)
+    .filter(Number.isFinite);
+  const rawPeakLabel = rawValues.length
+    ? `${temperature(Math.max(...rawValues))} degrees`
+    : "unavailable";
+  const correctedPeakLabel = correctedValues.length
+    ? `${temperature(Math.max(...correctedValues))} degrees`
+    : "unresolved";
   return (
-    <div className="chart-wrap" ref={container} onMouseLeave={() => setHover(null)}>
+    <div
+      className="chart-wrap"
+      ref={container}
+      onMouseLeave={() => setHover(null)}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setHover(null);
+      }}
+    >
       <svg
         viewBox={`0 0 ${chartWidth} 215`}
-        role="img"
-        aria-label={`Raw peak ${result.metrics.rawPeakC} degrees, corrected peak ${result.metrics.correctedPeakC} degrees. ${result.coverage.percent} percent of scheduled observations available.`}
+        role="group"
+        aria-label={`Raw peak ${rawPeakLabel}, corrected peak ${correctedPeakLabel}. ${result.coverage.percent} percent of scheduled observations available.`}
       >
         <defs>
           <linearGradient id="chartfill" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0%" stopColor="#ddefe4" stopOpacity=".6" />
-            <stop offset="100%" stopColor="#ddefe4" stopOpacity=".15" />
+            <stop
+              offset="0%"
+              stopColor="var(--chart-range, #c3e7e1)"
+              stopOpacity=".6"
+            />
+            <stop
+              offset="100%"
+              stopColor="var(--chart-range, #c3e7e1)"
+              stopOpacity=".15"
+            />
           </linearGradient>
         </defs>
         <rect
@@ -82,7 +114,7 @@ export default function TemperatureChart({ result, onEvidence }) {
                 x2={right}
                 y1={y(v)}
                 y2={y(v)}
-                stroke="#e9ecee"
+                stroke="var(--chart-grid, #e9ecee)"
                 strokeDasharray="3 4"
               />
               <text x="25" y={y(v) + 4} textAnchor="end">
@@ -96,20 +128,20 @@ export default function TemperatureChart({ result, onEvidence }) {
           x2={right}
           y1={y(result.shipment.max_temp_c)}
           y2={y(result.shipment.max_temp_c)}
-          stroke="#a0bea7"
+          stroke="var(--chart-range-border, #87bcb5)"
           strokeDasharray="5 5"
         />
         <path
           d={path("rawC")}
           fill="none"
-          stroke="#9faebd"
+          stroke="var(--chart-raw, #9faebd)"
           strokeWidth="2"
           strokeDasharray="5 4"
         />
         <path
           d={path("correctedC")}
           fill="none"
-          stroke="#315b57"
+          stroke="var(--chart-corrected, #157e80)"
           strokeWidth="2.5"
         />
         {points.map((p, i) => (
@@ -126,6 +158,7 @@ export default function TemperatureChart({ result, onEvidence }) {
               }
             }}
             onMouseEnter={() => setHover(p)}
+            onFocus={() => setHover(p)}
           >
             <circle
               cx={x(p.timestamp)}
@@ -139,11 +172,11 @@ export default function TemperatureChart({ result, onEvidence }) {
               r="4.5"
               fill={
                 !Number.isFinite(p.correctedC)
-                  ? "#9faebd"
+                  ? "var(--chart-raw, #9faebd)"
                   : p.correctedC > result.shipment.max_temp_c ||
                       p.correctedC < result.shipment.min_temp_c
-                    ? "#cf7546"
-                    : "#315b57"
+                    ? "var(--chart-exception, #c5624c)"
+                    : "var(--chart-corrected, #157e80)"
               }
               stroke="white"
               strokeWidth="2"
@@ -154,7 +187,7 @@ export default function TemperatureChart({ result, onEvidence }) {
                 y={y(p.referenceC) - 4}
                 width="8"
                 height="8"
-                fill="#6e8eb4"
+                fill="var(--chart-reference, #4c7cad)"
                 stroke="white"
                 strokeWidth="1.5"
                 transform={`rotate(45 ${x(p.timestamp)} ${y(p.referenceC)})`}
@@ -168,10 +201,13 @@ export default function TemperatureChart({ result, onEvidence }) {
       </svg>
       {hover && (
         <div className="chart-tooltip">
-          {time(hover.timestamp)} UTC · Raw {hover.rawC}°C · Corrected{" "}
-          {hover.correctedC ?? "unresolved"}°C
+          {time(hover.timestamp)} UTC · Raw {temperature(hover.rawC)}°C ·
+          Corrected{" "}
+          {Number.isFinite(hover.correctedC)
+            ? `${temperature(hover.correctedC)}°C`
+            : "unresolved"}
           {Number.isFinite(hover.referenceC) &&
-            ` · Reference ${hover.referenceC}°C`}
+            ` · Reference ${temperature(hover.referenceC)}°C`}
           <button onClick={() => onEvidence(hover.rowId)}>
             Source
             <ArrowUpRight size={12} />

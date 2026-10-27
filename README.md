@@ -1,186 +1,161 @@
 # TraceHarbor
 
-**Investigate a cold-chain exception. Show the evidence. Know when to abstain.**
+![TraceHarbor — evidence-led shipment intelligence, showing a traced sensor signal and a cited investigation record.](docs/images/traceharbor-banner.svg)
 
-TraceHarbor is an Open Agent Hackathon 2026 project for **The Agent That Can Explain Why**. It helps an operations analyst examine a disputed temperature alert across a shipment manifest, sensor telemetry, carrier events, and calibration records. It preserves conflicting claims and explains which observations support an outcome.
+**Turn a disputed temperature alert into an investigation you can inspect.**
 
-Built by **Vengers**. [Open the website](https://traceharbor.web.app) · [Watch the 3:09 demo](https://traceharbor.web.app/submission/traceharbor-demo.mp4) · [View the deck](https://traceharbor.web.app/submission/traceharbor.pdf).
+[Explore the published demo](https://traceharbor.web.app) · [Watch the walkthrough](https://traceharbor.web.app/submission/traceharbor-demo.mp4) · [Read the deck](https://traceharbor.web.app/submission/traceharbor.pdf) · [Run locally](#run-the-sample) · [Documentation](docs/README.md)
 
-All demonstration data is synthetic. The application supports investigation; it does not authorize cargo release, disposal, consumption, or a safety certification. Temperature limits are fixture assumptions, not regulatory standards.
+An operations analyst receives a temperature alert, but the shipment status says everything is fine. The answer is spread across a manifest, logger readings, carrier notes and calibration records. TraceHarbor brings those records into one investigation, explains the supported conclusion, and shows what evidence could change it.
 
-## Implementation status
+The useful output is a **cited handoff dossier**: what was observed, which claims conflict, which records support the explanation, what is missing, and what the operator should investigate next. The prototype uses synthetic shipments; its intended operational value has not yet been measured with customers.
 
-Code and artifacts verified on **27 October 2026**. The HackOS entry has not been submitted; contributor roles and primary-contact fields remain for the team to confirm.
+Built by **Vengers** for the Open Agent Hackathon 2026, **The Agent That Can Explain Why**. The official hackathon entry remains **unsubmitted**; publication of this repository and website is separate from submission.
 
-| Part | Evidence currently available | Verification and limits |
+## Why this is useful
+
+| The analyst’s question | What TraceHarbor does | Practical next step |
 | --- | --- | --- |
-| Deterministic investigation | Input-dependent implementation; 16-test suite passed in the isolated final checkout | [Clean-clone proof](docs/clean-clone-validation.json) at ca1f6b7 |
-| Evidence provenance | Stable row IDs, original source rows, timestamps, calibration matches, and citation checks | [Ten browser and export checks](submission/browser-qa/validation.json) passed, including the actual local live run |
-| Zetaris | All 34 setup statements executed; four USL reads matched 46 records and fed the World Model; DQ returned 26 total / 25 valid / 1 invalid | Verified in the [full live run](examples/live-agent/attempt-02/); [SQL setup receipts](examples/live-zetaris/) |
-| Meterless World Model | 46 source rows ingested; warm reload skipped all 46 unchanged rows; upstream conformance runner passed 8/8 | Feature test and three CLI runs repeated successfully in the clean clone |
-| Meterless Nightshift | Three actual local Llama 3.2 1B completions: planner, critic and supported selection; full run completed in 142.3 seconds | Broader model-quality evaluation; [actual receipts](examples/live-agent/attempt-02/) |
-| NVIDIA | No current NVIDIA or Nemotron contribution claimed | The selected local-model path is not evidence of NVIDIA use |
-| Website and examples | Deployed sample verified; four feeds and calibration-withholding interaction checked; four actual sample runs in `examples/` | Three sample CLI scenarios verified from the final clean clone |
-| Deck | [Editable PowerPoint](submission/traceharbor.pptx) and [PDF](submission/traceharbor.pdf), eight slides, actual screenshots, all pages visually inspected | Sponsor status refreshed; public files match reviewed exports. Native PowerPoint rendering remains untested |
-| Video | Actual narrated MP4 with subtitles and reproducible sources | 188.71 seconds; actual live evidence included; public browser playback and complete decoding verified |
+| Did the logger observe an exception? | Checks valid, calibrated observations against the shipment’s stated range and window | Inspect the cited readings and reconcile contradictory status claims |
+| Could the alarm come from the sensor? | Matches each reading to a valid confirmed calibration and checks independent reference observations | Review the certificate and request sensor maintenance where supported |
+| Is the evidence complete enough? | Checks the expected primary-sensor schedule, missing observations and unresolved calibration | Request missing evidence instead of treating silence as clearance |
+| Would this explanation survive scrutiny? | Withholds selected evidence and recomputes the conclusion | Identify which assumption or record the explanation depends on |
 
-An SQL file is not proof that Zetaris ran. A configured model name is not proof that NVIDIA handled a request. Sample computation never claims a sponsor call occurred. See the [requirements matrix](docs/requirements-matrix.md) for release gates.
+TraceHarbor supports an analyst’s investigation. It does not authorize cargo release, disposal or consumption, and it does not certify product safety. Fixture temperature limits are demonstration assumptions, not regulatory standards.
 
-## What the investigation computes
+## A concrete example: the alarm changes meaning
 
-The analysis validates observation identity and sensor integrity, applies only an unambiguous confirmed calibration valid at the observation time, checks the primary sensor's expected sampling schedule, and compares measured evidence with reported statuses. Findings and proposed next steps cite their source rows.
+For synthetic shipment **TH-1042**, the raw peak is **10.1°C** against a stated **2–8°C** range. Seven primary readings appear too warm. A confirmed calibration records a **+4.5°C observed-minus-reference offset**, making the corrected peak **5.6°C**; two independent reference observations agree.
 
-| Case | What makes it useful |
-| --- | --- |
-| `TH-1041` | A reported clear status conflicts with calibrated out-of-range readings. A nearby door event supports an association, not proven causation. An invalid 999 C observation is excluded. |
-| `TH-1042` | A confirmed sensor offset explains a raw alarm. Reference observations corroborate the correction. An expired certificate must not override the applicable certificate. |
-| `TH-1043` | Sparse readings, a pending calibration, and a confident operator note are insufficient to clear the exception. The result abstains and requests missing evidence. |
-| `TH-1044` | A normal control with a complete observation window and confirmed zero offset. |
-
-These are scenarios, not hardcoded answer keys. The analysis uses the supplied observations and calibration records. Altering or withholding evidence must change the result. Runtime code does not load the generated dossiers in `examples/` as answers.
-
-Confidence is a transparent heuristic for evidence strength, **not a calibrated probability**. Discrete observations do not establish continuous temperature or exact exposure duration. Read the [data contract](data/README.md) for the assumptions.
-
-## Development commands
-
-Use Node.js 22.11 or later and npm. The [clean-clone check](docs/clean-clone-validation.json) passed at published commit `ca1f6b7723b86319d31f0a824c67d8ba1ea36daa`: fresh offline `npm ci`, 16 tests, production build and three actual sample CLI cases. No `.env.local` or sponsor environment variables were present; all sample runs made zero model and SQL calls.
-
-On Windows PowerShell, use `npm.cmd` when forwarding options, for example `npm.cmd run agent:sample -- --shipment TH-1042`. The direct equivalent is `node --import tsx server/agent.mjs --mode sample --shipment TH-1042`. PowerShell’s `npm` wrapper may strip forwarded option names; that is a shell invocation issue, not an investigation failure.
-
-```sh
-npm ci
-npm run dev
-```
-
-```sh
-npm run test
-npm run check
-npm run build
-npm run preview
-```
-
-The World Model feature check is `official World Model warm-loads, preserves identities, and skips unchanged ingest` in [`tests/runtime.test.mjs`](tests/runtime.test.mjs). Run it with the full `npm run test` suite. The local suite passed 16 tests. The official upstream World Model conformance runner also passed 8/8 against the vendored implementation, covering stable IDs, merge bands, provenance rejection, unchanged/mutated ingestion, bitemporal edges, and audit behavior. The project feature test and three actual sample runs also passed from the isolated final checkout; the earlier upstream 8/8 conformance run is separate evidence. Mocked transport tests are labeled in their names.
-
-The React/Vite frontend runs the deterministic demonstration on synthetic feeds. The programmatic agent commands are:
-
-```sh
-npm run agent:sample
-npm run agent:live
-```
-
-Select a case with `npm run agent:sample -- --shipment TH-1042`. The runner writes `dossier.json`, `manifest.json`, `trace.jsonl`, `world-events.jsonl`, and `world-audit.jsonl` under a unique `logs/runs/` directory. Live runs also write `zetaris-queries.jsonl`.
-
-Four explicit [structured sample inputs](examples/README.md) map to the exported results:
-
-| Input | Generated dossier | Equivalent CLI |
+| Evidence available | Computed conclusion | Why |
 | --- | --- | --- |
-| [TH-1041 input](examples/inputs/TH-1041.json) | [Observed excursion](examples/TH-1041/dossier.json) | `npm run agent:sample -- --shipment TH-1041` |
-| [TH-1042 input](examples/inputs/TH-1042.json) | [Sensor bias](examples/TH-1042/dossier.json) | `npm run agent:sample -- --shipment TH-1042` |
-| [TH-1043 input](examples/inputs/TH-1043.json) | [Insufficient evidence](examples/TH-1043/dossier.json) | `npm run agent:sample -- --shipment TH-1043` |
-| [TH-1044 input](examples/inputs/TH-1044.json) | [Normal control](examples/TH-1044/dossier.json) | `npm run agent:sample -- --shipment TH-1044` |
+| Manifest and telemetry | **Insufficient evidence** | The raw alarm alone does not establish the sensor’s validity |
+| Critic retrieves incidents and calibration | **Sensor bias explains the alarm** | Applicable calibration and reference checks support the correction |
+| Calibration deliberately withheld | **Insufficient evidence** | The supporting correction can no longer be justified |
 
-Sample mode runs without Zetaris, Nightshift, or credentials and discloses its mode. Live mode requires actual configured services. A live failure does not silently become a sample success. The local orchestration tests use mocked network transports; they are not proof of actual sponsor execution.
+This branch happened in the [current actual local live run](examples/live-agent/attempt-06-final-decimal/manifest.json). It is an evidence sensitivity check, not a prediction of a physical intervention. The numerical calculation and final outcome remain constrained by the evidence core.
 
-After building, run the local live companion:
+<img src="docs/images/traceharbor-overview.png" alt="TraceHarbor's redesigned local live workspace showing the TH-1042 sensor-bias dossier, corrected readings, observation coverage and preserved source conflicts." width="1000" />
 
-```sh
-npm run build
-npm start
+*Actual local live investigation on synthetic records. [Open the full dossier capture](docs/images/final-live-investigation.png) or [inspect the matching execution receipt](examples/live-agent/attempt-06-final-decimal/manifest.json). The public website remains a browser-computed sample.*
+
+## What you can inspect
+
+- **Investigation dossier:** calibrated observations, schedule coverage, supported findings and proposed next actions.
+- **Source evidence:** stable row IDs, original values, timestamps and calibration validity intervals behind each citation.
+- **Conflicting claims:** original shipment and operator statuses stay visible when observations contradict them.
+- **Evidence experiments:** withhold calibration or selected records and recompute; a missing observation stays missing.
+- **Execution trace:** inspect the planner, governed source reads, critic branch, recomputation and supported synthesis.
+- **Portable results:** export the dossier or run the same investigation programmatically from the CLI/API.
+
+Four original scenarios cover an observed excursion, sensor bias, insufficient evidence and an in-range control. They are computed from records, not loaded from saved answer files. See the [product walkthrough](docs/product-guide.md) and [data contract](data/README.md).
+
+## Public sample and local live execution
+
+| Experience | Runs where | Evidence path | Model/database calls |
+| --- | --- | --- | --- |
+| **Published website** | Your browser on Firebase Hosting | Public synthetic feeds → deterministic evidence core | None |
+| **Sample CLI** | Your machine | Synthetic feeds → official World Model → evidence core | No Zetaris or Nightshift calls |
+| **Local live companion / CLI** | A configured machine | Actual Zetaris USL responses → official World Model → evidence core, with Nightshift planning and critique | Actual calls, retained in run receipts |
+
+The public static site cannot reach the builder’s private local services. Live mode requires the documented local companion and configured services. A failed live run remains an error; it never silently substitutes a sample answer.
+
+## How the agent works
+
+```mermaid
+flowchart LR
+  Q[Shipment question] --> P[Nightshift planner]
+  P --> Z[Allowlisted Zetaris USL reads]
+  Z --> W[Official Meterless World Model]
+  W --> A[Evidence calculations and citations]
+  A --> C[Nightshift critic]
+  C -->|Retrieve an omitted source| Z
+  C -->|Withhold evidence and recompute| A
+  C --> S[Nightshift supported synthesis]
+  S --> D[Cited dossier and proposed next actions]
 ```
 
-Open `http://127.0.0.1:8787`. The companion serves the built UI and `/api/investigate` on the same local origin. It permits one active investigation and at most three live requests per ten minutes. It binds to loopback; it is not a publicly exposed backend.
+The planner selects two or three initial sources; manifest and telemetry are required. The critic can retrieve omitted sources and choose a bounded withholding test. The writer selects existing supported findings and actions. Model choices affect the evidence available to the investigation; the deterministic core owns arithmetic, calibration rules, admissibility, outcomes and citation checks.
 
-The core can also be inspected independently without dependencies or credentials:
+One live run is bounded to **three model calls, four unique source reads and five minutes**. The verified model route is **local Llama 3.2 1B Instruct through Meterless Nightshift**. No NVIDIA cloud, Nemotron or verified NVIDIA acceleration is claimed. [Architecture and contracts →](docs/architecture.md)
 
-```sh
-node --input-type=module -e "import fs from 'node:fs'; import {investigateShipment,FEED_NAMES} from './core/investigator.mjs'; const feeds=Object.fromEntries(FEED_NAMES.map(n=>[n,JSON.parse(fs.readFileSync('data/'+n+'.json','utf8'))])); console.log(JSON.stringify(investigateShipment(feeds,'TH-1041'),null,2));"
+## Run the sample
+
+Install **Node.js 22.11 or later** and npm. No model, GPU, service credentials or sponsor platform is needed for the sample.
+
+```powershell
+git clone https://github.com/madvidd/GenAI.works_Hackathon.git
+Set-Location GenAI.works_Hackathon
+npm.cmd ci
+npm.cmd run dev
 ```
 
-This last command does not call any sponsor service.
+Open the local address printed by Vite. In another terminal, produce a dossier without opening the UI:
 
-## Sponsor configuration
+```powershell
+npm.cmd run agent:sample -- --shipment TH-1042
+```
 
-Copy `.env.example` to the ignored `.env.local`, then enter real local values. Never commit either token. The verified live run used **local Llama 3.2 1B Instruct through Nightshift**, selected to limit memory use. No cloud-model key is required for that path. The example uses the actual returned model ID; a download or selected setting alone is not a successful inference receipt.
+The command writes a unique directory under `logs/runs/` containing `dossier.json`, `manifest.json`, `trace.jsonl`, `world-events.jsonl` and `world-audit.jsonl`. Sample manifests disclose zero model and SQL calls. On macOS/Linux, use `npm` in place of `npm.cmd`; the Windows spelling avoids PowerShell argument-forwarding problems.
 
-| Variable | Purpose |
+```powershell
+npm.cmd test
+npm.cmd run build
+npm.cmd run preview
+```
+
+For structured input files, API requests, local live setup, common errors and verification commands, follow [Getting started](docs/getting-started.md). The four [example inputs and outputs](examples/README.md) make the behavior easy to inspect.
+
+## Run with real local services
+
+1. Configure an actual Zetaris instance and private API credentials.
+2. Publish the four synthetic feeds, review the SQL plan, then register sources, activate the USL and run the quality rule using the supplied setup script.
+3. Install Nightshift, configure its local inference lane, and select the actual model ID returned by the runtime.
+4. Keep service tokens in ignored `.env.local`; build the UI and run the loopback companion with `npm.cmd start`.
+5. Run an investigation from `http://127.0.0.1:8787` or `npm.cmd run agent:live -- --shipment TH-1042`, then inspect its actual query/model receipts.
+
+The [live setup guide](docs/getting-started.md#run-the-local-live-companion) includes exact environment variables and commands. [SQL setup](sql/README.md) documents mutations and request payloads; [local-model setup](docs/local-model-setup.md) records the working Nightshift 1.2.7 lane configuration and resource-admission checks. Installing services and downloading a model are separate setup steps; the agent does not install dependencies during a run.
+
+## Evidence, with its scope
+
+The current evidence core is **1.0.2** with **33 passing local tests** and four regenerated sample outputs. The redesigned interface has [actual browser checks](docs/ui-validation.json), and both final cases have [completed live investigations](docs/live-revision-validation.json) on the same 1.0.2 core. TH-1042 resolves to sensor bias; TH-1043 retains insufficient evidence. Each actual run made three Nightshift calls and four Zetaris reads. These two synthetic cases establish their recorded behavior, not broad reliability. Final publication and a clean-clone check of the intended pushed revision remain separate release gates.
+
+The published baseline was verified on **27 October 2026** at commit [`ca1f6b7`](https://github.com/madvidd/GenAI.works_Hackathon/commit/ca1f6b7723b86319d31f0a824c67d8ba1ea36daa). These receipts describe that revision and its archived runs; subsequent changes require their own validation.
+
+| Check | Observed result | Inspect the proof |
+| --- | --- | --- |
+| Current local regressions | 33 tests passed; duplicate identities/timestamps, unrounded thresholds, empty-evidence review and workspace validation covered | [Current readiness review](docs/readiness-review.md) |
+| Current browser and live runs | Redesigned UI exercised; TH-1042 sensor bias and TH-1043 abstention; downloaded exports match server dossiers | [UI checks](docs/ui-validation.json) · [Actual live runs](docs/live-revision-validation.json) |
+| Baseline clean clone | Fresh dependency installation, 16 passing tests, production build, three sample CLI cases with no credentials or sponsor calls | [Clean-clone receipt](docs/clean-clone-validation.json) |
+| Actual live CLI investigation | 3 local Nightshift calls, 4 Zetaris reads, 46 World Model records; completed in 142.323 seconds | [Run archive](examples/live-agent/attempt-02/) · [Validation](docs/live-agent-validation.json) |
+| Actual live browser investigation | Export matched the server dossier; critic retrieval and withholding changed the outcome as described above | [Browser run](examples/live-agent/attempt-03-browser/) · [UI checks](submission/browser-qa/validation.json) |
+| Zetaris | 34 setup statements; 12 exploration queries; USL activation; DQ found 26 rows, 25 valid and 1 invalid | [SQL receipts](examples/live-zetaris/) |
+| World Model | 46 ingested records; 46 unchanged records skipped on warm reload; separate upstream conformance run passed 8/8 | [Feature test](tests/runtime.test.mjs) · [Integration explanation](docs/sponsor-technology.md) |
+| Published artifacts | Unauthenticated downloads matched the verified build, including feeds, video, PDF, PPTX and captions | [Deployment receipt](docs/deployment-validation.json) |
+
+Automated orchestration tests use mocked transports; actual service runs are archived separately. Earlier failures remain visible, including a timed-out live attempt and a preflight that responded but did not follow its instruction. See the [evidence guide](docs/evidence-guide.md).
+
+## Limits and next validation
+
+This is a working prototype with small, synthetic datasets. Discrete observations do not establish continuous temperature, exact exposure duration or causation. Evidence strength is a transparent heuristic, not a calibrated probability. The four feeds represent separate operational systems on one host; production federation, access control and scale have not been demonstrated.
+
+The next useful test is an analyst study on identical case files: compare active investigation time, finding correctness, citation validity, missed evidence and required human corrections. Report cold setup separately from repeat-use time, and retain failed attempts. We have no measured productivity gain, customer deployment or commercial ROI. [Evaluation plan →](docs/evaluation.md)
+
+## Repository guide
+
+| Area | Purpose |
 | --- | --- |
-| `ZETARIS_BASE_URL` | Zetaris REST base URL, normally `http://localhost:8888/api/v1.0` |
-| `ZETARIS_API_KEY` | Zetaris API token |
-| `ZETARIS_ORG_ID` | Numeric organization ID; local installs normally use `1` |
-| `TRACEHARBOR_PUBLIC_ORIGIN` | Verified HTTPS origin serving the four public synthetic feeds |
-| `NIGHTSHIFT_BASE_URL` | Runtime URL, normally `http://127.0.0.1:8088/v1` |
-| `NIGHTSHIFT_API_KEY` | Private Nightshift Runtime token |
-| `NIGHTSHIFT_MODEL` | Actual local Runtime model ID from authenticated discovery; a routing alias alone does not identify the model that ran |
+| [`src/`](src/) | React interface and browser interactions |
+| [`core/`](core/) | Evidence logic, response-size limits and the vendored World Model |
+| [`server/`](server/) | Programmatic agent, model client, graph-context integration and local companion API |
+| [`data/`](data/) · [`sql/`](sql/) | Original synthetic feeds and repeatable Zetaris setup |
+| [`examples/`](examples/) | Current 1.0.2 sample results and separately dated actual live receipts |
+| [`tests/`](tests/) | Evidence-rule, provenance and orchestration checks |
+| [`docs/`](docs/README.md) | Product, setup, architecture, evaluation and hackathon evidence |
+| [`submission/`](submission/README.md) | Narrated video, captions, editable deck and reproducible artifact sources |
 
-`ZETARIS_REST_URL` is also accepted by the Zetaris adapter. The supplied example uses `ZETARIS_BASE_URL` consistently. A container's `localhost` addresses that container, so containers need a documented address that reaches services on the host.
+## Attribution and project status
 
-## Zetaris setup
+Project-authored code and fixtures use the existing [MIT license](LICENSE), copyright 2026 Seyed Mohammad Salehi. The official Meterless World Model is vendored at revision `1742dec56a66e58eef9dda2d2b865823758ca8cd` with its Apache-2.0 license and notices. Other dependencies retain their own licenses. OpenAI Codex assisted implementation; Cursor use is not claimed. [Sponsor roles and attribution →](docs/sponsor-technology.md)
 
-Install and configure the actual platform using the official [participant resources](https://hackathon.genai.works/dashboard). Zetaris must be able to reach the public JSON feeds. Publishing a static frontend alone does not connect it to a developer's local database.
-
-Preview the exact source-registration, exploration, USL, and data-quality plan:
-
-```sh
-node scripts/zetaris-setup.mjs --origin https://YOUR_PROJECT.web.app
-```
-
-After checking the target instance and published feed content, execute the plan:
-
-```sh
-node scripts/zetaris-setup.mjs --origin https://YOUR_PROJECT.web.app --execute
-```
-
-The runner verifies public feeds against local fixtures, executes bounded requests in sequence, and retains actual JSONL receipts under `logs/zetaris/`. It stops on errors. It does not delete or replace existing objects. Inspect any partial result before rerunning.
-
-For an already configured instance:
-
-```sh
-node scripts/zetaris-setup.mjs --origin https://YOUR_PROJECT.web.app --verify-only --execute
-```
-
-The actual setup and application-contract verification passed on 27 October 2026. Run `node --import tsx scripts/zetaris-verify.mjs` to repeat four governed reads, exact record comparison, World Model context consumption and four outcome/citation checks. See [actual receipts](examples/live-zetaris/) and the [report](docs/zetaris-validation.json). This read-only check makes no Nightshift call.
-
-Read [SQL setup and evidence](sql/README.md) before running mutations. A successful connectivity query alone is insufficient: the live application must consume the USL evidence and the data-quality rule must be shown executing.
-
-## Architecture and evidence
-
-The implemented live workflow uses Nightshift for a planner, critic, and supported synthesis. The planner chooses two or three initial sources from four allowlisted Zetaris reads. The critic can retrieve missing sources; those results are ingested into the World Model and factual analysis is recomputed. Unfetched sources remain explicitly unknown. The World Model ingests evidence and its graph context is read back into the deterministic investigator. The critic selects an evidence-withholding test that actually reruns the analysis. Synthesis selects existing supported findings/actions; numerical claims and citation validation remain in the deterministic core. The actual full run is archived at [examples/live-agent/attempt-02](examples/live-agent/attempt-02/): the model chose two initial sources, then incidents and calibration; real retrieval changed insufficient evidence to sensor bias, and withholding calibration changed it back. Three actual local model calls and four actual USL reads completed in 142.3 seconds. This is bounded model selection with deterministic calculations and citations, not a claim that output constraints prove independent reasoning.
-
-The public static website cannot access the builder's private local services. Live runs belong in the documented backend environment where Zetaris and Nightshift are reachable. The frontend's same-origin integration contract is `POST /api/investigate` with `{ "shipmentId": "TH-1041", "mode": "live" }`, returning `{ "result": ... }`. Backend availability is a separate deployment requirement. See [architecture](docs/architecture.md).
-
-Every live run should retain its request, generated result, JSONL trace, actual Zetaris receipts, engine activity, returned model IDs, and failures or fallbacks. Redact credentials before selecting evidence for publication. Never handwrite a trace or pass a sample trace off as a live run.
-
-## Final verification
-
-After building and deploying the intended checkout, run:
-
-```sh
-node scripts/verify-deployment.mjs
-```
-
-This makes unauthenticated HTTPS requests and compares the published HTML,
-JavaScript/CSS, four data feeds, MP4, PDF, PPTX and subtitles against the current
-build bytes. It also checks expected security/media headers and writes the
-source commit, hashes and results to ignored `logs/deployment-verification.json`.
-The [published verification receipt](docs/deployment-validation.json) records matching bytes for all 11 checked files. The tested application/artifact commit is `ca1f6b7723b86319d31f0a824c67d8ba1ea36daa`; subsequent verification-document updates do not change those files. A successful local build alone is not proof that those bytes were deployed.
-
-## Submission materials
-
-- [Requirements and current evidence](docs/requirements-matrix.md)
-- [Resource review ledger](docs/resource-review-ledger.md)
-- [Zetaris reflections and proposed improvement](docs/zetaris-reflections.md)
-- [Sponsor technology explanation](docs/sponsor-technology.md)
-- [Three-minute demo narration and recording plan](docs/demo-script.md)
-- [Eight-slide source content](docs/slide-deck.md)
-- [Submission fields and final validation](docs/submission-checklist.md)
-- [`metadata.json`](metadata.json)
-
-The repository includes an actual narrated MP4 with subtitles and an editable PowerPoint/PDF deck, alongside their source and scripts. Their verification and published links are tracked in [submission artifacts](submission/README.md). Deadline: **27 October 2026, 23:45 UTC**. Team membership locks when the first submission is created. Official rules and current announcements govern conflicts with older guides.
-
-## Attribution and limitations
-
-This project is developed with OpenAI Codex as an AI coding tool. Cursor use is not claimed. Generated code remains subject to review and testing; test evidence is recorded separately. The synthetic fixtures are original project data. No customer interview, commercial outcome, or measured time saving is asserted.
-
-The Meterless World Model integration uses the official Apache-2.0 engine implementation; its original license and notices must remain with vendored files. See [sponsor attribution](docs/sponsor-technology.md) for the source revision and implementation boundary. Zetaris SQL follows the official getting-started documentation. Sponsor guides are linked rather than republished.
-
-Project-authored code and fixture data retain the existing [MIT license](LICENSE), copyright 2026 Seyed Mohammad Salehi. Third-party components retain their own licenses.
+The hackathon deadline is **27 October 2026, 23:45 UTC**. Contributor roles and primary contact still require team confirmation, and no platform submission confirmation has been recorded. The [requirements matrix](docs/requirements-matrix.md), [resource-review ledger](docs/resource-review-ledger.md) and [submission checklist](docs/submission-checklist.md) preserve the evidence and remaining gates.

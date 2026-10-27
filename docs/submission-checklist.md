@@ -1,5 +1,7 @@
 # Submission fields and final validation
 
+[Documentation](README.md) · [Requirements](requirements-matrix.md) · [Presentation assets](../submission/README.md)
+
 Deadline: **27 October 2026, 23:45 UTC**. The live submission form and current Official Rules govern if they differ from the form preview. One primary track and one submission per team. The team roster locks when the first submission is created.
 
 ## Copy-ready project text
@@ -35,9 +37,13 @@ Do not assert team consent, shared review, registration eligibility, prize arran
 
 ## Evidence already recorded
 
-Four input/output examples, 16 passing local tests, the official World Model feature test and 8/8 upstream conformance checks, actual Zetaris setup/USL/DQ receipts, and a complete local Nightshift investigation are archived. [The complete run](../examples/live-agent/attempt-02/manifest.json) used three model calls, four actual SQL reads and 46 World Model records. Its critic retrieved incidents and calibration, changing insufficient evidence to sensor bias; the calibration-withholding test returned to insufficient evidence. The earlier preflight failed its simple instruction-following task, and that failure remains visible. The final MP4 is 188.71 seconds with audio and captions, and the eight-slide PDF/PPTX include the verified integration and 16-test result. All nine video scenes, all eight slide renders and all eight PDF pages were visually checked; complete video/audio decoding passed. Human uninterrupted audiovisual playback remains pending. The checklist below remains a check of the final intended commit and published artifacts.
+Four current input/output examples, 33 passing local tests, the official World Model feature test and 8/8 upstream conformance checks, actual Zetaris setup/USL/DQ receipts, and final local Nightshift investigations are archived. [The final TH-1042 run](../examples/live-agent/attempt-06-final-decimal/manifest.json) used three model calls, four SQL reads and 46 World Model records. Its critic retrieved incidents and calibration, changing insufficient evidence to sensor bias; withholding calibration restored insufficient evidence. [The final TH-1043 run](../examples/live-agent/attempt-07-final-abstention/manifest.json) retained its abstention. Earlier failures remain visible; seven full attempts include six completed runs, which is not a reliability estimate.
+
+The refreshed MP4 is 188.48 seconds with audio and captions. The eight-slide PDF/PPTX use the redesigned interface and final 1.0.2 live evidence; visible regression wording is generic and the exact 33-test count is in the receipts. All nine video layouts/end frames, eight slide renders and eight PDF pages were visually checked, and full video/audio decoding passed. Uninterrupted human audiovisual playback remains unverified. Final publication and a clean clone of the intended pushed revision remain separate checks below.
 
 ## Final technical check
+
+Checked items record the verified baseline and its published artifacts. Recheck any affected item after the current code/UI revision; a checked historical gate is not automatic approval of later changes. The actual platform submission remains unchecked below.
 
 - [x] Fresh clone and documented dependency installation succeed.
 - [x] `npm test` and `npm run build` pass with retained output; these are the two stages composed by `npm run check`.

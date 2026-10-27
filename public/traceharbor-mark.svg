@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
+  <title>TraceHarbor</title>
+  <rect width="80" height="80" rx="23" fill="#0B1F2A"/>
+  <rect x="5" y="5" width="70" height="70" rx="19" stroke="#60E0D0" stroke-opacity=".16"/>
+  <circle cx="40" cy="19" r="5" stroke="#60E0D0" stroke-width="3.5"/>
+  <path d="M40 25v34M23 32h34M22 44v7c0 10 8 16 18 16s18-6 18-16v-7" stroke="#60E0D0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m17 48 5-5 5 5m26 0 5-5 5 5" stroke="#60E0D0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="40" cy="45" r="4" fill="#EAF8F6"/>
+</svg>
