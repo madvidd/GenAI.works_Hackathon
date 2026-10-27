@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_id": "traceharbor-incidents-v1",
+  "synthetic": true,
+  "source_system": "Synthetic carrier event log",
+  "generated_at": "2026-10-26T11:10:00Z",
+  "records": [
+    {"row_id":"EVT-1041-01","incident_id":"INC-1041-01","shipment_id":"TH-1041","occurred_at":"2026-10-26T10:18:00Z","event_type":"door_open","reported_status":"door_open","details":"Loading-bay contact reports the trailer door opened at 10:18 during an unscheduled stop.","source_updated_at":"2026-10-26T10:18:30Z"},
+    {"row_id":"EVT-1041-02","incident_id":"INC-1041-02","shipment_id":"TH-1041","occurred_at":"2026-10-26T10:25:00Z","event_type":"operator_note","reported_status":"in_range","details":"Dispatcher note: no excursion on this route; shipment remains in range. This note conflicts with the logger observations and is not a sensor measurement.","source_updated_at":"2026-10-26T10:26:00Z"},
+    {"row_id":"EVT-1041-03","incident_id":"INC-1041-03","shipment_id":"TH-1041","occurred_at":"2026-10-26T10:36:00Z","event_type":"door_closed","reported_status":"door_closed","details":"Loading-bay contact reports the door closed at 10:36. No cargo disposition was recorded.","source_updated_at":"2026-10-26T10:36:30Z"},
+    {"row_id":"EVT-1042-01","incident_id":"INC-1042-01","shipment_id":"TH-1042","occurred_at":"2026-10-26T09:45:00Z","event_type":"calibration_confirmed","reported_status":"calibration_confirmed","details":"Bench check confirmed SNS-42A reads 4.5 C above the reference probe. Certificate CAL-42-CURRENT covers this observation window.","source_updated_at":"2026-10-26T09:46:00Z"},
+    {"row_id":"EVT-1042-02","incident_id":"INC-1042-02","shipment_id":"TH-1042","occurred_at":"2026-10-26T10:10:00Z","event_type":"temperature_alert","reported_status":"temperature_alert","details":"Raw SNS-42A temperature exceeded the manifest upper limit. The alerting system does not apply calibration offsets.","source_updated_at":"2026-10-26T10:10:30Z"},
+    {"row_id":"EVT-1042-03","incident_id":"INC-1042-03","shipment_id":"TH-1042","occurred_at":"2026-10-26T10:40:00Z","event_type":"reference_check","reported_status":"reference_in_range","details":"Independent reference probe REF-42B recorded 5.3 C. Compare with the primary sensor and applicable certificate; this is not cargo release authority.","source_updated_at":"2026-10-26T10:41:00Z"},
+    {"row_id":"EVT-1043-01","incident_id":"INC-1043-01","shipment_id":"TH-1043","occurred_at":"2026-10-26T10:10:00Z","event_type":"logger_offline","reported_status":"unknown","details":"The logger stopped transmitting after the 10:00 observation. Local buffered readings have not been recovered.","source_updated_at":"2026-10-26T10:11:00Z"},
+    {"row_id":"EVT-1043-02","incident_id":"INC-1043-02","shipment_id":"TH-1043","occurred_at":"2026-10-26T10:55:00Z","event_type":"operator_note","reported_status":"in_range","details":"Operator note says everything stayed in range. Only the 10:00 and 10:50 primary observations are available; the note does not reconstruct the missing interval.","source_updated_at":"2026-10-26T10:56:00Z"},
+    {"row_id":"EVT-1044-01","incident_id":"INC-1044-01","shipment_id":"TH-1044","occurred_at":"2026-10-26T10:00:00Z","event_type":"sealed_departure","reported_status":"sealed","details":"Departure check recorded an intact seal and active logger. All statements describe synthetic demonstration records.","source_updated_at":"2026-10-26T10:01:00Z"},
+    {"row_id":"EVT-1044-02","incident_id":"INC-1044-02","shipment_id":"TH-1044","occurred_at":"2026-10-26T11:00:00Z","event_type":"scheduled_check","reported_status":"in_range","details":"Scheduled observation received. No additional operational event is recorded within the investigation window.","source_updated_at":"2026-10-26T11:01:00Z"}
+  ]
+}

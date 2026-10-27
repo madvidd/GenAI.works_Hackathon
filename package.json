@@ -1,0 +1,30 @@
+{
+  "name": "traceharbor",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Evidence-led shipment exception investigation for the Open Agent Hackathon 2026",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "node scripts/copy-data.mjs && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "start": "tsx server/http.mjs",
+    "agent:sample": "tsx server/agent.mjs --mode sample",
+    "agent:live": "tsx server/agent.mjs --mode live",
+    "test": "tsx --test tests/*.test.mjs",
+    "check": "npm run test && npm run build"
+  },
+  "dependencies": {
+    "lucide-react": "^0.468.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.9.10",
+    "tsx": "^4.20.0",
+    "vite": "^6.4.0"
+  },
+  "engines": {
+    "node": ">=22.11.0"
+  }
+}

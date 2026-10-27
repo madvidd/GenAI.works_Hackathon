@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_id": "traceharbor-calibration-v1",
+  "synthetic": true,
+  "source_system": "Synthetic sensor calibration register",
+  "generated_at": "2026-10-26T11:10:00Z",
+  "records": [
+    {"row_id":"CALROW-41","calibration_id":"CAL-41-CURRENT","sensor_id":"SNS-41A","valid_from":"2026-10-26T09:00:00Z","valid_to":"2026-10-26T12:00:00Z","offset_c":0,"status":"confirmed","reference_method":"Synthetic two-point comparison against REF-BENCH-01","confirmed_at":"2026-10-26T09:30:00Z","source_updated_at":"2026-10-26T09:31:00Z"},
+    {"row_id":"CALROW-42-OLD","calibration_id":"CAL-42-EXPIRED","sensor_id":"SNS-42A","valid_from":"2026-10-25T09:00:00Z","valid_to":"2026-10-25T12:00:00Z","offset_c":1,"status":"confirmed","reference_method":"Synthetic previous-day bench comparison; expired before this investigation","confirmed_at":"2026-10-25T09:30:00Z","source_updated_at":"2026-10-25T09:31:00Z"},
+    {"row_id":"CALROW-42","calibration_id":"CAL-42-CURRENT","sensor_id":"SNS-42A","valid_from":"2026-10-26T09:00:00Z","valid_to":"2026-10-26T12:00:00Z","offset_c":4.5,"status":"confirmed","reference_method":"Synthetic two-point comparison against REF-BENCH-01; observed minus reference","confirmed_at":"2026-10-26T09:45:00Z","source_updated_at":"2026-10-26T09:46:00Z"},
+    {"row_id":"CALROW-42-REF","calibration_id":"CAL-42-REFERENCE","sensor_id":"REF-42B","valid_from":"2026-10-26T09:00:00Z","valid_to":"2026-10-26T12:00:00Z","offset_c":0,"status":"confirmed","reference_method":"Synthetic independent reference-probe check","confirmed_at":"2026-10-26T09:35:00Z","source_updated_at":"2026-10-26T09:36:00Z"},
+    {"row_id":"CALROW-43","calibration_id":"CAL-43-PENDING","sensor_id":"SNS-43A","valid_from":"2026-10-26T09:00:00Z","valid_to":"2026-10-26T12:00:00Z","offset_c":5,"status":"pending","reference_method":"Unconfirmed operator estimate; never apply as a correction","confirmed_at":"","source_updated_at":"2026-10-26T10:58:00Z"},
+    {"row_id":"CALROW-44","calibration_id":"CAL-44-CURRENT","sensor_id":"SNS-44A","valid_from":"2026-10-26T09:00:00Z","valid_to":"2026-10-26T12:00:00Z","offset_c":0,"status":"confirmed","reference_method":"Synthetic two-point comparison against REF-BENCH-02","confirmed_at":"2026-10-26T09:40:00Z","source_updated_at":"2026-10-26T09:41:00Z"}
+  ]
+}

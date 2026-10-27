@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "project_name": "TraceHarbor",
+  "tagline": "Investigate a cold-chain exception. Show the evidence. Know when to abstain.",
+  "primary_track": "The Agent That Can Explain Why",
+  "repository_url": "https://github.com/madvidd/GenAI.works_Hackathon",
+  "website_url": "https://traceharbor.web.app",
+  "demo_video_url": null,
+  "slide_deck_url": null,
+  "team_name": "Vengers",
+  "primary_contact": null,
+  "contributors": [],
+  "data": {
+    "synthetic": true,
+    "source_feeds": [
+      "manifest",
+      "telemetry",
+      "incidents",
+      "calibration"
+    ],
+    "independence_disclosure": "Four separately modeled operational source feeds on one demonstration host; not independent production providers.",
+    "license": "MIT",
+    "real_customer_data": false
+  },
+  "sponsor_technology": {
+    "zetaris": {
+      "role": "Data layer: registered REST feeds, shipment evidence USL, exploration and data-quality execution",
+      "status": "implementation_present_live_execution_pending"
+    },
+    "meterless_engine": {
+      "name": "World Model",
+      "role": "Structured evidence and scenario state",
+      "status": "local_feature_test_passed_upstream_conformance_8_of_8"
+    },
+    "meterless_nightshift": {
+      "role": "Primary provider for live agent model requests",
+      "status": "runtime_authenticated_reachable_no_provider_configured"
+    },
+    "nvidia": {
+      "role": "Nemotron reasoning through Nightshift where configured",
+      "status": "no_verified_request_yet",
+      "verified_model_ids": []
+    },
+    "cursor": {
+      "used": false,
+      "note": "Optional coding tool; no Cursor usage claimed."
+    }
+  },
+  "ai_coding_tools": [
+    "OpenAI Codex"
+  ],
+  "pre_existing_components": [
+    {
+      "name": "Meterless World Model",
+      "source": "https://github.com/Meterless/Meterless",
+      "revision": "1742dec56a66e58eef9dda2d2b865823758ca8cd",
+      "license": "Apache-2.0",
+      "note": "Third-party engine implementation; original notices retained with vendored source. Integration is new project work."
+    },
+    {
+      "name": "Existing repository scaffold",
+      "note": "The original repository contained an MIT LICENSE and a short README. The license is preserved. Declare any additional pre-window work if discovered."
+    }
+  ],
+  "verification": {
+    "as_of_utc_date": "2026-10-27",
+    "submission_ready": false,
+    "live_zetaris_run": false,
+    "engine_feature_test": true,
+    "engine_upstream_conformance_passed": 8,
+    "engine_upstream_conformance_total": 8,
+    "local_test_count_passed": 14,
+    "orchestration_transport_tests_use_mocks": true,
+    "live_nightshift_run": false,
+    "verified_nemotron_run": false,
+    "clean_clone_run": false,
+    "recorded_demo": false,
+    "finished_slide_deck": true,
+    "deployed_site_verified": true
+  },
+  "limitations": [
+    "All demonstration records are synthetic.",
+    "Operations support only; no release, disposal or safety certification.",
+    "Temporal association does not establish causation.",
+    "Confidence is a transparent heuristic, not a calibrated probability.",
+    "Static browser computation is not evidence of live sponsor execution.",
+    "Time-saving figures are estimates, not measured benchmarks."
+  ],
+  "artifacts": {
+    "slide_deck_pptx": "submission/traceharbor.pptx",
+    "slide_deck_pdf": "submission/traceharbor.pdf",
+    "slide_deck_source": "submission/build-deck.mjs",
+    "sample_outputs": [
+      "examples/TH-1041",
+      "examples/TH-1042",
+      "examples/TH-1043",
+      "examples/TH-1044"
+    ]
+  }
+}

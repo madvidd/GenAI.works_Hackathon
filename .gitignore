@@ -1,0 +1,25 @@
+# Local dependencies and generated output
+node_modules/
+dist/
+build/
+.firebase/
+.cache/
+.tools/
+logs/
+
+# Runtime diagnostics can contain credentials
+*.log
+*.log.*
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*-service-account.json
+service-account*.json
+
+# Local operating-system and editor state
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
