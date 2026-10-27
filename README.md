@@ -10,7 +10,7 @@ An operations analyst receives a temperature alert, but the shipment status says
 
 The useful output is a **cited handoff dossier**: what was observed, which claims conflict, which records support the explanation, what is missing, and what the operator should investigate next. The prototype uses synthetic shipments; its intended operational value has not yet been measured with customers.
 
-Built by **Vengers** for the Open Agent Hackathon 2026, **The Agent That Can Explain Why**. The official hackathon entry remains **unsubmitted**; publication of this repository and website is separate from submission.
+Built by **Vengers** for the Open Agent Hackathon 2026, **The Agent That Can Explain Why**. **HackOS submission confirmed:** one submitted entry, verified after reload at **22:13 UTC on 27 October 2026**. This is the observation time, not a server submission timestamp. [Submission confirmation](docs/submission-confirmation.md)
 
 ## Why this is useful
 
@@ -159,4 +159,4 @@ The next useful test is an analyst study on identical case files: compare active
 
 Project-authored code and fixtures use the existing [MIT license](LICENSE), copyright 2026 Seyed Mohammad Salehi. The official Meterless World Model is vendored at revision `1742dec56a66e58eef9dda2d2b865823758ca8cd` with its Apache-2.0 license and notices. Other dependencies retain their own licenses. OpenAI Codex assisted implementation; Cursor use is not claimed. [Sponsor roles and attribution →](docs/sponsor-technology.md)
 
-The hackathon deadline is **27 October 2026, 23:45 UTC**. Contributor roles and primary contact still require team confirmation, and no platform submission confirmation has been recorded. The [requirements matrix](docs/requirements-matrix.md), [resource-review ledger](docs/resource-review-ledger.md) and [submission checklist](docs/submission-checklist.md) preserve the evidence and remaining gates.
+The hackathon deadline is **27 October 2026, 23:45 UTC**. The portal showed **Submitted 1 / 1** when checked at **22:13 UTC** that day; no server submission time was displayed. Confirmed contributions: Seyed Mohammad Salehi is the primary contact and responsible for project work other than Ali Rajaee’s testing. The [submission record](docs/submission-confirmation.md), [requirements matrix](docs/requirements-matrix.md) and [resource-review ledger](docs/resource-review-ledger.md) preserve the confirmed state and its limits.

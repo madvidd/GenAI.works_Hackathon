@@ -51,4 +51,4 @@ The archived schema probe also has its own scope; constrained JSON output alone 
 
 Keep local `.env.local`, runtime tokens, raw private configuration and unrelated user information out of Git and screenshots. Selected public traces disclose any archive-only path normalization. Preserve the original calculations, model/query receipts and failure outcomes.
 
-New execution creates new run IDs and timestamps. A changed source revision, dataset, model or prompt requires a new verification record. Keep historical receipts intact rather than rewriting them to appear current. [The submission checklist](submission-checklist.md) separately tracks the unsubmitted official entry.
+New execution creates new run IDs and timestamps. A changed source revision, dataset, model or prompt requires a new verification record. Keep historical receipts intact rather than rewriting them to appear current. [The submission confirmation](submission-confirmation.md) separately records the portal’s submitted state, observed after reload at 22:13 UTC on 27 October 2026. The [checklist](submission-checklist.md) distinguishes that confirmation from technical checks and unfinished board tasks.

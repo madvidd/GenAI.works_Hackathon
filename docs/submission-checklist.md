@@ -1,10 +1,12 @@
-# Submission fields and final validation
+# Submission record and final validation
 
 [Documentation](README.md) · [Requirements](requirements-matrix.md) · [Presentation assets](../submission/README.md)
 
-Deadline: **27 October 2026, 23:45 UTC**. The live submission form and current Official Rules govern if they differ from the form preview. One primary track and one submission per team. The team roster locks when the first submission is created.
+Deadline: **27 October 2026, 23:45 UTC**. The live submission form and current Official Rules govern if they differ from the form preview. The portal expects one submission per team and permits up to three on distinct tracks; TraceHarbor has one entry on one primary track. The team roster locks when the first submission is created.
 
-## Copy-ready project text
+**Submitted:** the portal’s entry #1 and **Submitted 1 / 1** status persisted after reload, observed on **27 October 2026 at 22:13 UTC**. This minute-precision observation is not the server submission timestamp, which the UI did not display. See the [confirmation](submission-confirmation.md) and [actual submitted form record](../submission/hackos-entry.json).
+
+## Project summary (reference copy)
 
 **Project name:** TraceHarbor
 
@@ -16,20 +18,20 @@ Deadline: **27 October 2026, 23:45 UTC**. The live submission form and current O
 
 Use the sponsor explanation only after reconciling it with the final live evidence. Do not turn planned integrations into completed claims when pasting into the form.
 
-## Fields to complete from verified information
+## Preview fields and actual live-form resolution
 
-| Field from the preview | Required preparation |
+| Field from the preview | Recorded resolution |
 | --- | --- |
-| Project name, one-line summary, paragraph description | Text above, updated to actual final behavior |
-| Exactly one track | The Agent That Can Explain Why |
-| Each contributor's full name | Actual consenting HackOS roster |
-| Each contributor's HackOS email | Enter privately in the form; do not publish addresses unnecessarily |
-| GitHub username and role | Real contribution, no invented teammates or work |
-| Primary contact | Designated team member with access to updates |
+| Project name, one-line summary, paragraph description | TraceHarbor is named in the persisted description; the actual form had no separate project-title field |
+| Exactly one track | The Agent That Can Explain Why, selected and submitted |
+| Each contributor’s full name | Confirmed roster: Seyed Mohammad Salehi and Ali Rajaee |
+| Each contributor’s HackOS email | No separate email field appeared in the live form; private addresses are not published |
+| GitHub username and role | Seyed Mohammad Salehi (`madvidd`): project lead and all work except Ali Rajaee’s testing; Ali Rajaee: testing, GitHub handle not provided |
+| Primary contact | Seyed Mohammad Salehi, confirmed primary contact; no separate contact field appeared in the live form |
 | Public repository URL | `https://github.com/madvidd/GenAI.works_Hackathon`, verified logged out |
 | Colab links if applicable | Omit if no Colab runtime is used |
-| Demo video | Actual 1–4 minute recording with audio; tested public link |
-| Slide deck | Finished deck containing all eight content areas |
+| Demo video | [HackOS-hosted submission video](https://iframe.mediadelivery.net/embed/778121/21475ca2-f757-48b6-8ebd-e7f5e2275fb8), uploaded from the 188.48-second original with audio; processed player duration 188.396 seconds and playback verified |
+| Slide deck | [Submitted eight-slide PDF](https://traceharbor.web.app/submission/traceharbor.pdf) |
 | Sponsor technology explanation | Actual roles, tests, requests, and distinctive use |
 | Pre-existing components | Upstream World Model, dependencies/templates, and any pre-window project work |
 
@@ -43,7 +45,7 @@ The refreshed MP4 is 188.48 seconds with audio and captions. The eight-slide PDF
 
 ## Final technical check
 
-Checked technical and artifact items record the verified source/artifact commit `1c71b1cfdd051119f347443ef4d9209b652478ca` and the linked current receipts. Historical service/conformance results retain their recorded scope. Recheck affected gates after any later application, dependency, fixture or artifact change. The actual platform submission remains unchecked below.
+Checked technical and artifact items record the verified source/artifact commit `1c71b1cfdd051119f347443ef4d9209b652478ca` and the linked current receipts. Historical service/conformance results retain their recorded scope. Recheck affected gates after any later application, dependency, fixture or artifact change. The actual platform confirmation is recorded separately below.
 
 - [x] Fresh clone and documented dependency installation succeed.
 - [x] `npm test` and `npm run build` pass with retained output; these are the two stages composed by `npm run check`.
@@ -71,10 +73,10 @@ Checked technical and artifact items record the verified source/artifact commit 
 - [x] Video and deck open without requesting access; backup copies exist.
 - [x] Sponsor and pre-existing-work disclosures are accurate.
 - [x] Remaining resource-review gaps are disclosed rather than described as complete.
-- [ ] Roster and primary contact are confirmed before creating the submission.
+- [x] The roster, contribution roles and primary contact are confirmed; saved team details persisted after reload.
 - [x] Final commit and public MP4/PDF/PPTX/SRT URLs are verified and preserved.
-- [ ] The official platform submission timestamp and confirmation are preserved after submission.
+- [x] The persisted platform submission status and minute-precision observation time are preserved; no server submission timestamp was displayed.
 
 Uninterrupted human audiovisual playback and native Microsoft PowerPoint rendering remain unverified. Technical video checks and the reviewed PDF are complete. The resource ledger separately identifies six recordings whose spoken content was unavailable for review.
 
-Only a verified platform confirmation is evidence that the submission was submitted. Saved form text, a working website, or a pushed repository is not that confirmation.
+The [verified platform confirmation](submission-confirmation.md) establishes the submitted state. The portal’s **eight unfinished board tasks and zero requirements** warning was acknowledged through **Submit anyway**; those tasks were not marked complete. Saved form text, a working website or a pushed repository alone would not establish submission.

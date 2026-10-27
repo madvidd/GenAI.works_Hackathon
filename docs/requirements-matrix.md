@@ -6,7 +6,7 @@ Snapshot: **27 October 2026**. `Present` means the artifact or implementation ex
 
 The current release is source/artifact commit `1c71b1cfdd051119f347443ef4d9209b652478ca`. Its [isolated clone](clean-clone-redesign-validation.json) passed 33 tests, the production build and four actual sample CLI cases; [all 14 public files](deployment-redesign-validation.json) matched the intended build. Earlier `ca1f6b7` receipts remain historical evidence. [Release verification](release-validation.md) explains the later receipt-only commits.
 
-The current 1.0.2 revision separately passes 33 local tests. The redesigned interface has [actual browser checks](ui-validation.json), and the same 1.0.2 core has [two completed actual live cases](live-revision-validation.json). Each current live case made three model calls and four governed reads. Publication and final clean-clone checks have their own verified receipts; the official entry is still unsubmitted.
+The current 1.0.2 revision separately passes 33 local tests. The redesigned interface has [actual browser checks](ui-validation.json), and the same 1.0.2 core has [two completed actual live cases](live-revision-validation.json). Each current live case made three model calls and four governed reads. Publication and final clean-clone checks have their own verified receipts; the [official entry is confirmed submitted](submission-confirmation.md), observed after reload at 22:13 UTC on 27 October 2026.
 
 Authority: current Official Rules and Announcements on [HackOS](https://hackathon.genai.works/dashboard), then current challenge/submission instructions. The Participant Setup Guide contains mixed revisions; recent AI Usage Policy, Vibe Coding Starter Guide, and Pre-Submission Self-Check clarify Nightshift and optional Cursor. The resource ledger records conflicts.
 
@@ -14,16 +14,16 @@ Authority: current Official Rules and Announcements on [HackOS](https://hackatho
 
 | Requirement | TraceHarbor response / evidence | Current status |
 | --- | --- | --- |
-| Submit by 27 Oct 2026, 23:45 UTC | Keep timestamped final repo hash and artifact links | Pending submission |
-| One account, one team, one submission; 1–5 members | Verify actual HackOS roster; no invented contributors | Two current Vengers members observed; contribution/contact confirmation remains |
-| Exactly one primary track | The Agent That Can Explain Why | Selected in project metadata; platform selection pending |
-| Team locks on first submission creation | Confirm members and primary contact before creating it | Pending |
+| Submit by 27 Oct 2026, 23:45 UTC | [Persisted portal confirmation](submission-confirmation.md) and submitted links | Submitted status observed at 22:13 UTC before the deadline; server submission timestamp not displayed |
+| One account, one team, one submission; 1–5 members | Verify actual HackOS roster; no invented contributors | Two Vengers members observed; contributions and primary contact confirmed; portal showed Submitted 1 / 1 |
+| Exactly one primary track | The Agent That Can Explain Why | Selected and submitted on the portal; entry #1 shows this track |
+| Team locks on first submission creation | Roster, contributions and primary contact confirmed | Submission created; persisted team description, roles and both use-case tags verified |
 | Public GitHub repository with runnable code and README | `madvidd/GenAI.works_Hackathon` | Pushed publicly; anonymous GitHub API verified the source commit |
 | Demo video, 1–4 minutes, with audio | Narrated MP4, subtitles and reproducible sources | 188.48-second refreshed MP4; final live evidence, captions, decode/visual checks and public hash/playback smoke checks passed |
 | Slide deck | Eight-slide editable PowerPoint and PDF under `submission/` | Exported, structural/layout/import checks passed, all eight slides/pages visually inspected; sponsor status stays explicit |
 | Sponsor explanation | `docs/sponsor-technology.md` | Actual SQL, engine and full local-model receipts archived |
 | Declare pre-existing components | Metadata identifies upstream World Model and existing scaffold | Upstream revision/license and original LICENSE/README scaffold disclosed |
-| Accurate participant names, HackOS emails, GitHub handles, roles, primary contact | Enter verified information in live form | Pending; private details omitted from public templates |
+| Accurate participant names, HackOS emails, GitHub handles, roles, primary contact | Confirmed contributors and primary contact recorded; private contact information omitted | No separate contact/email fields existed in the live form; Ali Rajaee’s GitHub handle was not provided |
 | Links accessible through judging | Test logged out, retain copies | Public files returned HTTP 200 with matching hashes; retain hosting and repository through judging |
 
 ## Required technical behavior

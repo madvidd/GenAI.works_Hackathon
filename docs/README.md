@@ -21,7 +21,7 @@ Start with the question you want to answer.
 
 [Requirements and rubric](requirements-matrix.md) · [Resource review and limits](resource-review-ledger.md) · [Zetaris reflections](zetaris-reflections.md) · [Submission checklist](submission-checklist.md) · [Demo narration](demo-script.md) · [Slide content](slide-deck.md)
 
-The official entry is unsubmitted until a platform confirmation is retained. Public source, hosting and presentation assets do not establish submission.
+The [official submission confirmation](submission-confirmation.md) records the persisted **Submitted 1 / 1** status observed after reload on **27 October 2026 at 22:13 UTC**. This is an observation time; the server submission timestamp was not displayed. The [submitted form record](../submission/hackos-entry.json) preserves the actual description, sponsor explanation and links.
 
 ## How to read verification claims
 

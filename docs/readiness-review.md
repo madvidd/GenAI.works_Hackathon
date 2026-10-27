@@ -132,3 +132,14 @@ The workspace now rejects non-text source metadata before replacing the working 
 The release coordinator ran the full suite under **Node 24** after these guards: **33/33 tests passed**, confirmed at approximately 21:33 UTC. The two added tests cover all four source envelopes and several invalid metadata types, plus actual React static rendering of retained malformed reading fields. This supersedes the earlier 31-test checkpoint. It does not change the analysis core or server: analysis remains **1.0.2**, and actual live attempts 06–07 retain their original results and observed browser assets. Targeted browser checks and the final build are recorded by the UI/release review; they are not inferred from these unit tests.
 
 The isolated clean-clone validator is prepared to check both TAP and Node 24 spec-reporter summary lines, including ANSI-colored output. It requires the expected test count as an argument, now 33, and rejects missing or ambiguous summaries. Parser checks are complete; the actual new clone still awaits the published SHA and must not be described as already verified.
+
+
+## HackOS submission confirmed — 22:13 UTC observation
+
+After reloading the submissions page on 27 October 2026, entry #1 for Vengers showed **The Agent That Can Explain Why — Submitted**, and the counter showed **Submitted 1 / 1**. The confirmation was observed at **22:13 UTC**, recorded to minute precision. The UI exposed no server submission timestamp; the observation time must not be presented as that timestamp. See the [submission confirmation](submission-confirmation.md) and [persisted form record](../submission/hackos-entry.json).
+
+Confirmed contributions: Seyed Mohammad Salehi is the primary contact and responsible for project work other than Ali Rajaee's testing. The saved team description, roles and both use-case tags persisted after reload. The live form had no separate contact/email fields, and private contact information is omitted; Ali Rajaee's GitHub handle was not provided.
+
+The portal warned of **eight unfinished board tasks and zero requirements**. Submission proceeded using **Submit anyway**; those board tasks were not marked complete. This addendum records submission status, not task completion, eligibility adjudication or a judging outcome.
+
+The [release verification](release-validation.md) separately records the published source/artifact commit, 33-test isolated clone and 14-file public hash check. Earlier statements above remain dated checkpoints and were not rewritten to imply that their later checks or this submission had already occurred.

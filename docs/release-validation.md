@@ -33,4 +33,4 @@ The hosted application performs deterministic sample computation on synthetic da
 
 Four feeds on one demonstration host do not establish production federation across independent providers. Two current live scenarios do not establish broad reliability, and no measured analyst-time saving, customer adoption, commercial return or guaranteed competition outcome is claimed.
 
-The official hackathon entry remains **unsubmitted** until a platform confirmation is retained. Team roster/contact details and participant declarations still require their actual verified values. A public repository, working website and accessible presentation files are not submission confirmation.
+The official entry is now **submitted**, separately confirmed after reload at **22:13 UTC on 27 October 2026**. This observation time is not a server submission timestamp. Contributor roles and Seyed Mohammad Salehi’s primary-contact role are confirmed; the actual form had no separate contact or email fields. [The submission record](submission-confirmation.md) preserves the portal status and submitted links, while leaving the eight unfinished board tasks unchanged.

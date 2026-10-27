@@ -5,11 +5,24 @@
   "primary_track": "The Agent That Can Explain Why",
   "repository_url": "https://github.com/madvidd/GenAI.works_Hackathon",
   "website_url": "https://traceharbor.web.app",
-  "demo_video_url": "https://traceharbor.web.app/submission/traceharbor-demo.mp4",
+  "demo_video_url": "https://iframe.mediadelivery.net/embed/778121/21475ca2-f757-48b6-8ebd-e7f5e2275fb8",
   "slide_deck_url": "https://traceharbor.web.app/submission/traceharbor.pdf",
   "team_name": "Vengers",
-  "primary_contact": null,
-  "contributors": [],
+  "primary_contact": "Seyed Mohammad Salehi",
+  "contributors": [
+    {
+      "name": "Seyed Mohammad Salehi",
+      "github_username": "madvidd",
+      "role": "Project lead and primary contact",
+      "contribution": "All project work except Ali Rajaee’s testing; implementation, integrations, UI/UX, documentation and deployment."
+    },
+    {
+      "name": "Ali Rajaee",
+      "github_username": null,
+      "role": "Testing",
+      "contribution": "Testing."
+    }
+  ],
   "data": {
     "synthetic": true,
     "source_feeds": [
@@ -69,7 +82,7 @@
   ],
   "verification": {
     "as_of_utc_date": "2026-10-27",
-    "submission_ready": false,
+    "submission_ready": true,
     "live_zetaris_run": true,
     "engine_feature_test": true,
     "engine_upstream_conformance_passed": 8,
@@ -97,7 +110,7 @@
     "code_and_artifacts_ready": true,
     "public_artifacts_verified": true,
     "public_video_playback_verified": true,
-    "platform_submission_status": "not_started",
+    "platform_submission_status": "submitted",
     "full_live_agent_elapsed_scope": "Browser request wall time for final analysis 1.0.2 TH-1042 attempt 06",
     "current_analysis_version": "1.0.2",
     "current_revision_live_attempts": 2,
@@ -129,7 +142,10 @@
       "deployment_verified_at": "2026-10-27T21:39:05.265Z",
       "deployment_receipt": "docs/deployment-redesign-validation.json"
     },
-    "browser_function_checks_scope": "Twenty-eight baseline interaction groups on1.0.1, three targeted1.0.2browser regressions and two actual live cases, followed by two import-safety groups on the final UI build. Each stage retains its actual asset/revision scope."
+    "browser_function_checks_scope": "Twenty-eight baseline interaction groups on1.0.1, three targeted1.0.2browser regressions and two actual live cases, followed by two import-safety groups on the final UI build. Each stage retains its actual asset/revision scope.",
+    "platform_submission_confirmed": true,
+    "platform_submission_status_observed_at_utc": "2026-10-27 22:13 UTC",
+    "platform_submission_server_timestamp": null
   },
   "limitations": [
     "All demonstration records are synthetic.",
@@ -169,8 +185,42 @@
     "deployment_validation": "docs/deployment-redesign-validation.json",
     "live_abstention_evidence": "examples/live-agent/attempt-07-final-abstention",
     "ui_validation": "docs/ui-validation.json",
-    "decimal_boundary_browser_export": "submission/browser-qa/TH-1044-decimal-boundary.json"
+    "decimal_boundary_browser_export": "submission/browser-qa/TH-1044-decimal-boundary.json",
+    "submission_confirmation": "docs/submission-confirmation.md",
+    "submitted_form_record": "submission/hackos-entry.json"
   },
   "editable_slide_deck_url": "https://traceharbor.web.app/submission/traceharbor.pptx",
-  "captions_url": "https://traceharbor.web.app/submission/traceharbor-demo.srt"
+  "captions_url": "https://traceharbor.web.app/submission/traceharbor-demo.srt",
+  "downloadable_demo_video_url": "https://traceharbor.web.app/submission/traceharbor-demo.mp4",
+  "submission": {
+    "status": "submitted",
+    "status_observed_at_utc": "2026-10-27 22:13 UTC",
+    "observation_precision": "minute",
+    "server_submission_timestamp": null,
+    "timestamp_note": "Observation of the persisted submitted state after reload; the UI exposed no server submission timestamp.",
+    "portal_url": "https://hackathon.genai.works/submissions?hackathon_id=019fd164-82b9-7382-a536-d9093c576ed2",
+    "team": "Vengers",
+    "entry_number": 1,
+    "submitted_entries": 1,
+    "track": "The Agent That Can Explain Why",
+    "video_url": "https://iframe.mediadelivery.net/embed/778121/21475ca2-f757-48b6-8ebd-e7f5e2275fb8",
+    "pitch_deck_url": "https://traceharbor.web.app/submission/traceharbor.pdf",
+    "persisted_form_record": "submission/hackos-entry.json",
+    "confirmation_document": "docs/submission-confirmation.md",
+    "team_profile": {
+      "description_saved": true,
+      "contributor_roles_saved": true,
+      "use_case_tags_saved": true,
+      "use_case_tag_count": 2
+    },
+    "board_warning": {
+      "unfinished_tasks": 8,
+      "requirements": 0,
+      "action": "Submit anyway",
+      "board_tasks_marked_complete": false
+    },
+    "contact_fields_note": "No separate contact or email fields were present in the live form. Private contact information is omitted; Ali Rajaee’s GitHub handle was not provided.",
+    "platform_max_entries": 3,
+    "expected_entries_per_team": 1
+  }
 }
